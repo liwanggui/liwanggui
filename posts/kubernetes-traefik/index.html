@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Kubernetes 部署 Traefik 2.x - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Kubernetes 部署 Traefik 2.x" />
+<meta property="og:description" content="Traefik 简介 Traefik 是一个开源的可以使服务发布变得轻松有趣的边缘路由器。它负责接收你系统的请求，然后使用合适的组件来对这些请求进行处理。 除了众多的功能之" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/kubernetes-traefik/" /><meta property="og:image" content="https://liwanggui.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-09T14:50:33&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-09T14:50:33&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Kubernetes 部署 Traefik 2.x"/>
+<meta name="twitter:description" content="Traefik 简介 Traefik 是一个开源的可以使服务发布变得轻松有趣的边缘路由器。它负责接收你系统的请求，然后使用合适的组件来对这些请求进行处理。 除了众多的功能之"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/kubernetes-traefik/" /><link rel="prev" href="https://liwanggui.com/posts/kubernetes-install/" /><link rel="next" href="https://liwanggui.com/posts/kubernetes-dashboard/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Kubernetes 部署 Traefik 2.x",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/kubernetes-traefik\/"
+        },"genre": "posts","keywords": "kubernetes, k8s, traefik, traefik2","wordcount":  1609 ,
+        "url": "https:\/\/liwanggui.com\/posts\/kubernetes-traefik\/","datePublished": "2021-03-09T14:50:33+08:00","dateModified": "2021-03-09T14:50:33+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Kubernetes 部署 Traefik 2.x</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a>&nbsp;<a href="/categories/traefik/"><i class="far fa-folder fa-fw"></i>traefik</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-09">2021-03-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1609 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#traefik-简介">Traefik 简介</a></li>
+    <li><a href="#核心概念">核心概念</a></li>
+    <li><a href="#安装-traefik-2">安装 Traefik 2</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="traefik-简介">Traefik 简介</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://doc.traefik.io/traefik/assets/img/traefik-architecture.png"
+        data-srcset="https://doc.traefik.io/traefik/assets/img/traefik-architecture.png, https://doc.traefik.io/traefik/assets/img/traefik-architecture.png 1.5x, https://doc.traefik.io/traefik/assets/img/traefik-architecture.png 2x"
+        data-sizes="auto"
+        alt="https://doc.traefik.io/traefik/assets/img/traefik-architecture.png"
+        title="traefik-architecture" /></p>
+<p>Traefik 是一个开源的可以使服务发布变得轻松有趣的边缘路由器。它负责接收你系统的请求，然后使用合适的组件来对这些请求进行处理。</p>
+<p>除了众多的功能之外，Traefik 的与众不同之处还在于它会自动发现适合你服务的配置。当 Traefik 在检查你的服务时，会找到服务的相关信息并找到合适的服务来满足对应的请求。</p>
+<p>Traefik 兼容所有主流的集群技术，比如 Kubernetes，Docker，Docker Swarm，AWS，Mesos，Marathon，等等；并且可以同时处理多种方式。（甚至可以用于在裸机上运行的比较旧的软件。）</p>
+<p>使用 Traefik，不需要维护或者同步一个独立的配置文件：因为一切都会自动配置，实时操作的（无需重新启动，不会中断连接）。使用 Traefik，你可以花更多的时间在系统的开发和新功能上面，而不是在配置和维护工作状态上面花费大量时间。</p>
+<p>官方文档 &ndash; <a href="https://doc.traefik.io/traefik/" target="_blank" rel="noopener noreffer">https://doc.traefik.io/traefik/</a></p>
+<h2 id="核心概念">核心概念</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://doc.traefik.io/traefik/assets/img/architecture-overview.png"
+        data-srcset="https://doc.traefik.io/traefik/assets/img/architecture-overview.png, https://doc.traefik.io/traefik/assets/img/architecture-overview.png 1.5x, https://doc.traefik.io/traefik/assets/img/architecture-overview.png 2x"
+        data-sizes="auto"
+        alt="https://doc.traefik.io/traefik/assets/img/architecture-overview.png"
+        title="architecture-overview" /></p>
+<p><code>Traefik</code> 是一个边缘路由器，是你整个平台的大门，拦截并路由每个传入的请求：它知道所有的逻辑和规则，这些规则确定哪些服务处理哪些请求；传统的反向代理需要一个配置文件，其中包含路由到你服务的所有可能路由，而 <code>Traefik</code> 会实时检测服务并自动更新路由规则，可以自动服务发现。</p>
+<p>首先，当启动 <code>Traefik</code> 时，需要定义 <code>entrypoints</code>（入口点），然后，根据连接到这些 <code>entrypoints</code> 的路由来分析传入的请求，来查看他们是否与一组规则相匹配，如果匹配，则路由可能会将请求通过一系列中间件转换过后再转发到你的服务上去。在了解 Traefik 之前有几个核心概念我们必须要了解：</p>
+<ul>
+<li><code>Providers</code> 用来自动发现平台上的服务，可以是编排工具、容器引擎或者 key-value 存储等，比如 Docker、Kubernetes、File</li>
+<li><code>Entrypoints</code> 监听传入的流量（端口等…），是网络入口点，它们定义了接收请求的端口（HTTP 或者 TCP）。</li>
+<li><code>Routers</code> 分析请求（host, path, headers, SSL, …），负责将传入请求连接到可以处理这些请求的服务上去。</li>
+<li><code>Services</code> 将请求转发给你的应用（load balancing, …），负责配置如何获取最终将处理传入请求的实际服务。</li>
+<li><code>Middlewares</code> 中间件，用来修改请求或者根据请求来做出一些判断（authentication, rate limiting, headers, …），中间件被附件到路由上，是一种在请求发送到你的服务之前（或者在服务的响应发送到客户端之前）调整请求的一种方法。</li>
+</ul>
+<h2 id="安装-traefik-2">安装 Traefik 2</h2>
+<p>由于 <code>Traefik 2.X</code> 版本和之前的 <code>1.X</code> 版本不兼容，我们这里选择功能更加强大的 2.X 版本来和大家进行讲解，我们这里使用的镜像是 <code>traefik:2.4</code>。</p>
+<p>在 <code>Traefik</code> 中的配置可以使用两种不同的方式：</p>
+<ul>
+<li>动态配置：完全动态的路由配置</li>
+<li>静态配置：启动配置</li>
+</ul>
+<p><code>静态配置</code>中的元素（这些元素不会经常更改）连接到 <code>providers</code> 并定义 <code>Treafik</code> 将要监听的 <code>entrypoints</code>。</p>
+<blockquote>
+<p>在 Traefik 中有三种方式定义静态配置：在配置文件中、在命令行参数中、通过环境变量传递</p>
+</blockquote>
+<p><code>动态配置</code>包含定义系统如何处理请求的所有配置内容，这些配置是可以改变的，而且是无缝热更新的，没有任何请求中断或连接损耗。</p>
+<p>安装 <code>Traefik</code> 到 <code>Kubernetes</code> 集群中的资源清单文件可以到官方文档中找到，链接: <a href="https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/">https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/</a></p>
+<p>将配置资源清单保存到本地，资源清单文件我这里准备好了（做了些修改，traefik 容器网络模式改为与共用宿主机网络，详细查看配置文件），通过以下命令应用。</p>
+<blockquote>
+<p>请根据自己的需求修改资源配置清单</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f https://liwanggui.com/files/k8s/traefik2.x/crd.yaml  
+kubectl apply -f https://liwanggui.com/files/k8s/traefik2.x/rbac.yaml
+kubectl apply -f https://liwanggui.com/files/k8s/traefik2.x/traefik.yaml
+kubectl apply -f https://liwanggui.com/files/k8s/traefik2.x/dashboard.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p>其中 <code>traefik.yaml</code> 使用的是 <code>DaemonSet</code> 部署方式，如果你需要修改可以下载下来做相应的修改即可。我们这里是通过命令行参数来做的静态配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">args:
+  - --log.level=INFO
+  - --accesslog
+  - --api=true   # 开启 api/dashboard 会创建一个名为 api@internal 的特殊 service，在 dashboard 中可以直接使用这个 service 来访问
+  - --api.insecure 
+  - --entrypoints.web.address=:80 # 定义名为 web 的入口
+  - --entryPoints.websecure.address=:443 # 定义名为 websecure 的入口
+  - --entrypoints.tcpep.address=:8000 # 定义名为 tcpep 的入口
+  - --entrypoints.web.forwardedheaders.insecure # 信任 web 入口 所有转发的 header 头信息，可以用于获取客户端真实 IP 地址
+  - --entrypoints.websecure.forwardedheaders.insecure # 信任 websecure 入口 所有转发的 header 头信息，可以用于获取客户端真实 IP 地址
+  - --providers.kubernetescrd 
+  - --providers.kubernetesingress
+</code></pre></td></tr></table>
+</div>
+</div><p><code>dashboard.yaml</code> 中定义的是访问 <code>dashboard</code> 的资源清单文件，可以根据自己的需求修改。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl get pods -n kube-system -l <span class="nv">app</span><span class="o">=</span>traefik
+NAME            READY   STATUS    RESTARTS   AGE
+traefik-7s6wk   1/1     Running   <span class="m">0</span>          7m27s
+traefik-bx6m8   1/1     Running   <span class="m">0</span>          7m27s
+</code></pre></td></tr></table>
+</div>
+</div><p>部署完成后我们可以通过域名 <code>traefik.wglee.cn</code> 访问 <code>Traefik</code> 的 <code>Dashboard</code> 页面了</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/traefik-dashboard.png"
+        data-srcset="/images/traefik-dashboard.png, /images/traefik-dashboard.png 1.5x, /images/traefik-dashboard.png 2x"
+        data-sizes="auto"
+        alt="/images/traefik-dashboard.png"
+        title="traefik-dashboard" /></p>
+<blockquote>
+<p>关于更多关于 traefik 功能配置可以参考 <a href="https://www.qikqiak.com/post/traefik-2.1-101/">https://www.qikqiak.com/post/traefik-2.1-101/</a></p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-03-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/kubernetes-traefik/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x" data-hashtags="kubernetes,k8s,traefik,traefik2"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-hashtag="kubernetes"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/kubernetes-traefik/" data-title="Kubernetes 部署 Traefik 2.x"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/k8s/">k8s</a>,&nbsp;<a href="/tags/traefik/">traefik</a>,&nbsp;<a href="/tags/traefik2/">traefik2</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/kubernetes-install/" class="prev" rel="prev" title="Kubernetes 集群部署 (kubeadm)"><i class="fas fa-angle-left fa-fw"></i>Kubernetes 集群部署 (kubeadm)</a>
+            <a href="/posts/kubernetes-dashboard/" class="next" rel="next" title="部署 Kubernetes Dashboard">部署 Kubernetes Dashboard<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-03-09T14:50:33+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Kubernetes 部署 Traefik 2.x"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

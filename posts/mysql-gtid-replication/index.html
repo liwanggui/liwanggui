@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>MySQL GTID 主从复制配置 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="MySQL GTID 主从复制配置" />
+<meta property="og:description" content="环境准备 准备两台服务器安装 MySQL 5.7, 参考 安装 MySQL 5.7 服务器列表 master: 10.10.1.11/24 slave1: 10.10.1.12/24 配置 MySQL 配置基于 GTID 的主从复制需要启动 gtid 和 binlog 功能，具体配置如下 主库: my.cnf 1 2 3 4 5 6 7" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/mysql-gtid-replication/" /><meta property="og:image" content="https://liwanggui.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-13T11:22:37&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-13T11:22:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="MySQL GTID 主从复制配置"/>
+<meta name="twitter:description" content="环境准备 准备两台服务器安装 MySQL 5.7, 参考 安装 MySQL 5.7 服务器列表 master: 10.10.1.11/24 slave1: 10.10.1.12/24 配置 MySQL 配置基于 GTID 的主从复制需要启动 gtid 和 binlog 功能，具体配置如下 主库: my.cnf 1 2 3 4 5 6 7"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/mysql-gtid-replication/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-classic-replication/" /><link rel="next" href="https://liwanggui.com/posts/mysql-restore-gtid-replication/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL GTID 主从复制配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/mysql-gtid-replication\/"
+        },"genre": "posts","keywords": "mysql-replication, mysql-gtid-replication","wordcount":  776 ,
+        "url": "https:\/\/liwanggui.com\/posts\/mysql-gtid-replication\/","datePublished": "2021-01-13T11:22:37+08:00","dateModified": "2021-01-13T11:22:37+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">MySQL GTID 主从复制配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-13">2021-01-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 776 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#配置-mysql">配置 MySQL</a></li>
+    <li><a href="#配置主从同步">配置主从同步</a>
+      <ul>
+        <li><a href="#创建主从同步用户">创建主从同步用户</a></li>
+        <li><a href="#主从数据同步">主从数据同步</a></li>
+        <li><a href="#启动主从同步">启动主从同步</a></li>
+        <li><a href="#查看主从同步状态">查看主从同步状态</a></li>
+      </ul>
+    </li>
+    <li><a href="#主从同步测试">主从同步测试</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="环境准备">环境准备</h2>
+<p>准备两台服务器安装 MySQL 5.7, 参考 <a href="/mysql-install/" rel="">安装 MySQL 5.7</a></p>
+<p><em>服务器列表</em></p>
+<ul>
+<li>master: 10.10.1.11/24</li>
+<li>slave1: 10.10.1.12/24</li>
+</ul>
+<h2 id="配置-mysql">配置 MySQL</h2>
+<p>配置基于 GTID 的主从复制需要启动 gtid 和 binlog 功能，具体配置如下</p>
+<p><em>主库: my.cnf</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[client]</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">3306</span>
+<span class="na">socket</span> <span class="o">=</span> <span class="s">/data/mysql/mysql.sock</span>
+
+<span class="k">[mysqld]</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">mysql</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">3306</span>
+<span class="na">basedir</span> <span class="o">=</span> <span class="s">/usr/local/mysql</span>
+<span class="na">datadir</span> <span class="o">=</span> <span class="s">/data/mysql</span>
+<span class="na">socket</span> <span class="o">=</span> <span class="s">/data/mysql/mysql.sock</span>
+<span class="na">pid-file</span> <span class="o">=</span> <span class="s">mysqldb.pid</span>
+<span class="na">character-set-server</span> <span class="o">=</span> <span class="s">utf8mb4</span>
+<span class="na">skip_name_resolve</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">log-error</span> <span class="o">=</span> <span class="s">/data/mysql/error.log</span>
+
+<span class="c1"># gtid 配置</span>
+<span class="na">server_id</span><span class="o">=</span><span class="s">11</span>
+<span class="na">gtid_mode</span><span class="o">=</span><span class="s">on</span>
+<span class="na">enforce-gtid-consistency</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">master-info-repository</span> <span class="o">=</span> <span class="s">TABLE</span>
+<span class="na">relay-log-info-repository</span> <span class="o">=</span> <span class="s">TABLE</span>
+<span class="na">relay_log_recovery</span> <span class="o">=</span> <span class="s">on</span>
+<span class="na">sync-master-info</span> <span class="o">=</span> <span class="s">1</span>
+
+<span class="c1"># binlog 配置</span>
+<span class="na">log-bin</span> <span class="o">=</span> <span class="s">/data/mysql/mybinlog</span>
+<span class="na">sync_binlog</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">binlog_cache_size</span> <span class="o">=</span> <span class="s">4M</span>
+<span class="na">max_binlog_cache_size</span> <span class="o">=</span> <span class="s">2G</span>
+<span class="na">max_binlog_size</span> <span class="o">=</span> <span class="s">1G</span>
+<span class="na">expire_logs_days</span> <span class="o">=</span> <span class="s">7</span>
+<span class="na">binlog_format</span> <span class="o">=</span> <span class="s">row</span>
+<span class="na">binlog_checksum</span> <span class="o">=</span> <span class="s">1</span>
+
+<span class="c1"># 事务模式</span>
+<span class="na">transaction_isolation</span> <span class="o">=</span> <span class="s">REPEATABLE-READ</span>
+
+<span class="c1"># InnoDB 配置</span>
+<span class="na">innodb_buffer_pool_size</span> <span class="o">=</span> <span class="s">128M</span>
+<span class="na">innodb_buffer_pool_instances</span> <span class="o">=</span> <span class="s">4</span>
+<span class="na">innodb_data_file_path</span> <span class="o">=</span> <span class="s">ibdata1:1G:autoextend</span>
+<span class="na">innodb_flush_log_at_trx_commit</span> <span class="o">=</span> <span class="s">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>从库: my.cnf</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[client]</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">3306</span>
+<span class="na">socket</span> <span class="o">=</span> <span class="s">/data/mysql/mysql.sock</span>
+
+<span class="k">[mysqld]</span>
+<span class="na">user</span> <span class="o">=</span> <span class="s">mysql</span>
+<span class="na">port</span> <span class="o">=</span> <span class="s">3306</span>
+<span class="na">basedir</span> <span class="o">=</span> <span class="s">/usr/local/mysql</span>
+<span class="na">datadir</span> <span class="o">=</span> <span class="s">/data/mysql</span>
+<span class="na">socket</span> <span class="o">=</span> <span class="s">/data/mysql/mysql.sock</span>
+<span class="na">pid-file</span> <span class="o">=</span> <span class="s">mysqldb.pid</span>
+<span class="na">character-set-server</span> <span class="o">=</span> <span class="s">utf8mb4</span>
+<span class="na">skip_name_resolve</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">log-error</span> <span class="o">=</span> <span class="s">/data/mysql/error.log</span>
+
+<span class="c1"># gtid 配置</span>
+<span class="na">server_id</span><span class="o">=</span><span class="s">12</span>
+<span class="na">gtid_mode</span><span class="o">=</span><span class="s">on</span>
+<span class="na">enforce-gtid-consistency</span> <span class="o">=</span> <span class="s">true</span>
+<span class="na">master-info-repository</span> <span class="o">=</span> <span class="s">TABLE</span>
+<span class="na">relay-log-info-repository</span> <span class="o">=</span> <span class="s">TABLE</span>
+<span class="na">relay_log_recovery</span> <span class="o">=</span> <span class="s">on</span>
+<span class="na">sync-master-info</span> <span class="o">=</span> <span class="s">1</span>
+
+<span class="c1"># binlog 配置</span>
+<span class="na">log-bin</span> <span class="o">=</span> <span class="s">/data/mysql/mybinlog</span>
+<span class="na">sync_binlog</span> <span class="o">=</span> <span class="s">1</span>
+<span class="na">binlog_cache_size</span> <span class="o">=</span> <span class="s">4M</span>
+<span class="na">max_binlog_cache_size</span> <span class="o">=</span> <span class="s">2G</span>
+<span class="na">max_binlog_size</span> <span class="o">=</span> <span class="s">1G</span>
+<span class="na">expire_logs_days</span> <span class="o">=</span> <span class="s">7</span>
+<span class="na">binlog_format</span> <span class="o">=</span> <span class="s">row</span>
+<span class="na">binlog_checksum</span> <span class="o">=</span> <span class="s">1</span>
+
+<span class="c1">## 禁止从库数据写入</span>
+<span class="na">read_only</span> <span class="o">=</span> <span class="s">1</span>
+
+<span class="c1"># 事务模式</span>
+<span class="na">transaction_isolation</span> <span class="o">=</span> <span class="s">REPEATABLE-READ</span>
+
+<span class="c1"># InnoDB 配置</span>
+<span class="na">innodb_buffer_pool_size</span> <span class="o">=</span> <span class="s">128M</span>
+<span class="na">innodb_buffer_pool_instances</span> <span class="o">=</span> <span class="s">4</span>
+<span class="na">innodb_data_file_path</span> <span class="o">=</span> <span class="s">ibdata1:1G:autoextend</span>
+<span class="na">innodb_flush_log_at_trx_commit</span> <span class="o">=</span> <span class="s">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置主从同步">配置主从同步</h2>
+<h3 id="创建主从同步用户">创建主从同步用户</h3>
+<p>在主库上操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">user</span> <span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;10.10.1.%&#39;</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
+<span class="k">grant</span> <span class="n">replication</span> <span class="n">slave</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;10.10.1.%&#39;</span><span class="p">;</span>
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="主从数据同步">主从数据同步</h3>
+<p>由于当前 MySQL 环境是全新搭建的，没有任何数据，此步可以忽略。</p>
+<p>如果是在已经运行了很久的数据库或者数据库存在数据的情况下，需要对主库进行全备然后恢复到从库，在配置启动主从复制</p>
+<h3 id="启动主从同步">启动主从同步</h3>
+<p>在从库上执行以下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">change</span> <span class="n">master</span> <span class="k">to</span>
+<span class="n">master_host</span><span class="o">=</span><span class="s1">&#39;10.10.1.11&#39;</span><span class="p">,</span>
+<span class="n">master_user</span><span class="o">=</span><span class="s1">&#39;repl&#39;</span><span class="p">,</span>
+<span class="n">master_password</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span><span class="p">,</span>
+<span class="n">master_port</span><span class="o">=</span><span class="mi">3306</span><span class="p">,</span>
+<span class="n">master_auto_position</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="k">start</span> <span class="n">slave</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>GTID 主从复制只需指定 <code>master_auto_position=1</code> 参数即可，相比经典主从复制更简单</p>
+</blockquote>
+<h3 id="查看主从同步状态">查看主从同步状态</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mysql&gt; show slave status<span class="se">\G</span>
+*************************** 1. row ***************************
+               Slave_IO_State: Waiting <span class="k">for</span> master to send event
+                  Master_Host: 10.10.1.11
+                  Master_User: repl
+                  Master_Port: <span class="m">3306</span>
+                Connect_Retry: <span class="m">60</span>
+              Master_Log_File: mybinlog.000003
+          Read_Master_Log_Pos: <span class="m">763</span>
+               Relay_Log_File: db2-relay-bin.000002
+                Relay_Log_Pos: <span class="m">974</span>
+        Relay_Master_Log_File: mybinlog.000003
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB:
+          Replicate_Ignore_DB:
+           Replicate_Do_Table:
+       Replicate_Ignore_Table:
+      Replicate_Wild_Do_Table:
+  Replicate_Wild_Ignore_Table:
+                   Last_Errno: <span class="m">0</span>
+                   Last_Error:
+                 Skip_Counter: <span class="m">0</span>
+          Exec_Master_Log_Pos: <span class="m">763</span>
+              Relay_Log_Space: <span class="m">1179</span>
+              Until_Condition: None
+               Until_Log_File:
+                Until_Log_Pos: <span class="m">0</span>
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File:
+           Master_SSL_CA_Path:
+              Master_SSL_Cert:
+            Master_SSL_Cipher:
+               Master_SSL_Key:
+        Seconds_Behind_Master: <span class="m">0</span>
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: <span class="m">0</span>
+                Last_IO_Error:
+               Last_SQL_Errno: <span class="m">0</span>
+               Last_SQL_Error:
+  Replicate_Ignore_Server_Ids:
+             Master_Server_Id: <span class="m">10</span>
+                  Master_UUID: d6f25a03-5d80-11eb-9fe8-000c29738b1d
+             Master_Info_File: mysql.slave_master_info
+                    SQL_Delay: <span class="m">0</span>
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has <span class="nb">read</span> all relay log<span class="p">;</span> waiting <span class="k">for</span> more updates
+           Master_Retry_Count: <span class="m">86400</span>
+                  Master_Bind:
+      Last_IO_Error_Timestamp:
+     Last_SQL_Error_Timestamp:
+               Master_SSL_Crl:
+           Master_SSL_Crlpath:
+           Retrieved_Gtid_Set: d6f25a03-5d80-11eb-9fe8-000c29738b1d:1-3
+            Executed_Gtid_Set: d6f25a03-5d80-11eb-9fe8-000c29738b1d:1-3
+                Auto_Position: <span class="m">1</span>
+         Replicate_Rewrite_DB:
+                 Channel_Name:
+           Master_TLS_Version:
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="主从同步测试">主从同步测试</h2>
+<p>请自行测试, 略&hellip;</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/mysql-gtid-replication/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置" data-hashtags="mysql-replication,mysql-gtid-replication"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-hashtag="mysql-replication"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/mysql-gtid-replication/" data-title="MySQL GTID 主从复制配置"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql-replication/">mysql-replication</a>,&nbsp;<a href="/tags/mysql-gtid-replication/">mysql-gtid-replication</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/mysql-classic-replication/" class="prev" rel="prev" title="MySQL 经典主从复制配置"><i class="fas fa-angle-left fa-fw"></i>MySQL 经典主从复制配置</a>
+            <a href="/posts/mysql-restore-gtid-replication/" class="next" rel="next" title="快速恢复 GTID 从库">快速恢复 GTID 从库<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-01-13T11:22:37+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"MySQL GTID 主从复制配置"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

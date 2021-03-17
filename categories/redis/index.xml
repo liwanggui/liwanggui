@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>redis - 分类 - _浅行</title>
+        <link>https://liwanggui.com/categories/redis/</link>
+        <description>redis - 分类 - _浅行</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Fri, 12 Feb 2021 11:51:01 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/categories/redis/" rel="self" type="application/rss+xml" /><item>
+    <title>安装 Redis</title>
+    <link>https://liwanggui.com/posts/redis-install/</link>
+    <pubDate>Fri, 12 Feb 2021 11:51:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/redis-install/</guid>
+    <description><![CDATA[Redis 使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适]]></description>
+</item></channel>
+</rss>

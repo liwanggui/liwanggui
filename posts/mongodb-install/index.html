@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>安装 MongoDB 3.6 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="安装 MongoDB 3.6" />
+<meta property="og:description" content="下载 MongoDB 3.6 MongoDB 社区版下载地址 1 [root@localhost src]# wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.6.20.tgz 配置 MongoDB 解压]安装 MongoDB 1 2 3 4 5 6 [root@localhost src]# tar xzf mongodb-linux-x86_64-rhel62-3.6.20.tgz -C /usr/local/ [root@localhost src]# cd /usr/local/ [root@localhost local]# ln -s /usr/local/mongodb-linux-x86_64-rhel62-3.6.20 /usr/local/mongodb # 加入环境变量 [root@localhost mongodb]# echo &#39;export PATH=/usr/local/mongodb/bin:$PATH&#39; &gt; /etc/profile.d/mongo.sh [root@localhost mongodb]# source /etc/profile 创建配" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/mongodb-install/" /><meta property="og:image" content="https://liwanggui.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-21T15:55:02&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-21T15:55:02&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="安装 MongoDB 3.6"/>
+<meta name="twitter:description" content="下载 MongoDB 3.6 MongoDB 社区版下载地址 1 [root@localhost src]# wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.6.20.tgz 配置 MongoDB 解压]安装 MongoDB 1 2 3 4 5 6 [root@localhost src]# tar xzf mongodb-linux-x86_64-rhel62-3.6.20.tgz -C /usr/local/ [root@localhost src]# cd /usr/local/ [root@localhost local]# ln -s /usr/local/mongodb-linux-x86_64-rhel62-3.6.20 /usr/local/mongodb # 加入环境变量 [root@localhost mongodb]# echo &#39;export PATH=/usr/local/mongodb/bin:$PATH&#39; &gt; /etc/profile.d/mongo.sh [root@localhost mongodb]# source /etc/profile 创建配"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/mongodb-install/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-maxscale-readwrite-separation/" /><link rel="next" href="https://liwanggui.com/posts/mongodb-user-auth/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "安装 MongoDB 3.6",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/mongodb-install\/"
+        },"genre": "posts","keywords": "mongodb","wordcount":  394 ,
+        "url": "https:\/\/liwanggui.com\/posts\/mongodb-install\/","datePublished": "2021-01-21T15:55:02+08:00","dateModified": "2021-01-21T15:55:02+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">安装 MongoDB 3.6</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mongodb/"><i class="far fa-folder fa-fw"></i>mongodb</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-21">2021-01-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 394 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#下载-mongodb-36">下载 MongoDB 3.6</a></li>
+    <li><a href="#配置-mongodb">配置 MongoDB</a>
+      <ul>
+        <li><a href="#解压安装-mongodb">解压]安装 MongoDB</a></li>
+        <li><a href="#创建配置文件">创建配置文件</a></li>
+        <li><a href="#使用-systemd-管理-mongodb-服务">使用 systemd 管理 MongoDB 服务</a></li>
+        <li><a href="#启动-mongodb-服务">启动 MongoDB 服务</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="下载-mongodb-36">下载 MongoDB 3.6</h2>
+<blockquote>
+<p><a href="https://www.mongodb.com/download-center/community/releases/archive" target="_blank" rel="noopener noreffer">MongoDB 社区版下载地址</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost src<span class="o">]</span><span class="c1"># wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.6.20.tgz</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置-mongodb">配置 MongoDB</h2>
+<h3 id="解压安装-mongodb">解压]安装 MongoDB</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost src<span class="o">]</span><span class="c1"># tar xzf mongodb-linux-x86_64-rhel62-3.6.20.tgz -C /usr/local/</span>
+<span class="o">[</span>root@localhost src<span class="o">]</span><span class="c1"># cd /usr/local/</span>
+<span class="o">[</span>root@localhost local<span class="o">]</span><span class="c1"># ln -s /usr/local/mongodb-linux-x86_64-rhel62-3.6.20 /usr/local/mongodb</span>
+<span class="c1"># 加入环境变量</span>
+<span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># echo &#39;export PATH=/usr/local/mongodb/bin:$PATH&#39; &gt; /etc/profile.d/mongo.sh</span>
+<span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># source /etc/profile</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="创建配置文件">创建配置文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># cat &gt; /etc/mongod.conf &lt;&lt;EOF</span>
+<span class="c1"># mongod.conf</span>
+<span class="c1"># for documentation of all options, see:</span>
+<span class="c1">#   http://docs.mongodb.org/manual/reference/configuration-options/</span>
+
+<span class="c1"># where to write logging data.</span>
+systemLog:
+  destination: file
+  logAppend: <span class="nb">true</span>
+  path: /var/log/mongodb/mongod.log
+
+<span class="c1"># Where and how to store data.</span>
+storage:
+  dbPath: /data/mongo
+  journal:
+    enabled: <span class="nb">true</span>
+<span class="c1">#  engine:</span>
+<span class="c1">#  mmapv1:</span>
+<span class="c1">#  wiredTiger:</span>
+
+<span class="c1"># how the process runs</span>
+processManagement:
+  fork: <span class="nb">true</span>  <span class="c1"># fork and run in background</span>
+  pidFilePath: /var/run/mongodb/mongod.pid  <span class="c1"># location of pidfile</span>
+  timeZoneInfo: /usr/share/zoneinfo
+
+<span class="c1"># network interfaces</span>
+net:
+  port: <span class="m">27017</span>
+  bindIp: 127.0.0.1  <span class="c1"># Listen to local interface only, comment to listen on all interfaces.</span>
+
+<span class="c1">#security:    </span>
+<span class="c1">#  authorization: enabled              # 是否打开用户名和密码验证</span>
+
+<span class="c1">#operationProfiling:</span>
+
+<span class="c1">#replication:</span>
+
+<span class="c1">#sharding:</span>
+EOF
+<span class="c1"># 创建数据目录并授权</span>
+<span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># useradd -r -s /bin/false mongod </span>
+<span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># mkdir -p /data/mongo </span>
+<span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># chown mongod:mongod /data/mongo </span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-systemd-管理-mongodb-服务">使用 systemd 管理 MongoDB 服务</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># cat &gt; /usr/lib/systemd/system/mongod.service &lt;&lt;EOF</span>
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>MongoDB Database Server
+<span class="nv">Documentation</span><span class="o">=</span>https://docs.mongodb.org/manual
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">User</span><span class="o">=</span>mongod
+<span class="nv">Group</span><span class="o">=</span>mongod
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;OPTIONS=-f /etc/mongod.conf&#34;</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/mongodb/bin/mongod <span class="nv">$OPTIONS</span>
+<span class="nv">ExecStartPre</span><span class="o">=</span>/usr/bin/mkdir -p /var/run/mongodb
+<span class="nv">ExecStartPre</span><span class="o">=</span>/usr/bin/chown mongod:mongod /var/run/mongodb
+<span class="nv">ExecStartPre</span><span class="o">=</span>/usr/bin/chmod <span class="m">0755</span> /var/run/mongodb
+<span class="nv">PermissionsStartOnly</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">PIDFile</span><span class="o">=</span>/var/run/mongodb/mongod.pid
+<span class="nv">Type</span><span class="o">=</span>forking
+<span class="c1"># file size</span>
+<span class="nv">LimitFSIZE</span><span class="o">=</span>infinity
+<span class="c1"># cpu time</span>
+<span class="nv">LimitCPU</span><span class="o">=</span>infinity
+<span class="c1"># virtual memory size</span>
+<span class="nv">LimitAS</span><span class="o">=</span>infinity
+<span class="c1"># open files</span>
+<span class="nv">LimitNOFILE</span><span class="o">=</span><span class="m">64000</span>
+<span class="c1"># processes/threads</span>
+<span class="nv">LimitNPROC</span><span class="o">=</span><span class="m">64000</span>
+<span class="c1"># locked memory</span>
+<span class="nv">LimitMEMLOCK</span><span class="o">=</span>infinity
+<span class="c1"># total threads (user+kernel)</span>
+<span class="nv">TasksMax</span><span class="o">=</span>infinity
+<span class="nv">TasksAccounting</span><span class="o">=</span><span class="nb">false</span>
+<span class="c1"># Recommended limits for for mongod as specified in</span>
+<span class="c1"># http://docs.mongodb.org/manual/reference/ulimit/#recommended-settings</span>
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+EOF
+<span class="o">[</span>root@localhost mongodb<span class="o">]</span><span class="c1"># systemctl enable mongod.service</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="启动-mongodb-服务">启动 MongoDB 服务</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># systemctl start mongod.service</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/mongodb-install/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6" data-hashtags="mongodb"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/mongodb-install/" data-hashtag="mongodb"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/mongodb-install/" data-title="安装 MongoDB 3.6"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mongodb/">mongodb</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/mysql-maxscale-readwrite-separation/" class="prev" rel="prev" title="MaxScale：实现MySQL读写分离与负载均衡的中间件利器"><i class="fas fa-angle-left fa-fw"></i>MaxScale：实现MySQL读写分离与负载均衡的中间件利器</a>
+            <a href="/posts/mongodb-user-auth/" class="next" rel="next" title="MongoDB 用户和权限管理">MongoDB 用户和权限管理<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-01-21T15:55:02+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"安装 MongoDB 3.6"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,36 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>mongodb - 标签 - _浅行</title>
+        <link>https://liwanggui.com/tags/mongodb/</link>
+        <description>mongodb - 标签 - _浅行</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Tue, 09 Feb 2021 09:30:02 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/tags/mongodb/" rel="self" type="application/rss+xml" /><item>
+    <title>MongoDB 备份恢复</title>
+    <link>https://liwanggui.com/posts/mongodb-backup/</link>
+    <pubDate>Tue, 09 Feb 2021 09:30:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/mongodb-backup/</guid>
+    <description><![CDATA[备份工具介绍 MongoDB 自带两种备份工具, 以备份出的文件区分为文本备份工具与二进制备份工具，各有不同的适用场景。 文本备份工具 使用此工具备份出的文件是可]]></description>
+</item><item>
+    <title>搭建 MongoDB 复制集(Replication Set)</title>
+    <link>https://liwanggui.com/posts/mongodb-replication/</link>
+    <pubDate>Mon, 08 Feb 2021 10:50:06 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/mongodb-replication/</guid>
+    <description><![CDATA[Replication Set 基本原理 MongoDB 复制集的基本构成是一主两从的结构，自带互相监控投标机制，使用 Raft 协议保证数据一致性，（MySQL MGR 用的是 Paxos 变种） 如果发生主库宕机]]></description>
+</item><item>
+    <title>MongoDB 用户和权限管理</title>
+    <link>https://liwanggui.com/posts/mongodb-user-auth/</link>
+    <pubDate>Fri, 05 Feb 2021 09:27:29 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/mongodb-user-auth/</guid>
+    <description><![CDATA[什么是验证库？ 验证库是建立用户时 use 到的库，在使用用户时，要加上验证库才能登陆。 对于管理员用户, 必须在 admin 下创建(先 use admin，再创建管理员用]]></description>
+</item><item>
+    <title>安装 MongoDB 3.6</title>
+    <link>https://liwanggui.com/posts/mongodb-install/</link>
+    <pubDate>Thu, 21 Jan 2021 15:55:02 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/mongodb-install/</guid>
+    <description><![CDATA[下载 MongoDB 3.6 MongoDB 社区版下载地址 1 [root@localhost src]# wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.6.20.tgz 配置 MongoDB 解压]安装 MongoDB 1 2 3 4 5 6 [root@localhost src]# tar xzf mongodb-linux-x86_64-rhel62-3.6.20.tgz -C /usr/local/ [root@localhost src]# cd /usr/local/ [root@localhost local]# ln -s /usr/local/mongodb-linux-x86_64-rhel62-3.6.20 /usr/local/mongodb # 加入环境变量 [root@localhost mongodb]# echo &#39;export PATH=/usr/local/mongodb/bin:$PATH&#39; &gt; /etc/profile.d/mongo.sh [root@localhost mongodb]# source /etc/profile 创建配]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Dockerfile 相关指令 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Dockerfile 相关指令" />
+<meta property="og:description" content="Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 快速创建自定义的镜像。 Dockerfile 由一行行命令语句组成，并且支持以 # 开头注释行。 Dockerfile 一般分为四部分： 基础镜像信" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/docker-dockerfile/" /><meta property="og:image" content="https://liwanggui.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-06T10:53:43&#43;08:00" />
+<meta property="article:modified_time" content="2021-03-06T10:53:43&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Dockerfile 相关指令"/>
+<meta name="twitter:description" content="Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 快速创建自定义的镜像。 Dockerfile 由一行行命令语句组成，并且支持以 # 开头注释行。 Dockerfile 一般分为四部分： 基础镜像信"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/docker-dockerfile/" /><link rel="prev" href="https://liwanggui.com/posts/docker-config/" /><link rel="next" href="https://liwanggui.com/posts/docker-harbor/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Dockerfile 相关指令",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/docker-dockerfile\/"
+        },"genre": "posts","keywords": "docker, dockerfile","wordcount":  1075 ,
+        "url": "https:\/\/liwanggui.com\/posts\/docker-dockerfile\/","datePublished": "2021-03-06T10:53:43+08:00","dateModified": "2021-03-06T10:53:43+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Dockerfile 相关指令</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1075 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#指令">指令</a>
+      <ul>
+        <li><a href="#from">FROM</a></li>
+        <li><a href="#maintainer---弃用">MAINTAINER - 弃用</a></li>
+        <li><a href="#lable">LABLE</a></li>
+        <li><a href="#user">USER</a></li>
+        <li><a href="#workdir">WORKDIR</a></li>
+        <li><a href="#env">ENV</a></li>
+        <li><a href="#arg">ARG</a></li>
+        <li><a href="#add">ADD</a></li>
+        <li><a href="#copy">COPY</a></li>
+        <li><a href="#run">RUN</a></li>
+        <li><a href="#expose">EXPOSE</a></li>
+        <li><a href="#volume">VOLUME</a></li>
+        <li><a href="#cmd">CMD</a></li>
+        <li><a href="#entrypoint">ENTRYPOINT</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li><code>Dockerfile</code> 是一个文本格式的配置文件，用户可以使用 <code>Dockerfile</code> 快速创建自定义的镜像。</li>
+<li><code>Dockerfile</code> 由一行行命令语句组成，并且支持以 <code>#</code> 开头注释行。</li>
+<li><code>Dockerfile</code> 一般分为四部分： 基础镜像信息，维护者信息、镜像操作指令和容器启动时执行指令。</li>
+</ul>
+<h2 id="指令">指令</h2>
+<h3 id="from">FROM</h3>
+<p>格式: <code>FROM &lt;image&gt; 或者 FROM &lt;image&gt;:&lt;tag&gt;</code></p>
+<p><code>Dockerfile</code> 的第一条指令必须是 <code>FROM</code></p>
+<h3 id="maintainer---弃用">MAINTAINER - 弃用</h3>
+<p>格式: <code>MAINTAINER &lt;name&gt;</code>，指定维护者信息</p>
+<blockquote>
+<p>推荐使用 <code>LABEL maintainer=&quot;SvenDowideit@home.org.au&quot;</code></p>
+</blockquote>
+<h3 id="lable">LABLE</h3>
+<p>格式: <code>LABEL &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; ...</code></p>
+<p>该指令将元数据添加到 docker 镜像中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">LABEL &#34;com.example.vendor&#34;=&#34;ACME Incorporated&#34;
+LABEL com.example.label-with-value=&#34;foo&#34;
+LABEL version=&#34;1.0&#34;
+LABEL description=&#34;This text illustrates \
+that label-values can span multiple lines.&#34;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="user">USER</h3>
+<p>格式: <code>USER &lt;username&gt;</code></p>
+<p>指定容器内进程使用的用户名或 <code>UID</code>, 当服务不需要管理员权限时，可以通过该命令指定运行用户。并且可以在之前创建所需要的用户。</p>
+<h3 id="workdir">WORKDIR</h3>
+<p>格式: <code>WORKDIR /path/to/workdir</code></p>
+<p>指定容器的当前工作路径，为后续的 <code>RUN</code>、<code>CMD</code>、<code>ENTRYPINT</code> 指令配置工作路径</p>
+<h3 id="env">ENV</h3>
+<p>格式:</p>
+<ul>
+<li><code>ENV &lt;key&gt; &lt;value&gt;</code> 指定一个环境变量，可以被 <code>RUN</code> 指令使用，并在容器运行时保持存在</li>
+<li><code>ENV &lt;key1&gt;=&lt;value1&gt; &lt;key2&gt;=&lt;value2&gt;...</code> 可以同时指定多个变量，推荐使用这种方式</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ENV PG_MAJOR=9.3 PG_VERSION=9.3.4
+
+RUN curl -SL http://example.com/postgres-${PG_VERSION}.tar.gz | tar -xzC /usr/src &amp;&amp; ...
+
+ENV PATH=/usr/local/postgres-$PG_MAJOR/bin:$PATH
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="arg">ARG</h3>
+<p>格式: <code>ARG &lt;key&gt;=&lt;value&gt; ...</code></p>
+<p>该指令定义了一个变量，只在构建镜像时生效。可以只定义变量名(或者默认值)，然后使用命令 <code>docker build --build-arg</code> 参数, 传递变量值的给构建者。
+如果用户指定了Dockerfile中未定义的构建参数，则该构建会输出警告。<code>ARGdocker build--build-arg &lt;varname&gt;=&lt;value&gt;</code></p>
+<h3 id="add">ADD</h3>
+<p>格式: <code>ADD &lt;src&gt; &lt;dest&gt;</code></p>
+<p>该指令将复制指定的 <code>&lt;src&gt;</code> 到容器中的 <code>&lt;dest&gt;</code>. 其中 <code>&lt;src&gt;</code> 可以是 <code>Dockerfile</code> 所在目录的一个相对路径(文件和目录)；
+也可以是一个 <code>url</code>；还可以是一个 <code>tar</code> 文件（自动解压为目录）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ADD hom* /mydir/
+ADD hom?.txt /mydir/
+ADD --chown=55:mygroup files* /somedir/
+ADD --chown=bin files* /somedir/
+ADD --chown=1 files* /somedir/
+ADD --chown=10:11 files* /somedir/
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="copy">COPY</h3>
+<p>格式:</p>
+<ul>
+<li><code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</code></li>
+<li><code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] [&quot;&lt;src&gt;&quot;,... &quot;&lt;dest&gt;&quot;]</code></li>
+</ul>
+<p>该指令复制文件或目录，并将它们添加到容器的文件系统路径中; 可以指定多个资源，但文件和目录的路径将基于构建路径。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">COPY hom* /mydir/
+COPY hom?.txt /mydir/
+COPY --chown=55:mygroup files* /somedir/
+COPY --chown=bin files* /somedir/
+COPY --chown=1 files* /somedir/
+COPY --chown=10:11 files* /somedir/
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="run">RUN</h3>
+<p>格式: <code>RUN &lt;command&gt; 或者 RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p>
+<p>每条 RUN 指令将在当前镜像的基础上执行指定的命令，并提交为新镜像。当命令过长时可以使用 <code>\</code> 换行。</p>
+<h3 id="expose">EXPOSE</h3>
+<p>格式: <code>EXPOSE &lt;port&gt; [&lt;port&gt; ...]</code></p>
+<p>示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">EXPOSE 22 80 443
+</code></pre></td></tr></table>
+</div>
+</div><p><code>EXPOSE</code> 指令用于暴露容器端口。在启动容器时需要通过 <code>-P</code>, <code>Docker</code> 服务会随机分配一个端口转发到指定的端口；
+使用 <code>-p</code>, 可以手动指定具体本地的端口与容器端口映射。</p>
+<h3 id="volume">VOLUME</h3>
+<p>格式: <code>VOLUME [&quot;/data&quot;]</code></p>
+<p>创建一个可以从本地主机或其他容器挂载的挂载点，一般用来存放需要持久化的数据等。</p>
+<h3 id="cmd">CMD</h3>
+<p>格式:</p>
+<ol>
+<li><code>CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code> 使用 <code>exec</code> 执行，推荐方式</li>
+<li><code>CMD command param1 param2</code> ,在 <code>/bin/sh</code> 中执行</li>
+<li><code>CMD [&quot;param1&quot;, &quot;param2&quot;]</code> 提供给 <code>ENTRYPOINT</code> 的默认参数</li>
+</ol>
+<p>指定启动容器时执行的命令，每个 <code>Dockerfile</code> 只能有一条 <code>CMD</code> 指令。如果指定多条，只有最后一条生效被执行。
+如果在启动容器时指定了运行的命令，会覆盖掉 <code>CMD</code> 指定的命令。</p>
+<h3 id="entrypoint">ENTRYPOINT</h3>
+<p>格式:</p>
+<ol>
+<li><code>ENTRYPOINT [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></li>
+<li><code>ENTRYPOINT command param1 param2</code></li>
+</ol>
+<p>配置容器启动后执行的命令，并且不可被 <code>docker run</code> 提供的参数覆盖.
+每个 <code>Dockerfile</code> 中只能有一个 <code>ENTRYPOINT</code>，指定多个 <code>ENTRYPOINT</code> 时，只有最一个有效。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-03-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/docker-dockerfile/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令" data-hashtags="docker,dockerfile"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/docker-dockerfile/" data-title="Dockerfile 相关指令"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/dockerfile/">dockerfile</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/docker-config/" class="prev" rel="prev" title="Docker 基本配置项"><i class="fas fa-angle-left fa-fw"></i>Docker 基本配置项</a>
+            <a href="/posts/docker-harbor/" class="next" rel="next" title="Docker 私有仓库部署 (harbor)">Docker 私有仓库部署 (harbor)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-03-06T10:53:43+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Dockerfile 相关指令"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

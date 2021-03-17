@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Xtrabackup 备份 MySQL (全备) - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Xtrabackup 备份 MySQL (全备)" />
+<meta property="og:description" content="percona-xtrabackup 是物理备份工具，拷贝数据文件。 原生态支持全备和增量备份。 会记录二进制日志文件及位置。 InnoDB 表: 热备份，业务正常发生时，影响较小的备份方式 非 InnoDB 表" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/xtrabackup-backup-mysql/" /><meta property="og:image" content="https://liwanggui.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-04T11:08:35&#43;08:00" />
+<meta property="article:modified_time" content="2021-01-04T11:08:35&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Xtrabackup 备份 MySQL (全备)"/>
+<meta name="twitter:description" content="percona-xtrabackup 是物理备份工具，拷贝数据文件。 原生态支持全备和增量备份。 会记录二进制日志文件及位置。 InnoDB 表: 热备份，业务正常发生时，影响较小的备份方式 非 InnoDB 表"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/xtrabackup-backup-mysql/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-reset-root-password/" /><link rel="next" href="https://liwanggui.com/posts/mysqldump-backup/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Xtrabackup 备份 MySQL (全备)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/xtrabackup-backup-mysql\/"
+        },"genre": "posts","keywords": "mysql, xtrabackup","wordcount":  498 ,
+        "url": "https:\/\/liwanggui.com\/posts\/xtrabackup-backup-mysql\/","datePublished": "2021-01-04T11:08:35+08:00","dateModified": "2021-01-04T11:08:35+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Xtrabackup 备份 MySQL (全备)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a>&nbsp;<a href="/categories/xtrabackup/"><i class="far fa-folder fa-fw"></i>xtrabackup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-04">2021-01-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 498 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装-percona-xtrabackup">安装 percona-xtrabackup</a></li>
+    <li><a href="#xtrabackup-使用">xtrabackup 使用</a>
+      <ul>
+        <li><a href="#全量备份">全量备份</a></li>
+        <li><a href="#还原数据">还原数据</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><code>percona-xtrabackup</code> 是物理备份工具，拷贝数据文件。</p>
+<p>原生态支持全备和增量备份。</p>
+<p>会记录二进制日志文件及位置。</p>
+<ul>
+<li>InnoDB 表: 热备份，业务正常发生时，影响较小的备份方式</li>
+<li>非 InnoDB 表: 温备份，会锁表</li>
+</ul>
+<h2 id="安装-percona-xtrabackup">安装 percona-xtrabackup</h2>
+<p>下载地址: <a href="https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/" target="_blank" rel="noopener noreffer">https://www.percona.com/downloads/Percona-XtraBackup-2.4/LATEST/</a></p>
+<h2 id="xtrabackup-使用">xtrabackup 使用</h2>
+<p>使用 xtrabackup 命令前提条件</p>
+<ol>
+<li>数据库必须启动</li>
+<li>能连接上数据库，指定用户名，密码，socket</li>
+<li>配置文件 my.cnf 中必须配置 datadir 参数</li>
+</ol>
+<p><em>配置 my.cnf</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[client]</span>
+<span class="c1"># 配置客户端工具连接 socket 文件路径，有此参数 xtrabackup 可以省略 -S 参数</span>
+<span class="na">socket</span> <span class="o">=</span> <span class="s">/data/mysql/3306/mysql.sock </span>
+
+<span class="k">[mysqld]</span>
+<span class="c1"># 配置数据目录</span>
+<span class="na">datadir</span> <span class="o">=</span> <span class="s">/data/mysql/3306</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="全量备份">全量备份</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">root@db1:/data/bak# xtrabackup --defaults-file<span class="o">=</span>/usr/local/mysql/etc/my.cnf -u root -p --backup --target-dir<span class="o">=</span>/data/bak/full-<span class="k">$(</span>date +%F<span class="k">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>&ndash;defaults-file: 指定 my.cnf 配置文件，此参数必须放在第一位</li>
+<li>-u: 数据库用户名</li>
+<li>-p: 用户密码</li>
+<li>&ndash;target-dir: 指定备份存储目录</li>
+</ul>
+<blockquote>
+<p>如果 my.cnf 配置文件的 [client] 配置项中没有指定 socket 参数，需要指定 <code>-S</code> 指定 mysql.sock 文件路径</p>
+</blockquote>
+<h3 id="还原数据">还原数据</h3>
+<p><em>准备数据</em></p>
+<p>此步操作主要应用那些还没有应用的事务，该回滚的事务回滚，该提交的事务提交。 该步骤可以使文件在单个时间点上完全一致。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">root@db1:/data/bak# xtrabackup --prepare --target-dir<span class="o">=</span>/data/bak/full-2020-12-25
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注: 准备数据操作过程不能被中断，否则备份将不可用。</p>
+</blockquote>
+<p><em>还原数据</em></p>
+<ol>
+<li>可以直接修改 my.cnf 的 datadir 值，将路径修改为备份路径，然后修改备份目录的权限即可</li>
+<li>直接拷贝文件到 MySQL 数据目录中，然后修改数据目录下所有文件的权限即可</li>
+</ol>
+<blockquote>
+<p>可以直接使用 <code>cp</code> or <code>rsync</code> 命令，也可以使用 xtrabackup 命令。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">root@db1:/data/bak# xtrabackup --defaults-file<span class="o">=</span>/usr/local/mysql/etc/my.cnf --copy-back --target-dir<span class="o">=</span>/data/bak/full-2020-12-25
+root@db1:/data/bak# chown -R mysql.mysql /data/mysql/3306/
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>也可以使用如下命令</strong></p>
+<ul>
+<li><code>cp -a /data/bak/full-2020-12-25  /data/mysql/3306</code></li>
+<li><code>rsync -avrP /data/bak/full-2020-12-25/  /data/mysql/3306/</code></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-04</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/xtrabackup-backup-mysql/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)" data-hashtags="mysql,xtrabackup"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-hashtag="mysql"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/xtrabackup-backup-mysql/" data-title="Xtrabackup 备份 MySQL (全备)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/xtrabackup/">xtrabackup</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/mysql-reset-root-password/" class="prev" rel="prev" title="重置 MySQL root 密码"><i class="fas fa-angle-left fa-fw"></i>重置 MySQL root 密码</a>
+            <a href="/posts/mysqldump-backup/" class="next" rel="next" title="Mysqldump 备份 MySQL">Mysqldump 备份 MySQL<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.81.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-01-04T11:08:35+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Xtrabackup 备份 MySQL (全备)"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
