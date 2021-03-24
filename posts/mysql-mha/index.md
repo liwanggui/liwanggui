@@ -65,15 +65,15 @@ MHA 软件由两部分组成，Manager 工具包和 Node 工具包，具体的�
 - Master:
     - ip: 10.10.1.2/24
     - vip: 10.10.1.10/24 (应用连接主库使用的 ip 地址)
-    - server_id: 1
+    - server_id: 2
     - mha_role: node
 - Slave1:
     - ip: 10.10.1.3/24
-    - server_id: 1
+    - server_id: 3
     - mha_role: node
 - Slave2:
     - ip: 10.10.1.4/24
-    - server_id: 1
+    - server_id: 4
     - mha_role: node, manager
 
 **创建 mha 管理 mysql 用户， 在主库执行**
