@@ -4,12 +4,26 @@
         <link>https://liwanggui.com/categories/redis/</link>
         <description>redis - 分类 - _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
-            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Fri, 12 Feb 2021 11:51:01 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/categories/redis/" rel="self" type="application/rss+xml" /><item>
-    <title>安装 Redis</title>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sun, 28 Mar 2021 17:08:48 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/categories/redis/" rel="self" type="application/rss+xml" /><item>
+    <title>Redis Sentinel 高可用</title>
+    <link>https://liwanggui.com/posts/redis-sentinel/</link>
+    <pubDate>Sun, 28 Mar 2021 17:08:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/redis-sentinel/</guid>
+    <description><![CDATA[Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库,并发送 SYNC 给主库 主库收到 SYNC,会立即触发 BGSAVE,后台保存 RDB,发送给副本库 副本库接收后会]]></description>
+</item><item>
+    <title>Redis 基础操作</title>
+    <link>https://liwanggui.com/posts/redis-operating/</link>
+    <pubDate>Sun, 28 Mar 2021 08:58:09 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/redis-operating/</guid>
+    <description><![CDATA[Redis 命令 管理命令 info: 查看 Redis 当前状态信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 127.0.0.1:6379&gt; info # Server redis_version:3.2.9 redis_git_sha1:00000000 redis_git_dirty:0]]></description>
+</item><item>
+    <title>Redis 的简单安装与使用</title>
     <link>https://liwanggui.com/posts/redis-install/</link>
     <pubDate>Fri, 12 Feb 2021 11:51:01 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/redis-install/</guid>
-    <description><![CDATA[Redis 使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适]]></description>
+    <description><![CDATA[使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适合]]></description>
 </item></channel>
 </rss>

@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>安装 Redis - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="安装 Redis" />
-<meta property="og:description" content="Redis 使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适" />
+        <title>Redis 的简单安装与使用 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Redis 的简单安装与使用" />
+<meta property="og:description" content="使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适合" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/redis-install/" /><meta property="og:image" content="https://liwanggui.com/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-12T11:51:01&#43;08:00" />
@@ -15,19 +15,19 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
-<meta name="twitter:title" content="安装 Redis"/>
-<meta name="twitter:description" content="Redis 使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适"/>
+<meta name="twitter:title" content="Redis 的简单安装与使用"/>
+<meta name="twitter:description" content="使用场景介绍 Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景 Redis：单核的缓存服务，单节点情况下，更加适合"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/redis-install/" /><link rel="prev" href="https://liwanggui.com/posts/mongodb-backup/" /><link rel="next" href="https://liwanggui.com/posts/lvs-introduction/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "安装 Redis",
+        "headline": "Redis 的简单安装与使用",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/redis-install\/"
-        },"genre": "posts","keywords": "redis","wordcount":  702 ,
+        },"genre": "posts","keywords": "redis","wordcount":  1123 ,
         "url": "https:\/\/liwanggui.com\/posts\/redis-install\/","datePublished": "2021-02-12T11:51:01+08:00","dateModified": "2021-02-12T11:51:01+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,10 +102,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">安装 Redis</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Redis 的简单安装与使用</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/redis/"><i class="far fa-folder fa-fw"></i>redis</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-12">2021-02-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 702 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-12">2021-02-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1123 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -113,21 +113,32 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#redis-使用场景介绍">Redis 使用场景介绍</a></li>
-    <li><a href="#安装-reis">安装 Reis</a></li>
+    <li><a href="#使用场景介绍">使用场景介绍</a></li>
+    <li><a href="#安装-reis">安装 Reis</a>
+      <ul>
+        <li><a href="#源码编译安装-redis">源码编译安装 Redis</a></li>
+        <li><a href="#安装-redis-服务">安装 Redis 服务</a></li>
+      </ul>
+    </li>
     <li><a href="#配置-redis">配置 Redis</a>
       <ul>
-        <li><a href="#安装-redis-服务">安装 Redis 服务</a></li>
         <li><a href="#连接测试-redis">连接测试 Redis</a></li>
-        <li><a href="#调整-redis-配置">调整 redis 配置</a></li>
+        <li><a href="#配置-redis-1">配置 redis</a></li>
+        <li><a href="#在线查看和修改-redis-配置">在线查看和修改 redis 配置</a>
+          <ul>
+            <li><a href="#在线查看配置项">在线查看配置项</a></li>
+            <li><a href="#在线调整配置项">在线调整配置项</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="redis-使用场景介绍">Redis 使用场景介绍</h2>
+            </div><div class="content" id="content"><h2 id="使用场景介绍">使用场景介绍</h2>
 <p>Memcached：多核的缓存服务，更加适合于多用户并发访问次数较少的应用场景</p>
 <p>Redis：单核的缓存服务，单节点情况下，更加适合于少量用户，多次访问的应用场景。 redis 一般是单机多实例架构，配合 redis 集群出现。</p>
 <h2 id="安装-reis">安装 Reis</h2>
+<h3 id="源码编译安装-redis">源码编译安装 Redis</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -148,9 +159,8 @@ make
 make install
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="配置-redis">配置 Redis</h2>
-<h3 id="安装-redis-服务">安装 Redis 服务</h3>
-<p>使用源码包中的 <code>install_server.sh</code> 脚本工具，安装 redis 服务</p>
+</div><h3 id="安装-redis-服务">安装 Redis 服务</h3>
+<p>使用源码包中的 <code>install_server.sh</code> 脚本工具，安装 <code>redis</code> 服务</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -180,9 +190,11 @@ make install
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
+</span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@10-7-171-239 utils<span class="o">]</span><span class="c1"># bash install_server.sh</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@10-7-171-239 redis-3.2.12<span class="o">]</span><span class="c1"># cd utils</span>
+<span class="o">[</span>root@10-7-171-239 utils<span class="o">]</span><span class="c1"># bash install_server.sh</span>
 Welcome to the redis service installer
 This script will <span class="nb">help</span> you easily <span class="nb">set</span> up a running redis server
 
@@ -211,42 +223,30 @@ Starting Redis server...
 Installation successful!
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="连接测试-redis">连接测试 Redis</h3>
+</div><h2 id="配置-redis">配置 Redis</h2>
+<h3 id="连接测试-redis">连接测试 Redis</h3>
+<p>redis 默认配置文件中监听的地址和端口是 <code>127.0.0.1:6379</code>，无密码验证(<code>requirepass</code>) 可以直接使用 <code>redis-cli</code> 命令连接</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ systemctl start redis_6379
-$ systemctl status redis_6379.service
-● redis_6379.service - LSB: start and stop redis_6379
-   Loaded: loaded <span class="o">(</span>/etc/rc.d/init.d/redis_6379<span class="p">;</span> bad<span class="p">;</span> vendor preset: disabled<span class="o">)</span>
-   Active: active <span class="o">(</span>exited<span class="o">)</span> since 三 2021-02-24 12:05:58 HKT<span class="p">;</span> 4s ago
-     Docs: man:systemd-sysv-generator<span class="o">(</span>8<span class="o">)</span>
-  Process: <span class="m">24570</span> <span class="nv">ExecStart</span><span class="o">=</span>/etc/rc.d/init.d/redis_6379 start <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
-
-2月 <span class="m">24</span> 12:05:58 10-7-171-239 systemd<span class="o">[</span>1<span class="o">]</span>: Starting LSB: start and stop redis_6379...
-2月 <span class="m">24</span> 12:05:58 10-7-171-239 redis_6379<span class="o">[</span>24570<span class="o">]</span>: /var/run/redis_6379.pid exists, process is already running or crashed
-2月 <span class="m">24</span> 12:05:58 10-7-171-239 systemd<span class="o">[</span>1<span class="o">]</span>: Started LSB: start and stop redis_6379.
-$ redis-cli
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># /etc/init.d/redis_6379 status</span>
+Redis is running <span class="o">(</span>1446<span class="o">)</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># redis-cli</span>
 127.0.0.1:6379&gt; ping
 PONG
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="调整-redis-配置">调整 redis 配置</h3>
+</div><blockquote>
+<p>输入 ping 指令，redis 回复 PONG w代表连接成功，可以正常与 redis-server 通信</p>
+</blockquote>
+<h3 id="配置-redis-1">配置 redis</h3>
+<p>配置文件基础项说明</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -305,41 +305,50 @@ PONG
 </span><span class="lnt">54
 </span><span class="lnt">55
 </span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">$ egrep -v <span class="s1">&#39;^#|^$&#39;</span> /etc/redis/6379.conf
-<span class="c1"># 绑定的 ip 地址， 默认只绑定 127.0.0.1 不允许外部客户端连接</span>
-<span class="nb">bind</span> 127.0.0.1 10.7.171.239 
+
+<span class="c1"># 绑定的 ip 地址， 只绑定 127.0.0.1 地址是无法对外提供服务的</span>
+<span class="c1"># 生产环境中建议配置此项</span>
+<span class="nb">bind</span> 127.0.0.1 10.7.171.239
+
+<span class="c1"># 是否启用保护模式</span>
+<span class="c1"># 在未指定绑定地址，未向客户端请求认证密码。 在此模式下，仅从环回接口接受连接。 </span>
+<span class="c1"># 如果要从外部计算机连接到 Redis 可以使用以下方法</span>
+<span class="c1"># 1. 关闭保护模式, 通过在线修改 (CONFIG SET protected-mode no) 或者 修改配置文件</span>
+<span class="c1"># 2. 启动服务时加入 &#39;--protected-mode no&#39; 参数</span>
+<span class="c1"># 3. 配置 bind 地址或身份验证密码</span>
+<span class="c1"># 注意：您只需要执行上述操作之一，服务器就可以开始接受来自外部的连接。</span>
 protected-mode yes
-port <span class="m">6379</span>   
-tcp-backlog <span class="m">511</span>
-timeout <span class="m">0</span>
-tcp-keepalive <span class="m">300</span>
+
+<span class="c1"># 连接时验证的密码</span>
+requirepass S4Ea0lFLwJjehB91
+
+<span class="c1"># 服务监听端口</span>
+port <span class="m">6379</span>
 <span class="c1"># 是否后台运行</span>
 daemonize yes
-supervised no
+<span class="c1"># pidfile 存放路径</span>
 pidfile /var/run/redis_6379.pid
-loglevel notice
+<span class="c1"># 日志 存放路径</span>
 logfile /var/log/redis_6379.log
-databases <span class="m">16</span>
+<span class="c1"># 日志级别</span>
+loglevel notice
+
+<span class="c1">## RDB 持久化配置 ##</span>
+<span class="c1"># RDB 持久化数据文件, 存储在 dir 选项配置的目录下</span>
+dbfilename dump.rdb
+<span class="c1"># 数据持久化存储路径</span>
+dir /var/lib/redis/6379
+<span class="c1"># 900 秒内如果累积 1 个变更就持久化一次</span>
 save <span class="m">900</span> <span class="m">1</span>
 save <span class="m">300</span> <span class="m">10</span>
 save <span class="m">60</span> <span class="m">10000</span>
 stop-writes-on-bgsave-error yes
 rdbcompression yes
 rdbchecksum yes
-<span class="c1"># RDB 持久化数据文件, 存储在 dir 选项配置的目录下</span>
-dbfilename dump.rdb
-<span class="c1"># 数据持久化存储路径</span>
-dir /var/lib/redis/6379
-<span class="c1"># 连接时验证的密码</span>
-requirepass S4Ea0lFLwJjehB91
+
 <span class="c1"># 最大使用内存大小</span>
 maxmemory 512m
 
@@ -349,32 +358,112 @@ repl-diskless-sync no
 repl-diskless-sync-delay <span class="m">5</span>
 repl-disable-tcp-nodelay no
 slave-priority <span class="m">100</span>
+
+<span class="c1">## AOF 持久化配置，如果用于缓存用途可以不开启 ##</span>
 appendonly no
 appendfilename <span class="s2">&#34;appendonly.aof&#34;</span>
 appendfsync everysec
-no-appendfsync-on-rewrite no
-auto-aof-rewrite-percentage <span class="m">100</span>
-auto-aof-rewrite-min-size 64mb
-aof-load-truncated yes
-lua-time-limit <span class="m">5000</span>
-slowlog-log-slower-than <span class="m">10000</span>
-slowlog-max-len <span class="m">128</span>
-latency-monitor-threshold <span class="m">0</span>
-notify-keyspace-events <span class="s2">&#34;&#34;</span>
-hash-max-ziplist-entries <span class="m">512</span>
-hash-max-ziplist-value <span class="m">64</span>
-list-max-ziplist-size -2
-list-compress-depth <span class="m">0</span>
-set-max-intset-entries <span class="m">512</span>
-zset-max-ziplist-entries <span class="m">128</span>
-zset-max-ziplist-value <span class="m">64</span>
-hll-sparse-max-bytes <span class="m">3000</span>
-activerehashing yes
-client-output-buffer-limit normal <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
-client-output-buffer-limit slave 256mb 64mb <span class="m">60</span>
-client-output-buffer-limit pubsub 32mb 8mb <span class="m">60</span>
-hz <span class="m">10</span>
-aof-rewrite-incremental-fsync yes
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="在线查看和修改-redis-配置">在线查看和修改 redis 配置</h3>
+<h4 id="在线查看配置项">在线查看配置项</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看所有配置项</span>
+127.0.0.1:6379&gt; config get *
+  1<span class="o">)</span> <span class="s2">&#34;dbfilename&#34;</span>
+  2<span class="o">)</span> <span class="s2">&#34;dump.rdb&#34;</span>
+  3<span class="o">)</span> <span class="s2">&#34;requirepass&#34;</span>
+  4<span class="o">)</span> <span class="s2">&#34;123&#34;</span>
+  5<span class="o">)</span> <span class="s2">&#34;masterauth&#34;</span>
+  6<span class="o">)</span> <span class="s2">&#34;&#34;</span>
+  7<span class="o">)</span> <span class="s2">&#34;unixsocket&#34;</span>
+  8<span class="o">)</span> <span class="s2">&#34;&#34;</span>
+  9<span class="o">)</span> <span class="s2">&#34;logfile&#34;</span>
+....
+<span class="c1"># 查看验证密码</span>
+127.0.0.1:6379&gt; config get maxmemory
+1<span class="o">)</span> <span class="s2">&#34;maxmemory&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;0&#34;</span>
+<span class="c1"># 模糊查看配置项</span>
+127.0.0.1:6379&gt; config get maxm*
+1<span class="o">)</span> <span class="s2">&#34;maxmemory&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;128000000&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;maxmemory-samples&#34;</span>
+4<span class="o">)</span> <span class="s2">&#34;5&#34;</span>
+5<span class="o">)</span> <span class="s2">&#34;maxmemory-policy&#34;</span>
+6<span class="o">)</span> <span class="s2">&#34;noeviction&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="在线调整配置项">在线调整配置项</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 配置最大使用内存量</span>
+127.0.0.1:6379&gt; config <span class="nb">set</span> maxmemory 128m
+OK
+<span class="c1"># 配置连接验证密码</span>
+127.0.0.1:6379&gt; config <span class="nb">set</span> requirepass <span class="m">123</span>
+OK
+<span class="c1"># 连接验证</span>
+127.0.0.1:6379&gt; auth <span class="m">123</span>
+OK
+<span class="c1"># 查看配置</span>
+127.0.0.1:6379&gt; config get maxmemory
+1<span class="o">)</span> <span class="s2">&#34;maxmemory&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;128000000&#34;</span>
+127.0.0.1:6379&gt; config get requirepass
+1<span class="o">)</span> <span class="s2">&#34;requirepass&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;123&#34;</span>
+<span class="c1"># 将修改的配置修改写入配置文件中</span>
+127.0.0.1:6379&gt; config rewrite
+OK
 </code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
@@ -390,7 +479,7 @@ aof-rewrite-incremental-fsync yes
                             <a class="link-to-markdown" href="/posts/redis-install/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis" data-hashtags="redis"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/redis-install/" data-hashtag="redis"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/redis-install/" data-title="安装 Redis"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用" data-hashtags="redis"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/redis-install/" data-hashtag="redis"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/redis-install/" data-title="Redis 的简单安装与使用"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -420,5 +509,5 @@ aof-rewrite-incremental-fsync yes
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-02-12T11:51:01+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"安装 Redis"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"16c9ff13babea3096b4687153458d58ebe1fd7c8","id":"2021-02-12T11:51:01+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Redis 的简单安装与使用"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>
