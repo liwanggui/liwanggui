@@ -3,7 +3,7 @@
 
 ## 一键安装 docker
 
-`docker` 官方提供了一键安装 docker 脚本工具，[GITHUB 地址](https://github.com/docker/docker-install)
+`Docker` 官方提供了一键安装 docker 脚本工具: [https://github.com/docker/docker-install](https://github.com/docker/docker-install)
 
 ### 安装 docker 
 

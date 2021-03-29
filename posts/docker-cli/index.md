@@ -1,7 +1,7 @@
 # Docker 基本操作
 
 
-> docker 安装请参考: -- [Docker 快速安装](/docker-install/)
+> docker 安装请参考: -- [Docker 快速安装](/posts/docker-install/)
 
 ## 镜像管理
 
