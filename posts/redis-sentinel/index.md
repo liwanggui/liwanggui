@@ -148,7 +148,7 @@ OK
 OK
 ```
 
-> 如果压根脱离主从环境可以使用 `slaveof no one` 指令
+> 如果想解除主从关系可以使用 `slaveof no one` 指令
 
 ### 检查 Replication 状态
 
