@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>fpm - 标签 - _浅行</title>
+        <link>https://liwanggui.com/tags/fpm/</link>
+        <description>fpm - 标签 - _浅行</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Thu, 01 Apr 2021 15:34:35 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/tags/fpm/" rel="self" type="application/rss+xml" /><item>
+    <title>RPM 快速打包</title>
+    <link>https://liwanggui.com/posts/fpm/</link>
+    <pubDate>Thu, 01 Apr 2021 15:34:35 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/fpm/</guid>
+    <description><![CDATA[回顾下安装软件的三种方式： 编译安装软件，优点是可以定制化安装目录、按需开启功能等，缺点是需要查找并实验出适合的编译参数，诸如 MySQL 之类的软件编译]]></description>
+</item></channel>
+</rss>

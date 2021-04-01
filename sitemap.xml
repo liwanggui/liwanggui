@@ -2,28 +2,43 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://liwanggui.com/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/categories/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/posts/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/categories/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/nginx/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/categories/nginx/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/nginx-alias-root/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/nginx-syntax/</loc><lastmod>2021-04-01T16:26:44&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/nginx-install/</loc><lastmod>2021-04-01T16:11:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/fpm/</loc><lastmod>2021-04-01T15:34:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/categories/linux/</loc><lastmod>2021-04-01T15:34:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/fpm/</loc><lastmod>2021-04-01T15:34:35&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/yum/</loc><lastmod>2021-04-01T15:31:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/yum-repo/</loc><lastmod>2021-04-01T15:31:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/rpmbuild/</loc><lastmod>2021-04-01T15:23:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/rpmbuild/</loc><lastmod>2021-04-01T15:23:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/pbzip2/</loc><lastmod>2021-04-01T15:17:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/tags/pigz/</loc><lastmod>2021-04-01T15:17:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/posts/pigz/</loc><lastmod>2021-04-01T15:17:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/tags/redis/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/categories/redis/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/posts/redis-sentinel/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/tags/sentinel/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/tags/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/posts/redis-operating/</loc><lastmod>2021-03-28T08:58:09&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/tags/k8s/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/kubernetes/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/kubernetes/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/traefik/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/traefik/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/traefik-canary/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/traefik2/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/traefik-ingressroute/</loc><lastmod>2021-03-10T10:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/dashboard/</loc><lastmod>2021-03-09T15:52:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/kubernetes-dashboard/</loc><lastmod>2021-03-09T15:52:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/kubernetes-traefik/</loc><lastmod>2021-03-09T14:50:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/kubeadm/</loc><lastmod>2021-03-09T13:48:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/kubernetes-install/</loc><lastmod>2021-03-09T13:48:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://liwanggui.com/tags/k8s/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/kubernetes/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/kubernetes/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/traefik/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/traefik/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/traefik-canary/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/traefik2/</loc><lastmod>2021-03-10T11:13:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/traefik-ingressroute/</loc><lastmod>2021-03-10T10:43:26&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/dashboard/</loc><lastmod>2021-03-09T15:52:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/kubernetes-dashboard/</loc><lastmod>2021-03-09T15:52:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/kubernetes-traefik/</loc><lastmod>2021-03-09T14:50:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/kubeadm/</loc><lastmod>2021-03-09T13:48:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/kubernetes-install/</loc><lastmod>2021-03-09T13:48:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/tags/docker/</loc><lastmod>2021-03-06T13:26:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/categories/docker/</loc><lastmod>2021-03-06T13:26:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/posts/docker-cli/</loc><lastmod>2021-03-06T13:26:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
@@ -33,22 +48,22 @@
             <loc>https://liwanggui.com/posts/docker-dockerfile/</loc><lastmod>2021-03-06T10:53:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/posts/docker-config/</loc><lastmod>2021-03-06T10:48:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/posts/docker-install/</loc><lastmod>2021-03-06T10:39:29&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/tags/dns/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/tags/ubuntu/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/categories/ubuntu/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/posts/ubuntu-flushdns/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/tags/bind/</loc><lastmod>2021-03-04T10:10:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/posts/ubuntu-bind/</loc><lastmod>2021-03-04T10:10:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/posts/ubuntu-network/</loc><lastmod>2021-03-04T10:05:44&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/tags/awk/</loc><lastmod>2021-03-03T18:27:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/categories/linux/</loc><lastmod>2021-03-03T18:27:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/posts/awk/</loc><lastmod>2021-03-03T18:27:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://liwanggui.com/tags/haproxy/</loc><lastmod>2021-02-22T22:33:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://liwanggui.com/categories/haproxy/</loc><lastmod>2021-02-22T22:33:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://liwanggui.com/posts/haproxy-install/</loc><lastmod>2021-02-22T22:33:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://liwanggui.com/tags/tomcat/</loc><lastmod>2021-02-22T09:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://liwanggui.com/categories/tomcat/</loc><lastmod>2021-02-22T09:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>https://liwanggui.com/posts/tomcat-install/</loc><lastmod>2021-02-22T09:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/tags/dns/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/tags/ubuntu/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/categories/ubuntu/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/posts/ubuntu-flushdns/</loc><lastmod>2021-03-04T10:11:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/tags/bind/</loc><lastmod>2021-03-04T10:10:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/posts/ubuntu-bind/</loc><lastmod>2021-03-04T10:10:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/posts/ubuntu-network/</loc><lastmod>2021-03-04T10:05:44&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/tags/awk/</loc><lastmod>2021-03-03T18:27:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/posts/awk/</loc><lastmod>2021-03-03T18:27:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://liwanggui.com/tags/haproxy/</loc><lastmod>2021-02-22T22:33:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/categories/haproxy/</loc><lastmod>2021-02-22T22:33:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/posts/haproxy-install/</loc><lastmod>2021-02-22T22:33:01&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/tags/tomcat/</loc><lastmod>2021-02-22T10:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/categories/tomcat/</loc><lastmod>2021-02-22T10:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/posts/tomcat-optimization/</loc><lastmod>2021-02-22T10:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/posts/tomcat-install/</loc><lastmod>2021-02-22T09:58:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/ipvsadm/</loc><lastmod>2021-02-21T17:38:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/keepalived/</loc><lastmod>2021-02-21T17:38:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/categories/keepalived/</loc><lastmod>2021-02-21T17:38:17&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
