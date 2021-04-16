@@ -104,7 +104,7 @@ ufw status
 
 ### 安装 docker 
 
-此时我们需要安装指定版本的 docker，docker 安装请参考 [Docker 快速安装](/docker-install/)
+此时我们需要安装指定版本的 docker，docker 安装请参考 [Docker 快速安装](/posts/docker-install/)
 
 `kubelet` 需要让 `docker` 容器引擎使用 `systemd` 作为 `CGroup` 的驱动，其默认值为 `cgroupfs，因而，我们还需要编辑` docker 的配置文件 `/etc/docker/daemon.json`，添加如下内容 
 

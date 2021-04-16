@@ -280,7 +280,7 @@ ufw status
 <p>提示：以下操作需要在本示例中的所有三台主机上分别进行</p>
 </blockquote>
 <h3 id="安装-docker">安装 docker</h3>
-<p>此时我们需要安装指定版本的 docker，docker 安装请参考 <a href="/docker-install/" rel="">Docker 快速安装</a></p>
+<p>此时我们需要安装指定版本的 docker，docker 安装请参考 <a href="/posts/docker-install/" rel="">Docker 快速安装</a></p>
 <p><code>kubelet</code> 需要让 <code>docker</code> 容器引擎使用 <code>systemd</code> 作为 <code>CGroup</code> 的驱动，其默认值为 <code>cgroupfs，因而，我们还需要编辑</code> docker 的配置文件 <code>/etc/docker/daemon.json</code>，添加如下内容</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
