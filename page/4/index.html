@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://liwanggui.com/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
-<meta property="og:updated_time" content="2021-04-14T20:04:07+08:00" />
+<meta property="og:updated_time" content="2021-04-22T21:05:53+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
@@ -101,6 +101,11 @@
         alt="/images/avatar.jpeg"
         title="/images/avatar.jpeg" /></a></div><h1 class="home-title">_浅行</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/liwanggui" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://www.zhihu.com/people/wglee" title="知乎" target="_blank" rel="noopener noreffer me"><i data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://space.bilibili.com/477519199" title="bilibili" target="_blank" rel="noopener noreffer me"><i data-svg-src="/svg/icons/bilibili.min.svg"></i></a><a href="mailto:liwanggui@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/keepalived/">Keepalived 高可用简单入门</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-21">2021-02-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/keepalived/"><i class="far fa-folder fa-fw"></i>keepalived</a></span></div><div class="content">Keepalived 介绍 Keepalived 是一个基于 VRRP 协议来实现的 WEB 服务高可用方案，可以利用其来避免单点故障。使用多台节点安装keepalived。其他的节点用来提供真实的服</div><div class="post-footer">
+        <a href="/posts/keepalived/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/keepalived/">keepalived</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/lvs-configure/">配置 LVS DR 负载均衡</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-20">2021-02-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lvs/"><i class="far fa-folder fa-fw"></i>lvs</a></span></div><div class="content">环境准备 Director Server: 192.168.31.33/24 Real Server 1: 192.168.31.31/24 Real Server 2: 192.168.31.32/24 VIP: 192.168.31.30/32 安装配置 ipvs 安装 ipvs 管理软件 在 Director Server 上安装 ipvsadm 1 root@lb-01:~# apt install ipvsadm 配置 ipvs 配置 vip 1 2 3 4 5 6 7 8 9 10 root@lb-01:~# ip addr add 192.168.31.30/32 brd 192.168.31.30 dev ens32 root@lb-01:~# ip addr show</div><div class="post-footer">
         <a href="/posts/lvs-configure/">阅读全文</a><div class="post-tags">
@@ -145,11 +150,6 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-14">2021-01-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">MySQL MHA 架构介绍： 官方文档: https://github.com/yoshinorim/mha4mysql-manager/wiki MHA（Master High Availability）目前在MySQL高可用方面是一个相对成熟的解决方案，它由日本 DeNA 公司</div><div class="post-footer">
         <a href="/posts/mysql-mha/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysqlmha/">mysqlmha</a>,&nbsp;<a href="/tags/mha/">mha</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-replication-optimization/">MySQL 主从复制优化</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-13">2021-01-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">优化参数 1 2 3 4 5 6 7 8 [mysqld] # 从库配置优化 master_info_repository = TABLE relay_log_info_repository = TABLE relay_log_recovery = 1 relay-log-purge = 1 read_only = 1 super_read_only = 1 master.info: 存储连接主库的信息，已经接收的 binlog 位置点信息 (默认在从库数据目录</div><div class="post-footer">
-        <a href="/posts/mysql-replication-optimization/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql-replication/">mysql-replication</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
