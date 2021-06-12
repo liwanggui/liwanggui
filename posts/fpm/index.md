@@ -1,4 +1,4 @@
-# RPM 快速打包
+# 使用 FPM 快速打包
 
 
 回顾下安装软件的三种方式：
@@ -26,10 +26,10 @@ FPM 功能简单说就是将一种类型的包转换成另一种类型。
 
 ### 2. 支持的目标类型包
 
-- rpm 转换为rpm包
-- deb 转换为deb包
-- solaris 转换为solaris包
-- puppet 转换为puppet模块
+- rpm 转换为 rpm 包
+- deb 转换为 deb 包
+- solaris 转换为 solaris 包
+- puppet 转换为 puppet 模块
 
 ### 3. FPM 安装
 

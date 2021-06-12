@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Ubuntu Server 网络文件系统（NFS） - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Ubuntu Server 网络文件系统（NFS）" />
+<meta property="og:description" content="NFS 允许系统通过网络与他人共享目录和文件。通过使用 NFS，用户和程序可以访问远程系统上的文件，就好像它们是本地文件一样。 NFS 可以提供的一些最显著" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/ubuntu-nfs/" />
+<meta property="og:image" content="https://liwanggui.com/logo.png"/>
+<meta property="article:published_time" content="2021-04-24T11:04:36+08:00" />
+<meta property="article:modified_time" content="2021-04-24T11:04:36+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Ubuntu Server 网络文件系统（NFS）"/>
+<meta name="twitter:description" content="NFS 允许系统通过网络与他人共享目录和文件。通过使用 NFS，用户和程序可以访问远程系统上的文件，就好像它们是本地文件一样。 NFS 可以提供的一些最显著"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/ubuntu-nfs/" /><link rel="prev" href="https://liwanggui.com/posts/cfssl/" /><link rel="next" href="https://liwanggui.com/posts/kubernetes-nfs-client/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ubuntu Server 网络文件系统（NFS）",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/ubuntu-nfs\/"
+        },"genre": "posts","keywords": "nfs","wordcount":  1012 ,
+        "url": "https:\/\/liwanggui.com\/posts\/ubuntu-nfs\/","datePublished": "2021-04-24T11:04:36+08:00","dateModified": "2021-04-24T11:04:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Ubuntu Server 网络文件系统（NFS）</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="far fa-folder fa-fw"></i>ubuntu</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-24">2021-04-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1012 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#配置">配置</a></li>
+    <li><a href="#nfs-客户端配置">NFS 客户端配置</a></li>
+    <li><a href="#警告">警告</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>NFS 允许系统通过网络与他人共享目录和文件。通过使用 NFS，用户和程序可以访问远程系统上的文件，就好像它们是本地文件一样。</p>
+<p>NFS 可以提供的一些最显著的好处是：</p>
+<ul>
+<li>本地工作站使用较少的磁盘空间，因为常用数据可以存储在单台计算机上，并且仍然可以通过网络为其他人访问。</li>
+<li>用户无需在每个网络机器上单独拥有 home 目录。home 目录可在 NFS 服务器上设置，并在整个网络中提供。</li>
+<li>软盘、CDROM 驱动器和 USB 拇指驱动器等存储设备可用于网络上的其他计算机。这可能会减少整个网络中的可移动媒体驱动器的数量。</li>
+</ul>
+<h2 id="安装">安装</h2>
+<p>在终端提示下输入以下命令以安装 NFS 服务器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install nfs-kernel-server
+</code></pre></td></tr></table>
+</div>
+</div><p>要启动 NFS 服务器，您可以在终端提示下运行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo systemctl start nfs-kernel-server.service
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="配置">配置</h2>
+<p>您可以通过将目录添加到 NFS 配置文件中来配置要共享的目录。默认配置文件：<code>/etc/exports</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/srv     *(ro,sync,subtree_check)
+/home    *.hostname.com(rw,sync,no_subtree_check)
+/scratch *(rw,async,no_subtree_check,no_root_squash,noexec)
+</code></pre></td></tr></table>
+</div>
+</div><p>确保已创建您添加的任何自定义安装点（<code>/srv</code> 和<code>/home</code> 将存在）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir /scratch
+</code></pre></td></tr></table>
+</div>
+</div><p>重载 NFS 配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo exportfs -a
+</code></pre></td></tr></table>
+</div>
+</div><p>您可以用具体的主机名替换 <code>*</code>。 使主机名声明尽可能具体。</p>
+<p>同步/异步选项可控制更改是否在回复请求之前被限制为稳定存储。因此，async 会带来性能优势，但可能会造成数据丢失或损坏。尽管同步是默认的，但值得设置，因为如果未指定，<code>exportfs</code> 将发出警告。</p>
+<p><code>subtree_check</code> 和 <code>no_subtree_check</code> 启用或禁用安全验证，即客户端尝试为 <code>exported</code> 文件系统安装的子指示器是允许他们进行的安全验证。此验证步骤对某些使用案例（例如文件重命名频繁的家庭目录）有一些性能影响。仅读文件系统更适合启用 <code>subtree_check</code> 。与同步一样，如果未指定，<code>exportfs</code> 将发出警告。</p>
+<p>NFS 有许多可选设置，用于调整性能、加强安全性或提供便利。这些设置各有其自身的权衡，因此谨慎使用它们非常重要，仅针对特定用例需要。例如， <code>no_root_squash</code> 增加了便利性，允许任何客户端系统的根用户修改根拥有的文件：在允许在共享安装点上执行可执行项的多用户环境中，这可能导致安全问题。<code>noexec</code> 阻止可执行文件从安装点运行。</p>
+<h2 id="nfs-客户端配置">NFS 客户端配置</h2>
+<p>要启用客户端系统的 NFS 支持，请在终端提示下输入以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt install nfs-common
+</code></pre></td></tr></table>
+</div>
+</div><p>使用 <code>mount</code> 命令从另一台机器上挂载共享的 NFS 目录，在终端提示处键入类似于以下命令行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo mkdir /opt/example
+sudo mount example.hostname.com:/srv /opt/example
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="警告">警告</h2>
+<p>挂载点目录必须存在。目录中不应有任何文件或子目录，否则它们将无法访问，直到 nfs 文件系统卸载。<code>/opt/example/opt/example</code></p>
+<p>挂载 NFS 共享目录的另一种方法是向 <code>/etc/fstab</code> 文件添加一行配置。该行必须说明 NFS 服务器的主机名、及 NFS 共享目录的路径(在 NFS 服务器上的路径)。</p>
+<p><code>/etc/fstab</code> 配置如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">example.hostname.com:/srv /opt/example nfs rsize=8192,wsize=8192,timeo=14,intr
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-24</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/ubuntu-nfs/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）" data-hashtags="nfs"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-hashtag="nfs"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ubuntu-nfs/" data-title="Ubuntu Server 网络文件系统（NFS）"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nfs/">nfs</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/cfssl/" class="prev" rel="prev" title="使用 cfssl 自签证书"><i class="fas fa-angle-left fa-fw"></i>使用 cfssl 自签证书</a>
+            <a href="/posts/kubernetes-nfs-client/" class="next" rel="next" title="扩展 NFS 向 Kubernetes 提供动态 PVC 功能">扩展 NFS 向 Kubernetes 提供动态 PVC 功能<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-04-24T11:04:36+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Ubuntu Server 网络文件系统（NFS）"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

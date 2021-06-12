@@ -1,7 +1,6 @@
 # LVS 负载均衡，介绍
 
 
-
 ## LVS 介绍
 
 Linux 虚拟服务器（Linux Virtual Server, LVS），是一个由章文嵩开发的一款自由软件。利用 LVS 可以实现高可用、可伸缩的 Web、Mail、Cache 等网络服务。 

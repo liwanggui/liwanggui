@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/docker-harbor\/"
-        },"genre": "posts","keywords": "docker, harbor","wordcount":  334 ,
+        },"genre": "posts","keywords": "docker, harbor","wordcount":  411 ,
         "url": "https:\/\/liwanggui.com\/posts\/docker-harbor\/","datePublished": "2021-03-06T11:54:16+08:00","dateModified": "2021-03-06T11:54:16+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Docker 私有仓库部署 (harbor)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 334 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 411 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -116,11 +116,12 @@
     <li><a href="#下载-harbor-离线安装包">下载 harbor 离线安装包</a></li>
     <li><a href="#安装-docker-compose">安装 docker-compose</a></li>
     <li><a href="#部署-harbor">部署 harbor</a></li>
+    <li><a href="#配置-nginx-反代">配置 nginx 反代</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p><code>harbor</code> 使用 <code>docker</code> 容器的方式部署，所以在部署 <code>harbor</code> 前需要安装好 <code>docker</code> 及单机编排工具 <code>docker-compose</code></p>
 <h2 id="下载-harbor-离线安装包">下载 harbor 离线安装包</h2>
-<p>harbor 托管于 Github，在 Github 上有提供完整的离线安装直接下载即可。 <a href="https://github.com/goharbor/harbor" target="_blank" rel="noopener noreffer">Github 地址</a></p>
+<p><code>harbor</code> 托管于 Github，在 Github 上有提供完整的离线安装直接下载即可。 <a href="https://github.com/goharbor/harbor" target="_blank" rel="noopener noreffer">Github 地址</a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -130,7 +131,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="安装-docker-compose">安装 docker-compose</h2>
-<p>由于 harbor 依赖于 docker-compose 完成单机编排工作，需要先安装好</p>
+<p>由于 <code>harbor</code> 依赖于 <code>docker-compose</code> 完成单机编排工作，需要先安装好</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -194,7 +195,7 @@ root@ops:/opt# <span class="nb">cd</span> harbor
 <span class="c1"># 复制一份harbor配置文件</span>
 root@ops:/opt/harbor# cp harbor.yml.tmpl harbor.yml
 root@ops:/opt/harbor# egrep -v <span class="s1">&#39;^$|#&#39;</span> harbor.yml
-hostname: harbor.lwg.com  <span class="c1"># harbor 站点域名</span>
+hostname: harbor.host.com  <span class="c1"># harbor 站点域名</span>
 http:
   port: <span class="m">801</span>   <span class="c1"># 修改端口</span>
 harbor_admin_password: Harbor12345  <span class="c1"># harbor 管理员默认密码</span>
@@ -234,8 +235,42 @@ proxy:
 root@ops:/opt/harbor# ./install <span class="c1"># 开始部署 harbor</span>
 </code></pre></td></tr></table>
 </div>
-</div><blockquote>
+</div><h2 id="配置-nginx-反代">配置 nginx 反代</h2>
+<blockquote>
 <p>部署完成后可以配置 nginx 反代对外提供服务，nginx 配置注意加大 <code>client_max_body_size</code> 参数值.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">harbor.wfugui.com</span><span class="p">;</span>
+
+    <span class="c1"># 注意此项配置
+</span><span class="c1"></span>    <span class="kn">client_max_body_size</span> <span class="mi">2000m</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">https://localhost:801</span><span class="p">;</span>
+        <span class="kn">include</span> <span class="s">proxy.conf</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意: 最新版本的 harbor 如果不启用证书验证连接(https) 在 push 镜像时会不成功</p>
 </blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

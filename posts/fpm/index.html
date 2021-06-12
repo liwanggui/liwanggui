@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>RPM 快速打包 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="RPM 快速打包" />
+        <title>使用 FPM 快速打包 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="使用 FPM 快速打包" />
 <meta property="og:description" content="回顾下安装软件的三种方式： 编译安装软件，优点是可以定制化安装目录、按需开启功能等，缺点是需要查找并实验出适合的编译参数，诸如 MySQL 之类的软件编译" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/fpm/" />
@@ -15,19 +15,19 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
-<meta name="twitter:title" content="RPM 快速打包"/>
+<meta name="twitter:title" content="使用 FPM 快速打包"/>
 <meta name="twitter:description" content="回顾下安装软件的三种方式： 编译安装软件，优点是可以定制化安装目录、按需开启功能等，缺点是需要查找并实验出适合的编译参数，诸如 MySQL 之类的软件编译"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/fpm/" /><link rel="prev" href="https://liwanggui.com/posts/yum-repo/" /><link rel="next" href="https://liwanggui.com/posts/nginx-install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "RPM 快速打包",
+        "headline": "使用 FPM 快速打包",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/fpm\/"
-        },"genre": "posts","keywords": "fpm","wordcount":  1397 ,
+        },"genre": "posts","keywords": "fpm","wordcount":  1382 ,
         "url": "https:\/\/liwanggui.com\/posts\/fpm\/","datePublished": "2021-04-01T15:34:35+08:00","dateModified": "2021-04-01T15:34:35+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -102,9 +102,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">RPM 快速打包</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/command/"><i class="far fa-folder fa-fw"></i>command</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-01">2021-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1397 字&nbsp;
+        </div><article class="page single"><h1 class="single-title animated flipInX">使用 FPM 快速打包</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-01">2021-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1382 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -152,10 +152,10 @@
 </ol>
 <h3 id="2-支持的目标类型包">2. 支持的目标类型包</h3>
 <ul>
-<li>rpm 转换为rpm包</li>
-<li>deb 转换为deb包</li>
-<li>solaris 转换为solaris包</li>
-<li>puppet 转换为puppet模块</li>
+<li>rpm 转换为 rpm 包</li>
+<li>deb 转换为 deb 包</li>
+<li>solaris 转换为 solaris 包</li>
+<li>puppet 转换为 puppet 模块</li>
 </ul>
 <h3 id="3-fpm-安装">3. FPM 安装</h3>
 <p>fpm 是 ruby 写的，因此系统环境需要 ruby，且 ruby 版本号大于1.8.5。rpm 包太旧，安装后会提示版本问题。所以采用编译安装方式：</p>
@@ -381,7 +381,7 @@ openssl-devel is needed by nginx-1.6.2-1.x86_64
                             <a class="link-to-markdown" href="/posts/fpm/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包" data-hashtags="fpm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/fpm/" data-hashtag="fpm"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/fpm/" data-title="RPM 快速打包"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-hashtags="fpm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/fpm/" data-hashtag="fpm"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -394,7 +394,7 @@ openssl-devel is needed by nginx-1.6.2-1.x86_64
     </div>
 
     <div class="post-nav"><a href="/posts/yum-repo/" class="prev" rel="prev" title="部署 YUM 本地仓库"><i class="fas fa-angle-left fa-fw"></i>部署 YUM 本地仓库</a>
-            <a href="/posts/nginx-install/" class="next" rel="next" title="Nginx 源码编译安装">Nginx 源码编译安装<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/nginx-install/" class="next" rel="next" title="NGINX 安装">NGINX 安装<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
@@ -411,5 +411,5 @@ openssl-devel is needed by nginx-1.6.2-1.x86_64
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-04-01T15:34:35+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"RPM 快速打包"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-04-01T15:34:35+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"使用 FPM 快速打包"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

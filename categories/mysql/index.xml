@@ -17,7 +17,7 @@
     <pubDate>Thu, 14 Jan 2021 10:17:10 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/mysql-mha/</guid>
-    <description><![CDATA[MySQL MHA 架构介绍： 官方文档: https://github.com/yoshinorim/mha4mysql-manager/wiki MHA（Master High Availability）目前在MySQL高可用方面是一个相对成熟的解决方案，它由日本 DeNA 公司]]></description>
+    <description><![CDATA[MySQL MHA 架构介绍 官方文档: https://github.com/yoshinorim/mha4mysql-manager/wiki MHA（Master High Availability）目前在MySQL高可用方面是一个相对成熟的解决方案，它由日本 DeNA 公司 y]]></description>
 </item><item>
     <title>MySQL 主从复制优化</title>
     <link>https://liwanggui.com/posts/mysql-replication-optimization/</link>

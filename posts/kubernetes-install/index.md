@@ -1,4 +1,4 @@
-# Kubernetes 集群部署 (kubeadm)
+# 使用 Kubeadm 快速部署 Kubernetes 集群
 
 
 ## 主机环境
@@ -11,16 +11,26 @@
 
 ## 环境说明
 
-测试使用的 `kubernetes` 集群可由一个 `master` 主机及一个以上（建议至少两个）`node` 主机组成，这些主机可以是物理服务器，也可以运行于 `vmware`、`virtualbox` 或 `kvm` 等虚拟化平台上的虚拟机，甚至是公有云上的`VPS`主机。
+测试使用的 `kubernetes` 集群可由一个 `master` 主机及一个以上（建议至少两个）`node` 主机组成，这些主机可以是物理服务器，也可以运行于 `vmware`、`virtualbox` 或 `kvm` 等虚拟化平台上的虚拟机，甚至是公有云上的 `VPS` 主机。
 
-本测试环境将由 `master1.host.com`、`node1.host.com`、`node2.host.com` 3个独立的主机组成，它们分别拥有4核心的CPU及4G的内存资源，操作系统环境均为仅小化部署的 `Ubuntu Server 18.04.5 LTS`，启用了 `SSH` 服务，域名为 `host.com`。此外，各主机需要预设的系统环境如下：
+本测试环境将由 `master1.host.com`、`node1.host.com`、`node2.host.com` 3个独立的主机组成，它们分别拥有 4 核心的 CPU 及 8G 的内存资源，操作系统环境均为最小化部署的 `Ubuntu Server 18.04.5 LTS`，启用了 `SSH` 服务，域名为 `host.com`。此外，各主机需要预设的系统环境如下：
 
 - 借助于 `chronyd` 服务（程序包名称 `chrony`）设定各节点时间精确同步；
 - 通过 `DNS` 完成各节点的主机名称解析；
 - 各节点禁用所有的 `Swap` 设备；
 - 各节点禁用默认配置的 `iptables` 防火墙服务；
 
-> 注意：为了便于操作，后面将在各节点直接以系统管理员 root 用户进行操作。若用户使用了普通用户，建议将如下各命令以 sudo 方式运行。
+> 注意：为了便于操作，后面将在各节点直接以系统管理员 `root` 用户进行操作。若用户使用了普通用户，建议将如下各命令以 `sudo` 方式运行。
+
+## 网络规划
+
+Kubernetes 网络分为三类:
+
+- Pod 网络：`172.16.0.0/16`
+- Service 网络: `192.168.0.0/16`
+- Node 网络: `10.7.0.0/16`
+
+> 注意: 请按照实际情况进行网络规划。
 
 ## 设定时钟同步
 
@@ -37,7 +47,7 @@ systemctl start chronyd.service
 server CHRONY-SERVER-NAME-OR-IP iburst
 ```
 
-## 主机名称解析
+## 主机名称解析（可选）
 
 使用 `bind9` 提供 `dns` 服务, 本环境直接在主节点安装 `bind9`
 
@@ -46,7 +56,6 @@ apt install bind9
 ```
 
 > 更新多详细配置参考 [Ubuntu Server 安装配置 bind9](/posts/ubuntu-bind/)
-
 
 *host.com zone 配置文件示例*
 
@@ -63,13 +72,15 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @           IN      NS      ns.host.com.
-@           IN      A       192.168.31.11
-ns          IN      A       192.168.31.11
-master1     IN      A       192.168.31.11
-node1       IN      A       192.168.31.21
-node2       IN      A       192.168.31.22
-apiserver   IN      A       192.168.31.11
+@           IN      A       10.7.79.148
+ns          IN      A       10.7.79.148
+master1     IN      A       10.7.79.148
+node1       IN      A       10.7.50.17
+node2       IN      A       10.7.149.184
+apiserver   IN      A       10.7.79.148
 ```
+
+> 由于本实验中使用的机器较小，使用 `hosts` 文件实现本地域名解析
 
 ## 禁用 Swap 设备
 
@@ -116,7 +127,6 @@ ufw status
 
   "data-root": "/data/docker",  # docker 数据存储目录
   "exec-opts": ["native.cgroupdriver=systemd"], # 额外参数,部署 k8s 时需要指定此选项
-  "bip": "10.10.0.1/16",  # 配置 docker 网桥 ip
   "log-driver": "json-file",
   "log-opts": { "max-size": "100m"},
   "live-restore": true
@@ -157,11 +167,9 @@ systemctl enable kubelet
 
 ## 初始化第一个主节点
 
-该步骤开始尝试构建 `Kubernetes` 集群的 `master` 节点，配置完成后，各 `worker` 节点直接加入到集群中的即可。需要特别说明的是，由 kubeadm 部署的 `Kubernetes` 集群上，集群核心组件 `kube-apiserver`、`kube-controller-manager`、`kube-scheduler``和etcd` 等均会以`静态 Pod` 的形式运行，它们所依赖的镜像文件默认来自于 `gcr.io` 这一 Registry 服务之上。但我们无法直接访问该服务，常用的解决办法有如下两种，本示例将选择使用更易于使用的后一种方式。
+该步骤开始尝试构建 `Kubernetes` 集群的 `master` 节点，配置完成后，各 `worker` 节点直接加入到集群中的即可。需要特别说明的是，由 `kubeadm` 部署的 `Kubernetes` 集群上，集群核心组件 `kube-apiserver`、`kube-controller-manager`、`kube-scheduler` 和 `etcd` 等均会以`静态 Pod` 的形式运行，它们所依赖的镜像文件默认来自于 `gcr.io` 这一 `Registry` 服务之上。但我们无法直接访问该服务，常用的解决办法有如下两种，本示例将选择使用更易于使用的后一种方式。
 
-使用能够到达该服务的代理服务；
-
-使用国内的镜像服务器上的服务，例如 `gcr.azk8s.cn/google_containers` 和 `registry.aliyuncs.com/google_containers` 等。
+使用能够到达该服务的代理服务；使用国内的镜像服务器上的服务，例如 `gcr.azk8s.cn/google_containers` 和 `registry.aliyuncs.com/google_containers` 等。
 
 ### 初始化 master 节点
 
@@ -177,7 +185,6 @@ kubeadm config images list --image-repository registry.aliyuncs.com/google_conta
 kubeadm config images pull --image-repository registry.aliyuncs.com/google_containers --kubernetes-version v1.18.1
 ``` 
 
-
 而后即可进行 `master` 节点初始化。`kubeadm init` 命令支持两种初始化方式，一是通过命令行选项传递关键的部署设定，另一个是基于 yaml 格式的专用配置文件，后一种允许用户自定义各个部署参数。下面分别给出了两种实现方式的配置步骤，建议采用第二种方式进行。
 
 **初始化方式一**
@@ -189,8 +196,8 @@ kubeadm init \
 --image-repository registry.aliyuncs.com/google_containers \
 --control-plane-endpoint apiserver.host.com \
 --kubernetes-version v1.18.1 \
---apiserver-advertise-address 192.168.31.11 \
---service-cidr 10.10.0.0/16 \
+--apiserver-advertise-address 10.7.79.148 \
+--service-cidr 192.168.0.0/16 \
 --pod-network-cidr 172.16.0.0/16 \
 --token-ttl 0 \
 --upload-certs
@@ -211,7 +218,7 @@ kubeadm init \
 kubeadm token create --print-join-command
 ```
 
-> 需要注意的是，若各节点未禁用Swap设备，还需要附加选项 “--ignore-preflight-errors=Swap”，从而让kubeadm忽略该错误设定。   
+> 需要注意的是，若各节点未禁用Swap设备，还需要附加选项 “--ignore-preflight-errors=Swap”，从而让 kubeadm 忽略该错误设定。   
 
 
 **初始化方式二**
@@ -268,7 +275,7 @@ networking:
   # Pod 的网络地址段
   podSubnet: 172.16.0.0/16
   # Service 的网络地址段
-  serviceSubnet: 10.10.0.0/16
+  serviceSubnet: 192.168.0.0/16
 scheduler: {}
 ---
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
@@ -551,5 +558,5 @@ NAME      TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 demoapp   NodePort   10.10.149.76   <none>        80:32002/TCP   10s
 ```
 
-> `demoapp` 是一个 `web` 应用，因此，用户可以于集群外部通过 `http://NodeIP:32002` 这个 URL 访问 `demoapp` 上的应用，例如于集群外通过浏览器访问 `http://192.168.31.22:32002`。
+> `demoapp` 是一个 `web` 应用，因此，用户可以于集群外部通过 `http://NodeIP:32002` 这个 URL 访问 `demoapp` 上的应用，例如于集群外通过浏览器访问 `http://10.7.50.17:32002`。
 

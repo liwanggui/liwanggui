@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Ubuntu Server 网络配置 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Ubuntu Server 网络配置" />
-<meta property="og:description" content="临时IP地址分配 对于临时网络配置，可以使用在大多数其他GNU / Linux操作系统上也可以找到的ip命令。ip命令允许您配置立即生效的设置，但" />
+<meta property="og:description" content="临时IP地址分配 对于临时网络配置，可以使用在大多数其他 GNU/Linux 操作系统上也可以找到的ip命令。ip 命令允许您配置立即生效的设置，但是这些设置不是永" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/ubuntu-network/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
 <meta name="twitter:title" content="Ubuntu Server 网络配置"/>
-<meta name="twitter:description" content="临时IP地址分配 对于临时网络配置，可以使用在大多数其他GNU / Linux操作系统上也可以找到的ip命令。ip命令允许您配置立即生效的设置，但"/>
+<meta name="twitter:description" content="临时IP地址分配 对于临时网络配置，可以使用在大多数其他 GNU/Linux 操作系统上也可以找到的ip命令。ip 命令允许您配置立即生效的设置，但是这些设置不是永"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/ubuntu-network/" /><link rel="prev" href="https://liwanggui.com/posts/awk/" /><link rel="next" href="https://liwanggui.com/posts/ubuntu-bind/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/ubuntu-network\/"
-        },"genre": "posts","keywords": "ubuntu","wordcount":  1530 ,
+        },"genre": "posts","keywords": "netplan","wordcount":  1514 ,
         "url": "https:\/\/liwanggui.com\/posts\/ubuntu-network\/","datePublished": "2021-03-04T10:05:44+08:00","dateModified": "2021-03-04T10:05:44+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Ubuntu Server 网络配置</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="far fa-folder fa-fw"></i>ubuntu</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-04">2021-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1530 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-04">2021-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1514 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -119,7 +119,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="临时ip地址分配">临时IP地址分配</h2>
-<p>对于临时网络配置，可以使用在大多数其他GNU / Linux操作系统上也可以找到的ip命令。ip命令允许您配置立即生效的设置，但是这些设置不是永久性的，并且在重新启动后会丢失。</p>
+<p>对于临时网络配置，可以使用在大多数其他 GNU/Linux 操作系统上也可以找到的ip命令。ip 命令允许您配置立即生效的设置，但是这些设置不是永久性的，并且在重新启动后会丢失。</p>
 <p>要临时配置IP地址，可以按以下方式使用ip命令。修改IP地址和子网掩码以符合您的网络要求。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -140,7 +140,7 @@
 ip link <span class="nb">set</span> dev enp0s25 down
 </code></pre></td></tr></table>
 </div>
-</div><p>要验证enp0s25的IP地址配置，可以按以下方式使用ip命令。</p>
+</div><p>要验证 enp0s25 的 IP 地址配置，可以按以下方式使用 ip 命令。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -339,13 +339,13 @@ nameserver 8.8.4.4
                             <a class="link-to-markdown" href="/posts/ubuntu-network/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-hashtags="ubuntu"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ubuntu-network/" data-hashtag="ubuntu"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-hashtags="netplan"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ubuntu-network/" data-hashtag="netplan"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ubuntu-network/" data-title="Ubuntu Server 网络配置"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ubuntu/">ubuntu</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/netplan/">netplan</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>

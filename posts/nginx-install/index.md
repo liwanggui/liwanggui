@@ -1,7 +1,27 @@
-# Nginx 源码编译安装
+# NGINX 安装
 
 
-## 准备编译环境
+本文将介绍 NGINX 常用的二种安装方式，分为二进制包和源码编译，根据自己的使用的场景选择即可。
+
+## 二进制包
+
+二进制方式安装比效简单，直接使用系统包管理工具安装即可
+
+*Ubuntu*
+
+```bash
+apt install nginx
+```
+
+*CentOS*
+
+```bash
+yum install nginx
+```
+
+## 源码编译
+
+### 准备编译环境
 
 本文使用 Ubuntu 20.04.2 LTS 编译安装.
 
@@ -12,7 +32,7 @@ root@ubuntu:/usr/local/src# wget http://nginx.org/download/nginx-1.18.0.tar.gz
 root@ubuntu:/usr/local/src# tar xzf nginx-1.18.0.tar.gz
 ```
 
-## 编译安装
+### 开始编译安装
 
 ```bash
 root@ubuntu:/usr/local/src# cd nginx-1.18.0
@@ -42,7 +62,7 @@ root@ubuntu:/usr/local/src/nginx-1.18.0# ./configure --prefix=/usr/local/nginx \
 root@ubuntu:/usr/local/src/nginx-1.18.0# make && make install
 ```
 
-## Nginx 服务管理
+### Nginx 服务管理
 
 *启动 nginx 服务*
 
@@ -73,7 +93,7 @@ root@ubuntu:~# /usr/local/nginx/sbin/nginx -s reload
 root@ubuntu:~# /usr/local/nginx/sbin/nginx -s stop
 ```
 
-## Systemd 配置
+### Systemd 配置
 
 ```bash
 root@ubuntu:~# cat > /usr/lib/systemd/system/nginx.service <<EOF

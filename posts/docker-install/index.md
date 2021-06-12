@@ -5,7 +5,7 @@
 
 `Docker` 官方提供了一键安装 docker 脚本工具: [https://github.com/docker/docker-install](https://github.com/docker/docker-install)
 
-### 安装 docker 
+### 安装 docker
 
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh

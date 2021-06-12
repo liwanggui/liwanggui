@@ -5,25 +5,25 @@
         <description>nginx - 标签 - _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
             <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Thu, 01 Apr 2021 17:16:15 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/tags/nginx/" rel="self" type="application/rss+xml" /><item>
-    <title>Nginx alias 与 root 区别</title>
+    <title>NGINX alias 与 root 区别</title>
     <link>https://liwanggui.com/posts/nginx-alias-root/</link>
     <pubDate>Thu, 01 Apr 2021 17:16:15 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/nginx-alias-root/</guid>
     <description><![CDATA[alias 与 root 区别 nginx 是通过 alias 设置虚拟目录，在 nginx 的配置中， alias 目录和 root 目录是有区别的 alias 指定的目录是准确的，即 location 匹配访问的 path 目录下的文件直接是在 alias 目录下查]]></description>
 </item><item>
-    <title>Nginx 常用指令语法</title>
+    <title>NGINX 常用指令语法</title>
     <link>https://liwanggui.com/posts/nginx-syntax/</link>
     <pubDate>Thu, 01 Apr 2021 16:26:44 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/nginx-syntax/</guid>
     <description><![CDATA[域名重定向 当用户访问 http://liwanggui.com 时 url 重定向至 https://liwanggui.com， 实现 http -&gt; https 重定向，实现方式有两种： 通过 rewrite 模块的 permanent 参数实现永久重]]></description>
 </item><item>
-    <title>Nginx 源码编译安装</title>
+    <title>NGINX 安装</title>
     <link>https://liwanggui.com/posts/nginx-install/</link>
     <pubDate>Thu, 01 Apr 2021 16:11:08 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/nginx-install/</guid>
-    <description><![CDATA[准备编译环境 本文使用 Ubuntu 20.04.2 LTS 编译安装. 1 2 3 4 root@ubuntu:~# apt install gcc make openssl libssl-dev libpcre3-dev zlib1g-dev root@ubuntu:~# cd /usr/local/src root@ubuntu:/usr/local/src# wget http://nginx.org/download/nginx-1.18.0.tar.gz root@ubuntu:/usr/local/src# tar xzf nginx-1.18.0.tar.gz 编译安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25]]></description>
+    <description><![CDATA[本文将介绍 NGINX 常用的二种安装方式，分为二进制包和源码编译，根据自己的使用的场景选择即可。 二进制包 二进制方式安装比效简单，直接使用系统包管理工具]]></description>
 </item></channel>
 </rss>

@@ -18,12 +18,5 @@
     <author>作者</author>
     <guid>https://liwanggui.com/posts/ubuntu-bind/</guid>
     <description><![CDATA[域名服务（DNS）是一种Internet服务，可将IP地址和标准域名（FQDN）相互映射。这样，DNS减轻了记住IP地址的需要。运行DNS的]]></description>
-</item><item>
-    <title>Ubuntu Server 网络配置</title>
-    <link>https://liwanggui.com/posts/ubuntu-network/</link>
-    <pubDate>Thu, 04 Mar 2021 10:05:44 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/ubuntu-network/</guid>
-    <description><![CDATA[临时IP地址分配 对于临时网络配置，可以使用在大多数其他GNU / Linux操作系统上也可以找到的ip命令。ip命令允许您配置立即生效的设置，但]]></description>
 </item></channel>
 </rss>

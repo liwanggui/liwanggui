@@ -5,7 +5,7 @@
         <description>dashboard - 标签 - _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
             <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Tue, 09 Mar 2021 15:52:42 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/tags/dashboard/" rel="self" type="application/rss+xml" /><item>
-    <title>部署 Kubernetes Dashboard</title>
+    <title>使用 Dashborad 管理 Kubernetes 集群</title>
     <link>https://liwanggui.com/posts/kubernetes-dashboard/</link>
     <pubDate>Tue, 09 Mar 2021 15:52:42 &#43;0800</pubDate>
     <author>作者</author>

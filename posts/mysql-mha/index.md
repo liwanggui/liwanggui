@@ -1,7 +1,7 @@
 # MySQL MHA 高可用配置
 
 
-## MySQL MHA 架构介绍：
+## MySQL MHA 架构介绍
 
 官方文档: https://github.com/yoshinorim/mha4mysql-manager/wiki
 
