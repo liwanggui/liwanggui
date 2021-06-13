@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Ansible Playbook 示例 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Ansible Playbook 示例" />
+<meta property="og:description" content="playbook 示例1 使用 ansible-playbook (单文件)批量安装 vsftp 服务 playbook 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 ---- hosts:all # 指定操作的主机vars:# 定义变量，此变量会传入模板us" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/ansible-playbook/" />
+<meta property="og:image" content="https://liwanggui.com/logo.png"/>
+<meta property="article:published_time" content="2021-06-12T17:36:14+08:00" />
+<meta property="article:modified_time" content="2021-06-12T17:36:14+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Ansible Playbook 示例"/>
+<meta name="twitter:description" content="playbook 示例1 使用 ansible-playbook (单文件)批量安装 vsftp 服务 playbook 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 ---- hosts:all # 指定操作的主机vars:# 定义变量，此变量会传入模板us"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/ansible-playbook/" /><link rel="prev" href="https://liwanggui.com/posts/ansible-modules/" /><link rel="next" href="https://liwanggui.com/posts/cobbler/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ansible Playbook 示例",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/ansible-playbook\/"
+        },"genre": "posts","wordcount":  462 ,
+        "url": "https:\/\/liwanggui.com\/posts\/ansible-playbook\/","datePublished": "2021-06-12T17:36:14+08:00","dateModified": "2021-06-12T17:36:14+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Ansible Playbook 示例</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-12">2021-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 462 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#playbook-示例1">playbook 示例1</a></li>
+    <li><a href="#playbook-示例2">playbook 示例2</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="playbook-示例1">playbook 示例1</h2>
+<p>使用 <code>ansible-playbook</code> (单文件)批量安装 <code>vsftp</code> 服务</p>
+<p><em>playbook</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+</span><span class="w"></span>- <span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">all  </span><span class="w"> </span><span class="c"># 指定操作的主机</span><span class="w">
+</span><span class="w">  </span><span class="nt">vars</span><span class="p">:</span><span class="w">  </span><span class="c"># 定义变量，此变量会传入模板</span><span class="w">
+</span><span class="w">    </span><span class="nt">userlist</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/vsftpd/user_list</span><span class="w">
+</span><span class="w">    </span><span class="nt">welcome</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/vsftpd/welcome.txt</span><span class="w">
+</span><span class="w">  </span><span class="nt">remote_user</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install vsftpd</span><span class="w">
+</span><span class="w">    </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">pkg=vsftpd state=latest</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">write vsftp config file</span><span class="w">
+</span><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l">src=/root/playbook/templates/vsftpd.conf dest=/etc/vsftpd/vsftpd.conf</span><span class="w">
+</span><span class="w">    </span><span class="c"># 只有配置发生变化才会触发以下任务</span><span class="w">
+</span><span class="w">    </span><span class="nt">notify</span><span class="p">:</span><span class="w"> </span><span class="c"># 触发任务，下面指定任务名</span><span class="w">
+</span><span class="w">    </span>- <span class="l">restart vsftpd</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">start vsftpd</span><span class="w">
+</span><span class="w">    </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=vsftpd state=started</span><span class="w">
+</span><span class="w">  </span><span class="nt">handlers</span><span class="p">:</span><span class="w">  </span><span class="c"># 定义触发任务</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">restart vsftpd</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=vsftpd state=restarted</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><em>templates</em> 模板</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">anonymous_enable</span><span class="o">=</span>NO
+
+<span class="nv">local_enable</span><span class="o">=</span>YES
+<span class="nv">write_enable</span><span class="o">=</span>YES
+<span class="nv">local_umask</span><span class="o">=</span><span class="m">022</span>
+<span class="nv">local_root</span><span class="o">=</span>/var/ftp
+<span class="nv">userlist_enable</span><span class="o">=</span>YES
+<span class="nv">userlist_deny</span><span class="o">=</span>YES
+<span class="nv">userlist_file</span><span class="o">={{</span> userlist <span class="o">}}</span>
+
+<span class="nv">use_localtime</span><span class="o">=</span>YES
+<span class="nv">dirmessage_enable</span><span class="o">=</span>YES
+<span class="nv">xferlog_enable</span><span class="o">=</span>YES
+<span class="nv">connect_from_port_20</span><span class="o">=</span>YES
+<span class="nv">xferlog_std_format</span><span class="o">=</span>YES
+<span class="nv">listen</span><span class="o">=</span>YES
+<span class="nv">pam_service_name</span><span class="o">=</span>vsftpd
+<span class="nv">tcp_wrappers</span><span class="o">=</span>YES
+<span class="nv">banner_file</span><span class="o">={{</span> welcome <span class="o">}}</span>
+<span class="nv">chroot_local_user</span><span class="o">=</span>YES
+<span class="nv">pasv_min_port</span><span class="o">=</span><span class="m">65530</span>
+<span class="nv">pasv_max_port</span><span class="o">=</span><span class="m">65535</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="playbook-示例2">playbook 示例2</h2>
+<p>将 playbook 分解成多个文件方便复用，文件夹结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost playbook<span class="o">]</span><span class="c1"># tree</span>
+.
+├── handlers
+│   └── restart.yaml
+├── services
+│   └── vsftpd.yaml
+├── templates
+│   └── vsftpd.conf
+└── vsftpd.yaml
+</code></pre></td></tr></table>
+</div>
+</div><p><em>vsftpd.yaml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">---
+- hosts: all
+  remote_user: root
+  vars:
+    userlist: /etc/vsftpd/user_list
+    welcome: /etc/vsftpd/welcome.txt
+  tasks:
+    - include: /root/playbook/services/vsftpd.yaml
+  handlers:
+    - include: /root/playbook/handlers/restart.yaml <span class="nv">server_name</span><span class="o">=</span>vsftpd
+</code></pre></td></tr></table>
+</div>
+</div><p><em>services/vsftpd.yaml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">---
+- name: install vsftpd
+  yum: <span class="nv">name</span><span class="o">=</span>vsftpd <span class="nv">state</span><span class="o">=</span>present
+- name: start vsftpd
+  service: <span class="nv">name</span><span class="o">=</span>vsftpd <span class="nv">state</span><span class="o">=</span>started
+- name: configure vsftpd
+  template: <span class="nv">src</span><span class="o">=</span>/root/playbook/templates/vsftpd.conf <span class="nv">dest</span><span class="o">=</span>/etc/vsftpd/vsftpd.conf
+  notify:
+  - restart vsftpd
+</code></pre></td></tr></table>
+</div>
+</div><p><em>templates/vsftpd.conf</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">anonymous_enable</span><span class="o">=</span>NO
+
+<span class="nv">local_enable</span><span class="o">=</span>YES
+<span class="nv">write_enable</span><span class="o">=</span>YES
+<span class="nv">local_umask</span><span class="o">=</span><span class="m">022</span>
+<span class="nv">local_root</span><span class="o">=</span>/var/ftp
+<span class="nv">userlist_enable</span><span class="o">=</span>YES
+<span class="nv">userlist_deny</span><span class="o">=</span>YES
+<span class="nv">userlist_file</span><span class="o">={{</span> userlist <span class="o">}}</span>
+
+
+<span class="nv">use_localtime</span><span class="o">=</span>YES
+<span class="nv">dirmessage_enable</span><span class="o">=</span>YES
+<span class="nv">xferlog_enable</span><span class="o">=</span>YES
+<span class="nv">connect_from_port_20</span><span class="o">=</span>YES
+<span class="nv">xferlog_std_format</span><span class="o">=</span>YES
+<span class="nv">listen</span><span class="o">=</span>YES
+<span class="nv">pam_service_name</span><span class="o">=</span>vsftpd
+<span class="nv">tcp_wrappers</span><span class="o">=</span>YES
+<span class="nv">banner_file</span><span class="o">={{</span> welcome <span class="o">}}</span>
+<span class="nv">chroot_local_user</span><span class="o">=</span>YES
+<span class="nv">pasv_min_port</span><span class="o">=</span><span class="m">65530</span>
+<span class="nv">pasv_max_port</span><span class="o">=</span><span class="m">65535</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>handlers/restart.yaml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">---
+- name: restart <span class="o">{{</span> server_name <span class="o">}}</span>
+  service: <span class="nv">name</span><span class="o">={{</span> server_name <span class="o">}}</span> <span class="nv">state</span><span class="o">=</span>restarted
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-06-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/ansible-playbook/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ansible-playbook/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ansible-playbook/" data-title="Ansible Playbook 示例"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ansible-modules/" class="prev" rel="prev" title="Ansible 常用模块"><i class="fas fa-angle-left fa-fw"></i>Ansible 常用模块</a>
+            <a href="/posts/cobbler/" class="next" rel="next" title="使用 cobbler 批量部署 bclinux7.2">使用 cobbler 批量部署 bclinux7.2<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-06-12T17:36:14+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Ansible Playbook 示例"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

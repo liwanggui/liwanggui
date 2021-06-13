@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>sed - 标签 - _浅行</title>
+        <link>https://liwanggui.com/tags/sed/</link>
+        <description>sed - 标签 - _浅行</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sat, 12 Jun 2021 16:21:31 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/tags/sed/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux 文本三剑客：sed</title>
+    <link>https://liwanggui.com/posts/sed/</link>
+    <pubDate>Sat, 12 Jun 2021 16:21:31 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/sed/</guid>
+    <description><![CDATA[示例 判断文件中指定字符串行是否存在 1 sed -n &#39;/^auth/p&#39; /etc/pam.d/su | sed -n &#39;/sufficient/p&#39; | sed -n &#39;/pam_rootok.so/p 判断 /etc/pam.d/su 文件中是否有 auth required pam_securetty.so 配置行 修改行 1 sed -i.bak &#39;s/PermitRoot*/PermitRoot no/g&#39; /etc/ssh/sshd_config -i.bak 在修改文件时会先备份，本例备份]]></description>
+</item></channel>
+</rss>

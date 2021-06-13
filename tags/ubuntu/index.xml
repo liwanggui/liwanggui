@@ -11,12 +11,5 @@
     <author>作者</author>
     <guid>https://liwanggui.com/posts/ubuntu-flushdns/</guid>
     <description><![CDATA[如果你没有在 Linux 下安装和运行 Systemd-Resolved、DNSMasq、Nscd 缓存服务，那就没有操作系统级的 DNS 缓存，不同的 Linux 发行版在刷]]></description>
-</item><item>
-    <title>Ubuntu Server 安装配置 bind9</title>
-    <link>https://liwanggui.com/posts/ubuntu-bind/</link>
-    <pubDate>Thu, 04 Mar 2021 10:10:10 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/ubuntu-bind/</guid>
-    <description><![CDATA[域名服务（DNS）是一种Internet服务，可将IP地址和标准域名（FQDN）相互映射。这样，DNS减轻了记住IP地址的需要。运行DNS的]]></description>
 </item></channel>
 </rss>

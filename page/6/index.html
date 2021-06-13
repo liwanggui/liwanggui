@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://liwanggui.com/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
-<meta property="og:updated_time" content="2021-04-29T11:29:27+08:00" />
+<meta property="og:updated_time" content="2021-06-13T10:33:18+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
@@ -101,55 +101,55 @@
         alt="/images/avatar.jpeg"
         title="/images/avatar.jpeg" /></a></div><h1 class="home-title">_浅行</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/liwanggui" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://www.zhihu.com/people/wglee" title="知乎" target="_blank" rel="noopener noreffer me"><i data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://space.bilibili.com/477519199" title="bilibili" target="_blank" rel="noopener noreffer me"><i data-svg-src="/svg/icons/bilibili.min.svg"></i></a><a href="mailto:liwanggui@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-gtid-replication/">MySQL GTID 主从复制配置</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-13">2021-01-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">环境准备 准备两台服务器安装 MySQL 5.7, 参考 安装 MySQL 5.7 服务器列表 master: 10.10.1.11/24 slave1: 10.10.1.12/24 配置 MySQL 配置基于 GTID 的主从复制需要启动 gtid 和 binlog 功能，具体配置如下 主库: my.cnf 1 2 3 4 5 6 7</div><div class="post-footer">
-        <a href="/posts/mysql-gtid-replication/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql-replication/">mysql-replication</a>,&nbsp;<a href="/tags/mysql-gtid-replication/">mysql-gtid-replication</a></div></div>
+        <a href="/posts/docker-dockerfile/">Dockerfile 相关指令</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-06">2021-03-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div><div class="content">Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 快速创建自定义的镜像。 Dockerfile 由一行行命令语句组成，并且支持以 # 开头注释行。 Dockerfile 一般分为四部分： 基础镜像信</div><div class="post-footer">
+        <a href="/posts/docker-dockerfile/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/dockerfile/">dockerfile</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-classic-replication/">MySQL 经典主从复制配置</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-13">2021-01-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">安装 MySQL 5.7 服务器列表 master: 10.10.1.2/24 slave1: 10.10.1.3/24 下载 MySQL 1 2 3 root@db2:/usr/local/src# wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.28-linux-glibc2.12-x86_64.tar.gz root@db1:/usr/local/src# tar xzf mysql-5.7.28-linux-glibc2.12-x86_64.tar.gz -C /usr/local/ root@db1:/usr/local# ln -s /usr/local/mysql-5.7.28-linux-glibc2.12-x86_64/ /usr/local/mysql 环境准备 1 2 3 4 5 6 7 8 9 10 11 # 安装依赖 root@db1:/usr/local/mysql# apt-get install libaio1 # 创建程序用户 root@db1:/usr/local/mysql# useradd -r -s /sbin/nologin mysql</div><div class="post-footer">
-        <a href="/posts/mysql-classic-replication/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql-replication/">mysql-replication</a>,&nbsp;<a href="/tags/mysql-classic-replication/">mysql-classic-replication</a></div></div>
+        <a href="/posts/docker-config/">Docker 基本配置项</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-06">2021-03-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div><div class="content">完整的配置项参考: https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file docker 默认配置文件路径为: /etc/docker/daemon.json docker 常用的配置项 1 2 3 4 5 6 7 8 9 10 11 12 13 [root@localhost ~]# cat /etc/docker/daemon.json { &#34;registry-mirrors&#34;: [&#34;https://docker.mirrors.ustc.edu.cn&#34;, &#34;http://hub-mirror.c.163.com&#34;], # 镜像加速器 &#34;insecure-registries&#34;:[&#34;harbor.host.com&#34;], # 第三方仓库或自建仓库地址</div><div class="post-footer">
+        <a href="/posts/docker-config/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-gtid/">MySQL GITD 模式</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-12">2021-01-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">GTID 的概述 是对一个已提交事务的编号，并且是全局唯一的编号 全局事物标识：global transaction identifieds。 GTID事物是全局唯一性的，且一个</div><div class="post-footer">
-        <a href="/posts/mysql-gtid/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/mysql-gtid/">mysql-gtid</a></div></div>
+        <a href="/posts/docker-install/">Docker 快速安装</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-06">2021-03-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div><div class="content">一键安装 docker Docker 官方提供了一键安装 docker 脚本工具: https://github.com/docker/docker-install 安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh sh get-docker.sh 默认下载源是 docker 官方境外的源，在国内下载很慢 使用阿里云安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh</div><div class="post-footer">
+        <a href="/posts/docker-install/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-slowlog/">MySQL 慢日志</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-12">2021-01-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">slowlog 慢日志 作用 记录 MySQL 运行过程运行过慢的语句，通过一个文本的文件记录下来。 帮助我们进行语句优化工作。 配置慢日志 1 2 3 4 5 6 7 8 9 10 root@db1:~# cat /usr/local/mysql/etc/my.cnf [mysqld] # 慢语</div><div class="post-footer">
-        <a href="/posts/mysql-slowlog/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/slowlog/">slowlog</a></div></div>
+        <a href="/posts/ubuntu-flushdns/">Ubuntu 刷新/删除 DNS 缓存</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-04">2021-03-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="far fa-folder fa-fw"></i>ubuntu</a></span></div><div class="content">如果你没有在 Linux 下安装和运行 Systemd-Resolved、DNSMasq、Nscd 缓存服务，那就没有操作系统级的 DNS 缓存，不同的 Linux 发行版在刷</div><div class="post-footer">
+        <a href="/posts/ubuntu-flushdns/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ubuntu/">ubuntu</a>,&nbsp;<a href="/tags/dns/">dns</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-mysqlbinlog/">MySQL mysqlbinlog 命令使用说明</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-11">2021-01-11</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">mysqlbinlog 参数说明 -d, --database 指定截取日志的库名 --start-position 截取日志起始 position 号 --stop-position 截取日志最终 position 号 --start-datetime 截取日志开始时间 --stop-datetime 截取日志结束时间 --skip-gtids 不保留全局事务标识符； 而是让服务器</div><div class="post-footer">
-        <a href="/posts/mysql-mysqlbinlog/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysqlbinlog/">mysqlbinlog</a></div></div>
+        <a href="/posts/ubuntu-bind/">Ubuntu Server 安装配置 bind9</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-04">2021-03-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="far fa-folder fa-fw"></i>ubuntu</a></span></div><div class="content">域名服务（DNS）是一种Internet服务，可将IP地址和标准域名（FQDN）相互映射。这样，DNS减轻了记住IP地址的需要。运行DNS的</div><div class="post-footer">
+        <a href="/posts/ubuntu-bind/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bind/">bind</a>,&nbsp;<a href="/tags/dns/">dns</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-binlog/">MySQL bin-log 日志</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-10">2021-01-10</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">binlog 作用 主要记录数据库变化(DDL,DML,DCL)性质的日志 用于数据恢复：如果你的数据库出问题了，而你之前有过备份，那么可以看日志文件，找出</div><div class="post-footer">
-        <a href="/posts/mysql-binlog/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/binlog/">binlog</a></div></div>
+        <a href="/posts/ubuntu-network/">Ubuntu Server 网络配置</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-04">2021-03-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="far fa-folder fa-fw"></i>ubuntu</a></span></div><div class="content">临时IP地址分配 对于临时网络配置，可以使用在大多数其他 GNU/Linux 操作系统上也可以找到的ip命令。ip 命令允许您配置立即生效的设置，但是这些设置不是永</div><div class="post-footer">
+        <a href="/posts/ubuntu-network/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/netplan/">netplan</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-information_schema/">统计 MySQL 数据库信息</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-07">2021-01-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">information_schema 库 统计单表占用物理空间大小 查询表: information_schema.tables 计算公式: 方法一: 单表占用空间大小 = AVG_ROW_LENGTH * TABLE_ROWS + INDEX_LENGTH 方法二: 单表占用空间大小 = DATA_LENGTH 示例: 查看 employees 库中 salaries 表的占用空</div><div class="post-footer">
-        <a href="/posts/mysql-information_schema/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/information_schema/">information_schema</a></div></div>
+        <a href="/posts/awk/">Linux 文本三剑客: awk</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-03">2021-03-03</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div><div class="content">awk 文本处理 awk 是一种很棒的语言，它适合文本处理和报表生成，其语法较为常见，借鉴了某些语言的一些精华，如 C 语言等。在 linux 系统日常处理工作中，发挥很</div><div class="post-footer">
+        <a href="/posts/awk/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/awk/">awk</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysql-tablespace-restore/">使用 MySQL 表空间方式(迁移/恢复)数据</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-05">2021-01-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">MyISAM 引擎默认是支持通过拷贝文件方式迁移数据，InnoDB 引擎不支持。 如果需要迁移 InnoDB 引擎数据可以先将数据表的引擎由 InnoDB 更改为 MyISAM。 也可以通</div><div class="post-footer">
-        <a href="/posts/mysql-tablespace-restore/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a></div></div>
+        <a href="/posts/haproxy-install/">HAPrxoy 的简单使用</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-22">2021-02-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/haproxy/"><i class="far fa-folder fa-fw"></i>haproxy</a></span></div><div class="content">HAPrxoy 介绍 HAProxy 是一个使用 C 语言编写的自由及开放源代码软件，其提供高可用性、负载均衡，以及基于 tcp 和 http 的应用程序代理。 mode http：七层反向代理，受端口</div><div class="post-footer">
+        <a href="/posts/haproxy-install/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/haproxy/">haproxy</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mysqldump-backup/">Mysqldump 备份 MySQL</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-04">2021-01-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a></span></div><div class="content">mysqldump 参数说明 -A, &ndash;all-databases: 备份所有库 -B, &ndash;databases: 使用此参数可以同时备份多个库 单库备份可以加上 -B 参数，这样备份文件中加会加入 create database ... 及 use DATABASE 语句. &ndash;master-data=2: 加入此参数可以记录</div><div class="post-footer">
-        <a href="/posts/mysqldump-backup/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/mysqldump/">mysqldump</a></div></div>
+        <a href="/posts/tomcat-optimization/">Tomcat 配置及运行权限优化</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-22">2021-02-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tomcat/"><i class="far fa-folder fa-fw"></i>tomcat</a></span></div><div class="content">配置优化 修改 Server 节点 shutdown 属性值为长随机数 1 &lt;Server port=&#34;8005&#34; shutdown=&#34;d41d8cd98f00b204e9800998ecf8427e&#34;&gt; 启用 tomcat 线程池 使用线程池，用较少的线程处理较多的访问，可以提高tomcat处理请求的能力。使用方式</div><div class="post-footer">
+        <a href="/posts/tomcat-optimization/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/tomcat/">tomcat</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/xtrabackup-backup-mysql/">Xtrabackup 备份 MySQL (全备)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-01-04">2021-01-04</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>mysql</a>&nbsp;<a href="/categories/xtrabackup/"><i class="far fa-folder fa-fw"></i>xtrabackup</a></span></div><div class="content">percona-xtrabackup 是物理备份工具，拷贝数据文件。 原生态支持全备和增量备份。 会记录二进制日志文件及位置。 InnoDB 表: 热备份，业务正常发生时，影响较小的备份方式 非 InnoDB 表</div><div class="post-footer">
-        <a href="/posts/xtrabackup-backup-mysql/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/mysql/">mysql</a>,&nbsp;<a href="/tags/xtrabackup/">xtrabackup</a></div></div>
+        <a href="/posts/tomcat-install/">Tomcat 的简单使用</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-02-22">2021-02-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/tomcat/"><i class="far fa-folder fa-fw"></i>tomcat</a></span></div><div class="content">Tomcat 介绍 Tomcat 是 Apache 软件基金会（Apache Software Foundation）项目中的一个核心项目，由 Apache、Sun 和其他一些公司及个人共同开发而成。 Tomcat</div><div class="post-footer">
+        <a href="/posts/tomcat-install/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/tomcat/">tomcat</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -171,6 +171,16 @@
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/7/">7</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/8/">8</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/10/">10</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

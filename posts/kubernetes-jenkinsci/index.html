@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="使用 jenkins 实现 Kubernetes CI"/>
 <meta name="twitter:description" content="部署 Jenkins rbac.yaml 创建 ServiceAccount: jenkins-ci 授予 cluster-admin 权限， jenkins 在 kubernetes 集群中创建工作节点需要权限 你也可以在 kubernetes 插件中配置验证信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 apiVersion:v1kind:ServiceAccountmetadata:name:jenkins-cinamespace:devops---apiVersion:rbac.authorization.k8s.io/v1kind:ClusterRoleBindingmetadata:name:jenkins-cinamespace:devopsroleRef:apiGroup:rbac.authorization.k8s.iokind:ClusterRolename:adminsubjects:- kind:ServiceAccountname:jenkins-cinamespace:devops pvc.yaml 为 jenkins 划"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/kubernetes-jenkinsci/" /><link rel="prev" href="https://liwanggui.com/posts/kubernetes-git/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/kubernetes-jenkinsci/" /><link rel="prev" href="https://liwanggui.com/posts/kubernetes-git/" /><link rel="next" href="https://liwanggui.com/posts/ncdu/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -726,7 +726,8 @@ kubectl apply -f ingress-route.yml
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/kubernetes-git/" class="prev" rel="prev" title="使用 Gogs 服务实现代码仓库管理"><i class="fas fa-angle-left fa-fw"></i>使用 Gogs 服务实现代码仓库管理</a></div>
+    <div class="post-nav"><a href="/posts/kubernetes-git/" class="prev" rel="prev" title="使用 Gogs 服务实现代码仓库管理"><i class="fas fa-angle-left fa-fw"></i>使用 Gogs 服务实现代码仓库管理</a>
+            <a href="/posts/ncdu/" class="next" rel="next" title="使用 ncdu 查找 linux 下最占空间的文件">使用 ncdu 查找 linux 下最占空间的文件<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.

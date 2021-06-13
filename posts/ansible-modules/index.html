@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Ansible 常用模块 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Ansible 常用模块" />
+<meta property="og:description" content="ansible 命令格式： 1 ansible all -m command -a &#34;uptime&#34; -m 指定使用的模块 -a 指定模块的参数 默认使用 /etc/ansible/hosts 文件中定义的主机，也可以使用 -i /path/hosts 主机清单文件的位置 1. command command 命令模块, 不支持" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/ansible-modules/" />
+<meta property="og:image" content="https://liwanggui.com/logo.png"/>
+<meta property="article:published_time" content="2021-06-12T17:31:53+08:00" />
+<meta property="article:modified_time" content="2021-06-12T17:31:53+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Ansible 常用模块"/>
+<meta name="twitter:description" content="ansible 命令格式： 1 ansible all -m command -a &#34;uptime&#34; -m 指定使用的模块 -a 指定模块的参数 默认使用 /etc/ansible/hosts 文件中定义的主机，也可以使用 -i /path/hosts 主机清单文件的位置 1. command command 命令模块, 不支持"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/ansible-modules/" /><link rel="prev" href="https://liwanggui.com/posts/ansible-role/" /><link rel="next" href="https://liwanggui.com/posts/ansible-playbook/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ansible 常用模块",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/ansible-modules\/"
+        },"genre": "posts","keywords": "ansible","wordcount":  759 ,
+        "url": "https:\/\/liwanggui.com\/posts\/ansible-modules\/","datePublished": "2021-06-12T17:31:53+08:00","dateModified": "2021-06-12T17:31:53+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Ansible 常用模块</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ansible/"><i class="far fa-folder fa-fw"></i>ansible</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-12">2021-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 759 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-command">1. command</a></li>
+    <li><a href="#2-shell">2. shell</a></li>
+    <li><a href="#3-script">3. script</a></li>
+    <li><a href="#4-copy">4. copy</a></li>
+    <li><a href="#5-stat">5. stat</a></li>
+    <li><a href="#6-get_url">6. get_url</a></li>
+    <li><a href="#7-yum">7. yum</a></li>
+    <li><a href="#8-cron">8. cron</a></li>
+    <li><a href="#9-mount">9. mount</a></li>
+    <li><a href="#10-service">10. service</a></li>
+    <li><a href="#11-sysctl">11. sysctl</a></li>
+    <li><a href="#12-user">12. user</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><em>ansible 命令格式：</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ansible all -m <span class="nb">command</span> -a <span class="s2">&#34;uptime&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>-m</code> 指定使用的模块</li>
+<li><code>-a</code> 指定模块的参数</li>
+</ul>
+<blockquote>
+<p>默认使用 <code>/etc/ansible/hosts</code> 文件中定义的主机，也可以使用 <code>-i /path/hosts</code> 主机清单文件的位置</p>
+</blockquote>
+<h2 id="1-command">1. command</h2>
+<p><em>command</em> 命令模块, 不支持管道 &ldquo;|&rdquo; 与 变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m command -a &#39;uptime&#39;</span>
+192.168.17.130 <span class="p">|</span> SUCCESS <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+ 03:05:54 up <span class="m">36</span> min,  <span class="m">3</span> users,  load average: 0.02, 0.04, 0.05
+
+192.168.17.131 <span class="p">|</span> SUCCESS <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+ 03:05:54 up <span class="m">32</span> min,  <span class="m">3</span> users,  load average: 0.01, 0.03, 0.03
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-shell">2. shell</h2>
+<p><em>shell</em> 功能基本与 <code>command</code> 类似,但是 <code>shell</code> 使用远程主机的 <code>/bin/sh</code> 运行命令,支持管道 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible webserver -m shell -a &#39;/tmp/test.sh&#39;</span>
+192.168.17.131 <span class="p">|</span> SUCCESS <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+UserName:  root
+Ip address:  192.168.17.131
+
+192.168.17.130 <span class="p">|</span> SUCCESS <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
+UserName:  root
+Ip address:  192.168.17.130
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-script">3. script</h2>
+<p><em>script</em> 是对指定的远程主机执行&quot;本地脚本&quot;，执行&quot;远程脚本&quot;请使用 <code>shell</code> 模块</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ls</span>
+anaconda-ks.cfg  test.sh
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible webserver -m script -a &#39;/root/test.sh&#39;</span>
+192.168.17.131 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;changed&#34;</span>: true,
+    <span class="s2">&#34;rc&#34;</span>: 0,
+    <span class="s2">&#34;stderr&#34;</span>: <span class="s2">&#34;Shared connection to 192.168.17.131 closed.\r\n&#34;</span>,
+    <span class="s2">&#34;stdout&#34;</span>: <span class="s2">&#34;UserName:  root\r\nIp address:  192.168.17.131\r\n&#34;</span>,
+    <span class="s2">&#34;stdout_lines&#34;</span>: <span class="o">[</span>
+        <span class="s2">&#34;UserName:  root&#34;</span>,
+        <span class="s2">&#34;Ip address:  192.168.17.131&#34;</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+192.168.17.130 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;changed&#34;</span>: true,
+    <span class="s2">&#34;rc&#34;</span>: 0,
+    <span class="s2">&#34;stderr&#34;</span>: <span class="s2">&#34;Shared connection to 192.168.17.130 closed.\r\n&#34;</span>,
+    <span class="s2">&#34;stdout&#34;</span>: <span class="s2">&#34;UserName:  root\r\nIp address:  192.168.17.130\r\n&#34;</span>,
+    <span class="s2">&#34;stdout_lines&#34;</span>: <span class="o">[</span>
+        <span class="s2">&#34;UserName:  root&#34;</span>,
+        <span class="s2">&#34;Ip address:  192.168.17.130&#34;</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-copy">4. copy</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible webserver -m copy -a &#39;src=/root/test.sh dest=/tmp/test.sh owner=root group=root mode=0755&#39;</span>
+192.168.17.131 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;changed&#34;</span>: true,
+    <span class="s2">&#34;checksum&#34;</span>: <span class="s2">&#34;15bd17b3f24fe74c6b2bd515469510a7c46423c9&#34;</span>,
+    <span class="s2">&#34;dest&#34;</span>: <span class="s2">&#34;/tmp/test.sh&#34;</span>,
+    <span class="s2">&#34;gid&#34;</span>: 0,
+    <span class="s2">&#34;group&#34;</span>: <span class="s2">&#34;root&#34;</span>,
+    <span class="s2">&#34;md5sum&#34;</span>: <span class="s2">&#34;ef47fd4c2ae9500503156fea0fa11a12&#34;</span>,
+    <span class="s2">&#34;mode&#34;</span>: <span class="s2">&#34;0644&#34;</span>,
+    <span class="s2">&#34;owner&#34;</span>: <span class="s2">&#34;root&#34;</span>,
+    <span class="s2">&#34;size&#34;</span>: 150,
+    <span class="s2">&#34;src&#34;</span>: <span class="s2">&#34;/root/.ansible/tmp/ansible-tmp-1498789225.9-220641470038608/source&#34;</span>,
+    <span class="s2">&#34;state&#34;</span>: <span class="s2">&#34;file&#34;</span>,
+    <span class="s2">&#34;uid&#34;</span>: <span class="m">0</span>
+<span class="o">}</span>
+192.168.17.130 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;changed&#34;</span>: true,
+    <span class="s2">&#34;checksum&#34;</span>: <span class="s2">&#34;15bd17b3f24fe74c6b2bd515469510a7c46423c9&#34;</span>,
+    <span class="s2">&#34;dest&#34;</span>: <span class="s2">&#34;/tmp/test.sh&#34;</span>,
+    <span class="s2">&#34;gid&#34;</span>: 0,
+    <span class="s2">&#34;group&#34;</span>: <span class="s2">&#34;root&#34;</span>,
+    <span class="s2">&#34;md5sum&#34;</span>: <span class="s2">&#34;ef47fd4c2ae9500503156fea0fa11a12&#34;</span>,
+    <span class="s2">&#34;mode&#34;</span>: <span class="s2">&#34;0644&#34;</span>,
+    <span class="s2">&#34;owner&#34;</span>: <span class="s2">&#34;root&#34;</span>,
+    <span class="s2">&#34;size&#34;</span>: 150,
+    <span class="s2">&#34;src&#34;</span>: <span class="s2">&#34;/root/.ansible/tmp/ansible-tmp-1498789225.91-98116970360767/source&#34;</span>,
+    <span class="s2">&#34;state&#34;</span>: <span class="s2">&#34;file&#34;</span>,
+    <span class="s2">&#34;uid&#34;</span>: <span class="m">0</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-stat">5. stat</h2>
+<p>获取远程文件状态信息，包括：<code>atime</code> <code>ctime</code> <code>mtime</code> <code>md5</code> <code>uid</code> <code>git</code> 等信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible webserver -m stat -a &#39;path=/etc/hosts&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="6-get_url">6. get_url</h2>
+<p>实现远程主机下载指定的 <code>url</code> 到本地</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m get_url -a &#39;url=http://www.baidu.com dest=/tmp/baidu.html mode=400 force=yes&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="7-yum">7. yum</h2>
+<p>linux 平台软件包管理工具操作模块，常见的有 <code>yum</code> <code>apt</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m yum -a &#39;name=curl state=latest&#39;</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m apt -a &#39;pkg=curl state=latest&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>latest 表示最新版本</li>
+</ul>
+<h2 id="8-cron">8. cron</h2>
+<p>远程主机 <code>crontab</code> 配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m cron -a &#39;name=&#34;check dirs&#34; hour=&#34;5,2&#34; job=&#34;ls -lh&#34;&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>效果如下</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># crontab -l</span>
+<span class="c1">#Ansible: check dirs</span>
+* 5,2 * * * ls -lh
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="9-mount">9. mount</h2>
+<p>远程主机分区挂载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m mount -a &#39;name=/mnt src=/dev/sdb3 fstype=ext3 opts=ro state=present&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="10-service">10. service</h2>
+<p>远程主机系统服务管理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m service -a &#39;name=crond state=stopped&#39;</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m service -a &#39;name=crond state=started&#39;</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m service -a &#39;name=crond state=restarted&#39;</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m service -a &#39;name=crond state=reloaded&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>stopped 停止</li>
+<li>started 启动</li>
+<li>restarted 重启</li>
+<li>reloaded 重载</li>
+</ul>
+<h2 id="11-sysctl">11. sysctl</h2>
+<p>远程主机 sysctl 配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m sysctl -a &#39;name=net.ipv4.ip_forward value=1 sysctl_file=/etc/sysctl.conf reload=yes&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="12-user">12. user</h2>
+<p>远程主机用户管理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加用户</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m user -a &#39;name=liwg shell=/sbin/bash home=/home/liwg&#39;</span>
+<span class="c1"># 删除用户</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ansible all -m user -a &#39;name=liwg state=absent remove=yes&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-06-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/ansible-modules/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块" data-hashtags="ansible"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ansible-modules/" data-hashtag="ansible"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ansible-modules/" data-title="Ansible 常用模块"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ansible/">ansible</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ansible-role/" class="prev" rel="prev" title="Ansible playbook 角色的使用"><i class="fas fa-angle-left fa-fw"></i>Ansible playbook 角色的使用</a>
+            <a href="/posts/ansible-playbook/" class="next" rel="next" title="Ansible Playbook 示例">Ansible Playbook 示例<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-06-12T17:31:53+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Ansible 常用模块"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

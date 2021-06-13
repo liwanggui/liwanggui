@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Ansible playbook 角色的使用 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Ansible playbook 角色的使用" />
+<meta property="og:description" content="目录结构 playbook 目录包括变量定义目录 group_vars、主机组定义文件hosts、全局配置文件site.yml、角色功能目录。 可以使用命令 ansible-galaxy init role_name" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/ansible-role/" />
+<meta property="og:image" content="https://liwanggui.com/logo.png"/>
+<meta property="article:published_time" content="2021-06-12T17:28:02+08:00" />
+<meta property="article:modified_time" content="2021-06-12T17:28:02+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="Ansible playbook 角色的使用"/>
+<meta name="twitter:description" content="目录结构 playbook 目录包括变量定义目录 group_vars、主机组定义文件hosts、全局配置文件site.yml、角色功能目录。 可以使用命令 ansible-galaxy init role_name"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/ansible-role/" /><link rel="prev" href="https://liwanggui.com/posts/ansible-hosts/" /><link rel="next" href="https://liwanggui.com/posts/ansible-modules/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ansible playbook 角色的使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/ansible-role\/"
+        },"genre": "posts","keywords": "ansible","wordcount":  1291 ,
+        "url": "https:\/\/liwanggui.com\/posts\/ansible-role\/","datePublished": "2021-06-12T17:28:02+08:00","dateModified": "2021-06-12T17:28:02+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Ansible playbook 角色的使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ansible/"><i class="far fa-folder fa-fw"></i>ansible</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-12">2021-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1291 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#目录结构">目录结构</a></li>
+    <li><a href="#角色规范">角色规范</a></li>
+    <li><a href="#hosts-主机配置文件"><em>hosts</em> 主机配置文件</a></li>
+    <li><a href="#group_vars-定义主机组变量"><em>group_vars</em> 定义主机组变量</a></li>
+    <li><a href="#siteyml-全局配置文件程序入口"><em>site.yml</em> 全局配置文件，程序入口</a></li>
+    <li><a href="#common-公共角色文件示例"><em>common</em> (公共)角色文件示例</a></li>
+    <li><a href="#ftp-角色文件示例"><em>ftp</em> 角色文件示例</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="目录结构">目录结构</h2>
+<p>playbook 目录包括变量定义目录 group_vars、主机组定义文件hosts、全局配置文件site.yml、角色功能目录。
+可以使用命令 <code>ansible-galaxy init role_name</code> 生成角色相应目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># tree ansible_roles/</span>
+ansible_roles/
+├── common  <span class="c1"># 公共角色目录</span>
+│   ├── handlers
+│   │   └── main.yml <span class="c1"># 定义触发任务</span>
+│   ├── tasks
+│   │   └── main.yml <span class="c1"># 定义任务</span>
+│   ├── templates
+│   │   └── ntp.conf.j2  <span class="c1"># 定义模板</span>
+│   └── vars
+│       └── main.yml  <span class="c1"># 定义角色内的变量</span>
+├── ftp  <span class="c1"># 安装ftp任务角色</span>
+│   ├── handlers
+│   │   └── main.yml
+│   ├── tasks
+│   │   └── main.yml
+│   ├── templates
+│   │   └── vsftpd2.conf
+│   └── vars
+├── group_vars <span class="c1"># 定义组变量，以组名命名文件</span>
+│   ├── all
+│   └── ftpservers <span class="c1"># 定义 ftpservers 组主机变量</span>
+├── hosts  <span class="c1"># 主机清单，非必须，可以使用默认。使用时加 -i 选项</span>
+└── site.yml  <span class="c1"># 程序入口文件</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="角色规范">角色规范</h2>
+<p>角色定制以下规范，其中 <code>x</code> 为角色名。</p>
+<ul>
+<li>如 <code>roles/x/tasks/main.yml</code> 文件存在，其中列出的任务将被添加到执行队列；</li>
+<li>如 <code>roles/x/handlers/main.yml</code> 文件存在，其中所列的处理程序将被添加到执行队列；</li>
+<li>如 <code>roles/x/vars/main.yml</code> 文件存在，其中列出的变量将被添加到执行队列；</li>
+<li>如 <code>roles/x/meta/main.yml</code> 文件存在，所列任何作用的依赖关系将被添加到角色的列表（1.3及更高版本）；</li>
+<li>任何副本任务可以引用 <code>roles/x/files/</code>无需写路径，默认相对或绝对引用；</li>
+<li>任何模板任务可以引用文件中的 <code>roles/x/templates/</code> 无需写路径，默认相对或绝对引用。</li>
+</ul>
+<h2 id="hosts-主机配置文件"><em>hosts</em> 主机配置文件</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat hosts</span>
+manages <span class="nv">ansible_connection</span><span class="o">=</span><span class="nb">local</span> <span class="nv">ansible_ssh_host</span><span class="o">=</span>127.0.0.1
+
+<span class="o">[</span>ftpservers<span class="o">]</span>
+192.168.17.130
+192.168.17.131
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="group_vars-定义主机组变量"><em>group_vars</em> 定义主机组变量</h2>
+<p><em>group_vars/ftpservers</em> 此配置文件内变量只对 ftpservers 组内的主机有效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat group_vars/ftpservers</span>
+userlist: /etc/vsftpd/user_list
+welcome: /etc/vsftpd/welcome.txt
+</code></pre></td></tr></table>
+</div>
+</div><p><em>group_vars/all</em>  对所有主机有效</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat group_vars/all</span>
+ntpserver: ntp.sjtu.edu.cn
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="siteyml-全局配置文件程序入口"><em>site.yml</em> 全局配置文件，程序入口</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat site.yml</span>
+---
+<span class="c1"># 任务名</span>
+- name: apply common configuration to all nodes
+  hosts: all  <span class="c1"># 任务操作主机或主机组</span>
+  roles: <span class="c1"># 指定任务角色</span>
+    - common  <span class="c1"># 运行 common角色</span>
+
+
+- name: configure and deploy the ftpservers
+  hosts: ftpservers
+  roles:
+    - ftp
+</code></pre></td></tr></table>
+</div>
+</div><p>全局配置文件 <code>site.yml</code> 引用了两个角色，一个为公共类的 <code>common</code>，另一个为 <code>ftp</code> 类，分别对应 <code>nginx/common</code>、<code>nginx/web</code> 目录。以此类推，可以引用更多的角色，如 <code>db</code>、<code>nosql</code>、<code>hadoop</code> 等，前提是我们先要进行定义，通常情况下一个角色对应着一个特定功能服务。通过 <code>hosts</code> 参数来绑定角色对应的主机或组.</p>
+<h2 id="common-公共角色文件示例"><em>common</em> (公共)角色文件示例</h2>
+<p>角色common定义了handlers、tasks、templates、vars 4个功能类，分别存放处理程序、任务列表、模板、变量的配置文件main.yml，需要注意的是，vars/main.yml中定义的变量优先级高于/nginx/group_vars/all，可以从ansible-playbook的执行结果中得到验证。各功能块配置文件定义如下：</p>
+<p><em>common/tasks/main.yml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat common/tasks/main.yml</span>
+---
+- name: install ntp
+  yum: <span class="nv">name</span><span class="o">=</span>ntp <span class="nv">state</span><span class="o">=</span>present
+
+- name: configure ntp file
+  template: <span class="nv">src</span><span class="o">=</span>ntp.conf.j2 <span class="nv">dest</span><span class="o">=</span>/etc/ntp.conf
+  notify: restart ntp
+
+- name: start the ntp service
+  service: <span class="nv">name</span><span class="o">=</span>ntpd <span class="nv">state</span><span class="o">=</span>started <span class="nv">enabled</span><span class="o">=</span><span class="nb">true</span>
+
+- name: <span class="nb">test</span> to see <span class="k">if</span> selinux is running
+  command: getenforce
+  register: sestatus
+  changed_when: <span class="nb">false</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>common/handlers/main.yml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat common/handlers/main.yml</span>
+---
+- name: restart ntp
+  service: <span class="nv">name</span><span class="o">=</span>ntpd <span class="nv">state</span><span class="o">=</span>restarted
+</code></pre></td></tr></table>
+</div>
+</div><p><em>common/templates/main.yml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat common/templates/ntp.conf.j2</span>
+driftfile /var/lib/ntp/drift
+restrict 127.0.0.1
+restrict -6 ::1
+
+server <span class="o">{{</span> ntpserver <span class="o">}}</span>
+
+includefile /etc/ntp/crypto/pw
+keys /etc/ntp/keys
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>{{ ntpserver }}</code> 变量将从 <code>common/vars/main.yml</code> 中获取</p>
+</blockquote>
+<p><em>common/vars/main.yml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat common/vars/main.yml</span>
+ntpserver: 210.72.145.44
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><em>Tips:</em> 此处定义的变量优先级要高于 <code>group_vars</code> 中定义的变量</p>
+</blockquote>
+<h2 id="ftp-角色文件示例"><em>ftp</em> 角色文件示例</h2>
+<p><em>ftp/tasks/main.yml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat ftp/tasks/main.yml</span>
+- name: install vsftpd
+  yum: <span class="nv">pkg</span><span class="o">=</span>vsftpd <span class="nv">state</span><span class="o">=</span>latest
+
+- name: write the vsftpd config file
+  template: <span class="nv">src</span><span class="o">=</span>vsftpd2.conf <span class="nv">dest</span><span class="o">=</span>/etc/vsftpd/vsftpd.conf
+  notify:
+  - restart vsftpd
+- name: start vsftpd
+  service: <span class="nv">name</span><span class="o">=</span>vsftpd <span class="nv">state</span><span class="o">=</span>started
+</code></pre></td></tr></table>
+</div>
+</div><p><em>ftp/handlers/main.yml</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat ftp/handlers/main.yml</span>
+---
+- name: restart vsftpd
+  service: <span class="nv">name</span><span class="o">=</span>vsftpd <span class="nv">state</span><span class="o">=</span>restarted
+</code></pre></td></tr></table>
+</div>
+</div><p><em>ftp/templates/vsftpd2.conf</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ansible_roles<span class="o">]</span><span class="c1"># cat ftp/templates/vsftpd2.conf</span>
+<span class="nv">anonymous_enable</span><span class="o">=</span>NO
+
+<span class="nv">local_enable</span><span class="o">=</span>YES
+<span class="nv">write_enable</span><span class="o">=</span>YES
+<span class="nv">local_umask</span><span class="o">=</span><span class="m">022</span>
+<span class="nv">local_root</span><span class="o">=</span>/var/ftp
+<span class="nv">userlist_enable</span><span class="o">=</span>YES
+<span class="nv">userlist_deny</span><span class="o">=</span>YES
+<span class="nv">userlist_file</span><span class="o">={{</span> userlist <span class="o">}}</span>
+
+<span class="nv">use_localtime</span><span class="o">=</span>YES
+<span class="nv">dirmessage_enable</span><span class="o">=</span>YES
+<span class="nv">xferlog_enable</span><span class="o">=</span>YES
+<span class="nv">connect_from_port_20</span><span class="o">=</span>YES
+<span class="nv">xferlog_std_format</span><span class="o">=</span>YES
+<span class="nv">listen</span><span class="o">=</span>YES
+<span class="nv">pam_service_name</span><span class="o">=</span>vsftpd
+<span class="nv">tcp_wrappers</span><span class="o">=</span>YES
+<span class="nv">banner_file</span><span class="o">={{</span> welcome <span class="o">}}</span>
+<span class="nv">chroot_local_user</span><span class="o">=</span>YES
+<span class="nv">pasv_min_port</span><span class="o">=</span><span class="m">65530</span>
+<span class="nv">pasv_max_port</span><span class="o">=</span><span class="m">65535</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-06-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/ansible-role/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用" data-hashtags="ansible"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ansible-role/" data-hashtag="ansible"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ansible-role/" data-title="Ansible playbook 角色的使用"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ansible/">ansible</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ansible-hosts/" class="prev" rel="prev" title="Ansible 资源清单"><i class="fas fa-angle-left fa-fw"></i>Ansible 资源清单</a>
+            <a href="/posts/ansible-modules/" class="next" rel="next" title="Ansible 常用模块">Ansible 常用模块<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-06-12T17:28:02+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Ansible playbook 角色的使用"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

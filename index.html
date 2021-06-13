@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://liwanggui.com/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
-<meta property="og:updated_time" content="2021-04-29T11:29:27+08:00" />
+<meta property="og:updated_time" content="2021-06-13T10:33:18+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
@@ -101,55 +101,55 @@
         alt="/images/avatar.jpeg"
         title="/images/avatar.jpeg" /></a></div><h1 class="home-title">_浅行</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/liwanggui" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://www.zhihu.com/people/wglee" title="知乎" target="_blank" rel="noopener noreffer me"><i data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://space.bilibili.com/477519199" title="bilibili" target="_blank" rel="noopener noreffer me"><i data-svg-src="/svg/icons/bilibili.min.svg"></i></a><a href="mailto:liwanggui@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/kubernetes-jenkinsci/">使用 jenkins 实现 Kubernetes CI</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-29">2021-04-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a></span></div><div class="content">部署 Jenkins rbac.yaml 创建 ServiceAccount: jenkins-ci 授予 cluster-admin 权限， jenkins 在 kubernetes 集群中创建工作节点需要权限 你也可以在 kubernetes 插件中配置验证信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 apiVersion:v1kind:ServiceAccountmetadata:name:jenkins-cinamespace:devops---apiVersion:rbac.authorization.k8s.io/v1kind:ClusterRoleBindingmetadata:name:jenkins-cinamespace:devopsroleRef:apiGroup:rbac.authorization.k8s.iokind:ClusterRolename:adminsubjects:- kind:ServiceAccountname:jenkins-cinamespace:devops pvc.yaml 为 jenkins 划</div><div class="post-footer">
-        <a href="/posts/kubernetes-jenkinsci/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/jenkins/">jenkins</a></div></div>
+        <a href="/posts/git-keys/">Git 使用指定的 key 连接</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">当 ssh key 文件不放在标准目录下， git 进行 clone push 操作时如何使用指定位置的 ssh key 最佳解决方案 在 ~/.ssh/config 中添加配置 1 2 3 4 host github.com HostName github.com IdentityFile /data/sshkey/github_rsa User git 保持密钥的权限为 400 次佳解</div><div class="post-footer">
+        <a href="/posts/git-keys/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/kubernetes-git/">使用 Gogs 服务实现代码仓库管理</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-29">2021-04-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a></span></div><div class="content">部署 Gogs 互联网常用的 git 代码仓库管理软件有 gitlab, gogs, gitea(gogs 的克隆版) 等，本例为了简单点使用 gogs 作为 git 仓库管理工作部署在 kubernetes 集群中 提示: gitea 部署过和 gogs 基本一致 准备</div><div class="post-footer">
-        <a href="/posts/kubernetes-git/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/gogs/">gogs</a></div></div>
+        <a href="/posts/git-repo/">Git 服务器搭建</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">安装Git 1 2 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel yum install git 接下来我们 创建一个 git 用户组和用户，用来运行 git 服务： 1 useradd -m git 创建证书登录 收集所有需要登录的用户的公钥，公钥</div><div class="post-footer">
+        <a href="/posts/git-repo/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/kubernetes-nfs-client/">扩展 NFS 向 Kubernetes 提供动态 PVC 功能</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-29">2021-04-29</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a></span></div><div class="content">简介 Kubernetes 支持动态申请 PV 和 PVC 的功能，但是 NFS 存储本身不支持这个功能，但是 NFS 存储又是非常常用的一种共享存储。nfs-subdir-external-</div><div class="post-footer">
-        <a href="/posts/kubernetes-nfs-client/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/nfs-subdir-external-provisioner/">nfs-subdir-external-provisioner</a>,&nbsp;<a href="/tags/nfs/">nfs</a></div></div>
+        <a href="/posts/git-migration/">Git 仓库完整迁移含历史记录</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">迁移 Git 仓库 如果你想从别的 Git 托管服务器那里复制一份源代码到新的 Git 托管服务器上的话，可以通过以下步骤来操作。 这个文档只是让我们知道手动如何操作，</div><div class="post-footer">
+        <a href="/posts/git-migration/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ubuntu-nfs/">Ubuntu Server 网络文件系统（NFS）</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-24">2021-04-24</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ubuntu/"><i class="far fa-folder fa-fw"></i>ubuntu</a></span></div><div class="content">NFS 允许系统通过网络与他人共享目录和文件。通过使用 NFS，用户和程序可以访问远程系统上的文件，就好像它们是本地文件一样。 NFS 可以提供的一些最显著</div><div class="post-footer">
-        <a href="/posts/ubuntu-nfs/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nfs/">nfs</a></div></div>
+        <a href="/posts/gitea/">Gitea 部署安装</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">Gitea 的部署安装很简单，直接从官方下载 gitea 二进制包运行就可以了 官方文档: https://docs.gitea.io/zh-cn/install-from-binary/ 二进制部署 gitea 安装 git git 版本只能是 2.x 及以上的版本，由于 centos 仓库自带的 git 版本默认</div><div class="post-footer">
+        <a href="/posts/gitea/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gitea/">gitea</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cfssl/">使用 cfssl 自签证书</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-22">2021-04-22</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div><div class="content">CFSSL 简介 CFSSL 是 CloudFlare 开源的一款 PKI/TLS 瑞士军刀工具。 CFSSL 既是命令行工具，又是用于签名，验证和捆绑 TLS 证书的 HTTP API 服务器。 使用 Go 1.12+ 语言编写。 官方源码仓库: https://github.com/cloudflare/cfssl 安装 cfssl</div><div class="post-footer">
-        <a href="/posts/cfssl/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cfssl/">cfssl</a>,&nbsp;<a href="/tags/cfssl-json/">cfssl-json</a>,&nbsp;<a href="/tags/cfssl-certinfo/">cfssl-certinfo</a></div></div>
+        <a href="/posts/macos-dir/">macOS 英文目录显示为中文</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a></span></div><div class="content">以目录名为 Code 进行讲解 在英文目录下新建 .localized 隐藏目录 进入localized 目录创建 zh_CN.strings 文件, 输入 &ldquo;english&rdquo; = &ldquo;中文&rdquo;; 1 2 3 mkdir -p Code/.localized cat</div><div class="post-footer">
+        <a href="/posts/macos-dir/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/filebeat/">使用 Filebeat 收集 nginx 日志</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-14">2021-04-14</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/elasticstack/"><i class="far fa-folder fa-fw"></i>elasticstack</a></span></div><div class="content">安装配置 filebeat 安装 1 2 root@ubuntu:/opt# wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.0-amd64.deb root@ubuntu:/opt# dpkg -i filebeat-7.12.0-amd64.deb 配置 filebeat.yml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 root@ubuntu:/etc/filebeat# cat filebeat.yml filebeat.inputs: - type: log enabled: true paths: - /usr/local/nginx/logs/access.log json.keys_under_root:</div><div class="post-footer">
-        <a href="/posts/filebeat/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/filebeat/">filebeat</a></div></div>
+        <a href="/posts/macos-cli/">macOS 命令行</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a></span></div><div class="content">视频格式转换 ffmpeg 下载站点 1 ffmpeg -i 2020年MySQL数据库入门到精通.flv -codec copy 2020年MySQL数据库入门到精通.mov 清理DNS缓存 1 sudo killall</div><div class="post-footer">
+        <a href="/posts/macos-cli/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/elasticsearch/">部署 ElasticSearch 集群</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-10">2021-04-10</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/elasticstack/"><i class="far fa-folder fa-fw"></i>elasticstack</a></span></div><div class="content">环境准备 本文使用 Ubuntu 20.04 安装 elasticsearch 集群，准备三台机。 192.168.16.102 192.168.16.103 192.168.16.104 安装配置 elasticsearch 集群 安装 elasticsearch 1 2 3 root@ubuntu:/opt# wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.12.0-linux-x86_64.tar.gz root@ubuntu:/opt# tar xzf elasticsearch-7.12.0-linux-x86_64.tar.gz root@ubuntu:/opt# ln -s elasticsearch-7.12.0 elasticsearch 配置 elasticsearch 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17</div><div class="post-footer">
-        <a href="/posts/elasticsearch/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/elasticsearch/">elasticsearch</a></div></div>
+        <a href="/posts/macos-terminal/">macOS 终端配置</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a></span></div><div class="content">iterm2 终端配置 比较好的 Iterm2 终端配色 Cobalt2：适用 macOS 本地及远程主机 Cobalt Neon : 适合远程主机 安装 brew 国外源 1 liwangguideMBP:~ liwanggui$ /usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&#34; 国内源 1 2 3 4 # 安装 /bin/zsh -c &#34;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&#34;</div><div class="post-footer">
+        <a href="/posts/macos-terminal/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/nginx-alias-root/">NGINX alias 与 root 区别</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-01">2021-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="far fa-folder fa-fw"></i>nginx</a></span></div><div class="content">alias 与 root 区别 nginx 是通过 alias 设置虚拟目录，在 nginx 的配置中， alias 目录和 root 目录是有区别的 alias 指定的目录是准确的，即 location 匹配访问的 path 目录下的文件直接是在 alias 目录下查</div><div class="post-footer">
-        <a href="/posts/nginx-alias-root/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
+        <a href="/posts/centos7-reset-password/">CentOS 7 重置 root 密码</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/centos/"><i class="far fa-folder fa-fw"></i>centos</a></span></div><div class="content">重启开机 按 e 编辑启动选项 编辑修改两处：ro 改为 rw, 在 LANG=en_US.UFT-8 后面添加 init=/bin/bash 按 Ctrl+X 重启，并修改密码, 输入 passwd root 命令重置 root 密码 由于 selinux 开启着的需要执行以下命令更新</div><div class="post-footer">
+        <a href="/posts/centos7-reset-password/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/centos/">centos</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/nginx-syntax/">NGINX 常用指令语法</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-01">2021-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="far fa-folder fa-fw"></i>nginx</a></span></div><div class="content">域名重定向 当用户访问 http://liwanggui.com 时 url 重定向至 https://liwanggui.com， 实现 http -&gt; https 重定向，实现方式有两种： 通过 rewrite 模块的 permanent 参数实现永久重</div><div class="post-footer">
-        <a href="/posts/nginx-syntax/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
+        <a href="/posts/windows-tools/">Windows 必备工具</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>windows</a></span></div><div class="content">好用的工具 Listary: https://www.listarypro.com/ PotPlayer: https://daumpotplayer.com/download/ Microsoft PowerToys: https://docs.microsoft.com/zh-cn/windows/powertoys/ VsCode: https://code.visualstudio.com/docs QuickLook: https://github.com/QL-Win/QuickLook Windows Terminal: 通过 Windows 应用商店安装</div><div class="post-footer">
+        <a href="/posts/windows-tools/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/windows/">windows</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/nginx-install/">NGINX 安装</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-01">2021-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="far fa-folder fa-fw"></i>nginx</a></span></div><div class="content">本文将介绍 NGINX 常用的二种安装方式，分为二进制包和源码编译，根据自己的使用的场景选择即可。 二进制包 二进制方式安装比效简单，直接使用系统包管理工具</div><div class="post-footer">
-        <a href="/posts/nginx-install/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
+        <a href="/posts/windows-contextmenu/">Windows 右键菜单管理</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>windows</a></span></div><div class="content">1. 为 Sublime Text 添加右键菜单 注册表位置： HKEY_CLASSES_ROOT\*\shell 菜单名,显示在右键菜单上 icon 字符串值，显示的图标 command (子项） 默认值： 操作的命令 D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot; 2. 添加 cmd 右键菜单 将以下</div><div class="post-footer">
+        <a href="/posts/windows-contextmenu/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/regedit/">regedit</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -166,7 +166,7 @@
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/7/">7</a>
+                        <a href="/page/10/">10</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
