@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://liwanggui.com/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
-<meta property="og:updated_time" content="2021-06-13T10:33:18+08:00" />
+<meta property="og:updated_time" content="2021-06-13T22:08:42+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
@@ -101,55 +101,55 @@
         alt="/images/avatar.jpeg"
         title="/images/avatar.jpeg" /></a></div><h1 class="home-title">_浅行</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/liwanggui" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://www.zhihu.com/people/wglee" title="知乎" target="_blank" rel="noopener noreffer me"><i data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://space.bilibili.com/477519199" title="bilibili" target="_blank" rel="noopener noreffer me"><i data-svg-src="/svg/icons/bilibili.min.svg"></i></a><a href="mailto:liwanggui@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/python-qrcode/">Python 批量生成二维码</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>python</a></span></div><div class="content">创建虚拟环境 1 2 python3 -m venv pyenv source pyenv/bin/activate 安装依赖库 1 2 pip install Image pip install qrcode 编写代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 import qrcode def createQR(name, url): img = qrcode.make(url) name = name + &#39;.png&#39; with open(name, &#39;wb&#39;) as f: img.save(f) print(&#34;create QR</div><div class="post-footer">
+        <a href="/posts/python-qrcode/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/qrcode/">qrcode</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/jenkins-install/">Jenkins 安装配置</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/jenkins/"><i class="far fa-folder fa-fw"></i>jenkins</a></span></div><div class="content">安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins -R /var/lib/jenkins/update-center-rootCAs sed -i &#39;s#https://updates.jenkins.io/update-center.json#https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/huawei/update-center.json#&#39; /var/lib/jenkins/hudson.model.UpdateCenter.xml 配置方法2 启动 jenkins 服务，打开浏览器完成初始化</div><div class="post-footer">
+        <a href="/posts/jenkins-install/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/jenkins/">jenkins</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux-multi-ip/">Linux 多 ip 源进源出</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ip/"><i class="far fa-folder fa-fw"></i>ip</a></span></div><div class="content">场景: eth0: 192.168.1.10/24 网关: 192.168.1.1 eth1: 10.10.0.10/24 网关: 10.10.0.1 要求: 10.10.0.10 这个 IP 的流量从 10.10.0.1 网关出，保证 10.10.0.10 这个地址可以正常连接, 其他所有流量均从 192.168.1.1 网关出 配置: 将 192.168.1.1 配置为默认网关，</div><div class="post-footer">
+        <a href="/posts/linux-multi-ip/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ip/">ip</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/bash-basice/">Bash 基础</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/bash/"><i class="far fa-folder fa-fw"></i>bash</a></span></div><div class="content">变量 Bash 变量为弱类型事先不用指定值的类型，Bash 变量默认为全局变量，可以使用 local 关键字定义局部变量 1 2 3 4 5 6 7 8 9 10 11 # 默认为全局变量 s=&#39;this is a</div><div class="post-footer">
+        <a href="/posts/bash-basice/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bash/">bash</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ssh-key/">SSH 密钥对的使用过程</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ssh/"><i class="far fa-folder fa-fw"></i>ssh</a></span></div><div class="content">Linux 默认使用密码登录，很不安全容易被暴力破解入侵。使用密钥登录可以增加安全性。下面将介绍如何配置密钥登录验证. 生成 ssh 密钥对 首先我们需要在自己的</div><div class="post-footer">
+        <a href="/posts/ssh-key/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ssh/">ssh</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ssh-tips/">SSH 使用小技巧</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ssh/"><i class="far fa-folder fa-fw"></i>ssh</a></span></div><div class="content">取消初次连接确认 在脚本中有时会使用 ssh 进行远程连接操作，如果是第一次 ssh 连接往往会提示你是否确认连接并要求你输入 yes, 才能继续。如何才能避免这个步骤</div><div class="post-footer">
+        <a href="/posts/ssh-tips/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ssh/">ssh</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/iptable-introduction/">iptable 简单入门</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/iptables/"><i class="far fa-folder fa-fw"></i>iptables</a></span></div><div class="content">规则表 filter表，包含三个规则链：INPUT、FORWARD、OUTPUT。主要用于对数据包进行过滤 nat表，包含三个规则链：PRERO</div><div class="post-footer">
+        <a href="/posts/iptable-introduction/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/iptables/">iptables</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/sshuttle/">sshuttle 轻量级全局代理工具</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/sshuttle/"><i class="far fa-folder fa-fw"></i>sshuttle</a></span></div><div class="content">穷人的 VPN sshuttle 是一个使用简单的轻量级全局代理工具(穷人的vpn)，以 ubuntu 18.04 为例演示如何使用, 使用前提是你有一台远程的 linux 服务器 Github 官方仓库: https://github.com/sshuttle/sshuttle 安装 1 sudo</div><div class="post-footer">
+        <a href="/posts/sshuttle/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/sshuttle/">sshuttle</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/vmware-linux-share/">VMware 的 Linux 客户机中装载共享文件夹</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/vmware/"><i class="far fa-folder fa-fw"></i>vmware</a></span></div><div class="content">1. 安装 vmware-tools 工具 1 2 3 4 5 6 7 [root@localhost ~]# mount /dev/cdrom /mnt mount: block device /dev/sr0 is write-protected, mounting read-only [root@localhost ~]# cp /mnt/VMwareTools-10.0.0-2977863.tar.gz . [root@localhost ~]# tar xzf VMwareTools-10.0.0-2977863.tar.gz [root@localhost ~]# cd vmware-tools-distrib/ [root@localhost vmware-tools-distrib]# ./vmware-install.pl [root@localhost vmware-tools-distrib]# ./vmware-install.real.pl 2. 重启虚拟机，设置共享文件夹，挂载共享文件夹 1 2</div><div class="post-footer">
+        <a href="/posts/vmware-linux-share/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vmware/">vmware</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/git-keys/">Git 使用指定的 key 连接</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">当 ssh key 文件不放在标准目录下， git 进行 clone push 操作时如何使用指定位置的 ssh key 最佳解决方案 在 ~/.ssh/config 中添加配置 1 2 3 4 host github.com HostName github.com IdentityFile /data/sshkey/github_rsa User git 保持密钥的权限为 400 次佳解</div><div class="post-footer">
         <a href="/posts/git-keys/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/git-repo/">Git 服务器搭建</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">安装Git 1 2 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel yum install git 接下来我们 创建一个 git 用户组和用户，用来运行 git 服务： 1 useradd -m git 创建证书登录 收集所有需要登录的用户的公钥，公钥</div><div class="post-footer">
-        <a href="/posts/git-repo/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/git-migration/">Git 仓库完整迁移含历史记录</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">迁移 Git 仓库 如果你想从别的 Git 托管服务器那里复制一份源代码到新的 Git 托管服务器上的话，可以通过以下步骤来操作。 这个文档只是让我们知道手动如何操作，</div><div class="post-footer">
-        <a href="/posts/git-migration/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/gitea/">Gitea 部署安装</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div><div class="content">Gitea 的部署安装很简单，直接从官方下载 gitea 二进制包运行就可以了 官方文档: https://docs.gitea.io/zh-cn/install-from-binary/ 二进制部署 gitea 安装 git git 版本只能是 2.x 及以上的版本，由于 centos 仓库自带的 git 版本默认</div><div class="post-footer">
-        <a href="/posts/gitea/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gitea/">gitea</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/macos-dir/">macOS 英文目录显示为中文</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a></span></div><div class="content">以目录名为 Code 进行讲解 在英文目录下新建 .localized 隐藏目录 进入localized 目录创建 zh_CN.strings 文件, 输入 &ldquo;english&rdquo; = &ldquo;中文&rdquo;; 1 2 3 mkdir -p Code/.localized cat</div><div class="post-footer">
-        <a href="/posts/macos-dir/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/macos-cli/">macOS 命令行</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a></span></div><div class="content">视频格式转换 ffmpeg 下载站点 1 ffmpeg -i 2020年MySQL数据库入门到精通.flv -codec copy 2020年MySQL数据库入门到精通.mov 清理DNS缓存 1 sudo killall</div><div class="post-footer">
-        <a href="/posts/macos-cli/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/macos-terminal/">macOS 终端配置</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/macos/"><i class="far fa-folder fa-fw"></i>macOS</a></span></div><div class="content">iterm2 终端配置 比较好的 Iterm2 终端配色 Cobalt2：适用 macOS 本地及远程主机 Cobalt Neon : 适合远程主机 安装 brew 国外源 1 liwangguideMBP:~ liwanggui$ /usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&#34; 国内源 1 2 3 4 # 安装 /bin/zsh -c &#34;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&#34;</div><div class="post-footer">
-        <a href="/posts/macos-terminal/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/macos/">macOS</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/centos7-reset-password/">CentOS 7 重置 root 密码</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/centos/"><i class="far fa-folder fa-fw"></i>centos</a></span></div><div class="content">重启开机 按 e 编辑启动选项 编辑修改两处：ro 改为 rw, 在 LANG=en_US.UFT-8 后面添加 init=/bin/bash 按 Ctrl+X 重启，并修改密码, 输入 passwd root 命令重置 root 密码 由于 selinux 开启着的需要执行以下命令更新</div><div class="post-footer">
-        <a href="/posts/centos7-reset-password/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/centos/">centos</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/windows-tools/">Windows 必备工具</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>windows</a></span></div><div class="content">好用的工具 Listary: https://www.listarypro.com/ PotPlayer: https://daumpotplayer.com/download/ Microsoft PowerToys: https://docs.microsoft.com/zh-cn/windows/powertoys/ VsCode: https://code.visualstudio.com/docs QuickLook: https://github.com/QL-Win/QuickLook Windows Terminal: 通过 Windows 应用商店安装</div><div class="post-footer">
-        <a href="/posts/windows-tools/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/windows/">windows</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/windows-contextmenu/">Windows 右键菜单管理</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-12">2021-06-12</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>windows</a></span></div><div class="content">1. 为 Sublime Text 添加右键菜单 注册表位置： HKEY_CLASSES_ROOT\*\shell 菜单名,显示在右键菜单上 icon 字符串值，显示的图标 command (子项） 默认值： 操作的命令 D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot; 2. 添加 cmd 右键菜单 将以下</div><div class="post-footer">
-        <a href="/posts/windows-contextmenu/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/regedit/">regedit</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -166,7 +166,7 @@
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/10/">10</a>
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

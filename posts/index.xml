@@ -4,75 +4,75 @@
         <link>https://liwanggui.com/posts/</link>
         <description>所有文章 | _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
-            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sun, 13 Jun 2021 10:33:18 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sun, 13 Jun 2021 22:08:42 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Python 批量生成二维码</title>
+    <link>https://liwanggui.com/posts/python-qrcode/</link>
+    <pubDate>Sun, 13 Jun 2021 22:08:42 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-qrcode/</guid>
+    <description><![CDATA[创建虚拟环境 1 2 python3 -m venv pyenv source pyenv/bin/activate 安装依赖库 1 2 pip install Image pip install qrcode 编写代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 import qrcode def createQR(name, url): img = qrcode.make(url) name = name + &#39;.png&#39; with open(name, &#39;wb&#39;) as f: img.save(f) print(&#34;create QR]]></description>
+</item><item>
+    <title>Jenkins 安装配置</title>
+    <link>https://liwanggui.com/posts/jenkins-install/</link>
+    <pubDate>Sun, 13 Jun 2021 21:35:39 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/jenkins-install/</guid>
+    <description><![CDATA[安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins -R /var/lib/jenkins/update-center-rootCAs sed -i &#39;s#https://updates.jenkins.io/update-center.json#https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/huawei/update-center.json#&#39; /var/lib/jenkins/hudson.model.UpdateCenter.xml 配置方法2 启动 jenkins 服务，打开浏览器完成初始化]]></description>
+</item><item>
+    <title>Linux 多 ip 源进源出</title>
+    <link>https://liwanggui.com/posts/linux-multi-ip/</link>
+    <pubDate>Sun, 13 Jun 2021 21:32:38 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/linux-multi-ip/</guid>
+    <description><![CDATA[场景: eth0: 192.168.1.10/24 网关: 192.168.1.1 eth1: 10.10.0.10/24 网关: 10.10.0.1 要求: 10.10.0.10 这个 IP 的流量从 10.10.0.1 网关出，保证 10.10.0.10 这个地址可以正常连接, 其他所有流量均从 192.168.1.1 网关出 配置: 将 192.168.1.1 配置为默认网关，]]></description>
+</item><item>
+    <title>Bash 基础</title>
+    <link>https://liwanggui.com/posts/bash-basice/</link>
+    <pubDate>Sun, 13 Jun 2021 18:05:23 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/bash-basice/</guid>
+    <description><![CDATA[变量 Bash 变量为弱类型事先不用指定值的类型，Bash 变量默认为全局变量，可以使用 local 关键字定义局部变量 1 2 3 4 5 6 7 8 9 10 11 # 默认为全局变量 s=&#39;this is a]]></description>
+</item><item>
+    <title>SSH 密钥对的使用过程</title>
+    <link>https://liwanggui.com/posts/ssh-key/</link>
+    <pubDate>Sun, 13 Jun 2021 17:47:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/ssh-key/</guid>
+    <description><![CDATA[Linux 默认使用密码登录，很不安全容易被暴力破解入侵。使用密钥登录可以增加安全性。下面将介绍如何配置密钥登录验证. 生成 ssh 密钥对 首先我们需要在自己的]]></description>
+</item><item>
+    <title>SSH 使用小技巧</title>
+    <link>https://liwanggui.com/posts/ssh-tips/</link>
+    <pubDate>Sun, 13 Jun 2021 17:40:15 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/ssh-tips/</guid>
+    <description><![CDATA[取消初次连接确认 在脚本中有时会使用 ssh 进行远程连接操作，如果是第一次 ssh 连接往往会提示你是否确认连接并要求你输入 yes, 才能继续。如何才能避免这个步骤]]></description>
+</item><item>
+    <title>iptable 简单入门</title>
+    <link>https://liwanggui.com/posts/iptable-introduction/</link>
+    <pubDate>Sun, 13 Jun 2021 17:27:41 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/iptable-introduction/</guid>
+    <description><![CDATA[规则表 filter表，包含三个规则链：INPUT、FORWARD、OUTPUT。主要用于对数据包进行过滤 nat表，包含三个规则链：PRERO]]></description>
+</item><item>
+    <title>sshuttle 轻量级全局代理工具</title>
+    <link>https://liwanggui.com/posts/sshuttle/</link>
+    <pubDate>Sun, 13 Jun 2021 17:07:48 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/sshuttle/</guid>
+    <description><![CDATA[穷人的 VPN sshuttle 是一个使用简单的轻量级全局代理工具(穷人的vpn)，以 ubuntu 18.04 为例演示如何使用, 使用前提是你有一台远程的 linux 服务器 Github 官方仓库: https://github.com/sshuttle/sshuttle 安装 1 sudo]]></description>
+</item><item>
+    <title>VMware 的 Linux 客户机中装载共享文件夹</title>
+    <link>https://liwanggui.com/posts/vmware-linux-share/</link>
+    <pubDate>Sun, 13 Jun 2021 17:05:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/vmware-linux-share/</guid>
+    <description><![CDATA[1. 安装 vmware-tools 工具 1 2 3 4 5 6 7 [root@localhost ~]# mount /dev/cdrom /mnt mount: block device /dev/sr0 is write-protected, mounting read-only [root@localhost ~]# cp /mnt/VMwareTools-10.0.0-2977863.tar.gz . [root@localhost ~]# tar xzf VMwareTools-10.0.0-2977863.tar.gz [root@localhost ~]# cd vmware-tools-distrib/ [root@localhost vmware-tools-distrib]# ./vmware-install.pl [root@localhost vmware-tools-distrib]# ./vmware-install.real.pl 2. 重启虚拟机，设置共享文件夹，挂载共享文件夹 1 2]]></description>
+</item><item>
     <title>Git 使用指定的 key 连接</title>
     <link>https://liwanggui.com/posts/git-keys/</link>
     <pubDate>Sun, 13 Jun 2021 10:33:18 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/git-keys/</guid>
     <description><![CDATA[当 ssh key 文件不放在标准目录下， git 进行 clone push 操作时如何使用指定位置的 ssh key 最佳解决方案 在 ~/.ssh/config 中添加配置 1 2 3 4 host github.com HostName github.com IdentityFile /data/sshkey/github_rsa User git 保持密钥的权限为 400 次佳解]]></description>
-</item><item>
-    <title>Git 服务器搭建</title>
-    <link>https://liwanggui.com/posts/git-repo/</link>
-    <pubDate>Sun, 13 Jun 2021 10:13:38 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/git-repo/</guid>
-    <description><![CDATA[安装Git 1 2 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel perl-devel yum install git 接下来我们 创建一个 git 用户组和用户，用来运行 git 服务： 1 useradd -m git 创建证书登录 收集所有需要登录的用户的公钥，公钥]]></description>
-</item><item>
-    <title>Git 仓库完整迁移含历史记录</title>
-    <link>https://liwanggui.com/posts/git-migration/</link>
-    <pubDate>Sun, 13 Jun 2021 10:03:57 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/git-migration/</guid>
-    <description><![CDATA[迁移 Git 仓库 如果你想从别的 Git 托管服务器那里复制一份源代码到新的 Git 托管服务器上的话，可以通过以下步骤来操作。 这个文档只是让我们知道手动如何操作，]]></description>
-</item><item>
-    <title>Gitea 部署安装</title>
-    <link>https://liwanggui.com/posts/gitea/</link>
-    <pubDate>Sun, 13 Jun 2021 09:31:36 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/gitea/</guid>
-    <description><![CDATA[Gitea 的部署安装很简单，直接从官方下载 gitea 二进制包运行就可以了 官方文档: https://docs.gitea.io/zh-cn/install-from-binary/ 二进制部署 gitea 安装 git git 版本只能是 2.x 及以上的版本，由于 centos 仓库自带的 git 版本默认]]></description>
-</item><item>
-    <title>macOS 英文目录显示为中文</title>
-    <link>https://liwanggui.com/posts/macos-dir/</link>
-    <pubDate>Sat, 12 Jun 2021 18:43:06 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/macos-dir/</guid>
-    <description><![CDATA[以目录名为 Code 进行讲解 在英文目录下新建 .localized 隐藏目录 进入localized 目录创建 zh_CN.strings 文件, 输入 &ldquo;english&rdquo; = &ldquo;中文&rdquo;; 1 2 3 mkdir -p Code/.localized cat]]></description>
-</item><item>
-    <title>macOS 命令行</title>
-    <link>https://liwanggui.com/posts/macos-cli/</link>
-    <pubDate>Sat, 12 Jun 2021 18:41:39 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/macos-cli/</guid>
-    <description><![CDATA[视频格式转换 ffmpeg 下载站点 1 ffmpeg -i 2020年MySQL数据库入门到精通.flv -codec copy 2020年MySQL数据库入门到精通.mov 清理DNS缓存 1 sudo killall]]></description>
-</item><item>
-    <title>macOS 终端配置</title>
-    <link>https://liwanggui.com/posts/macos-terminal/</link>
-    <pubDate>Sat, 12 Jun 2021 18:39:34 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/macos-terminal/</guid>
-    <description><![CDATA[iterm2 终端配置 比较好的 Iterm2 终端配色 Cobalt2：适用 macOS 本地及远程主机 Cobalt Neon : 适合远程主机 安装 brew 国外源 1 liwangguideMBP:~ liwanggui$ /usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&#34; 国内源 1 2 3 4 # 安装 /bin/zsh -c &#34;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&#34;]]></description>
-</item><item>
-    <title>CentOS 7 重置 root 密码</title>
-    <link>https://liwanggui.com/posts/centos7-reset-password/</link>
-    <pubDate>Sat, 12 Jun 2021 18:33:21 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/centos7-reset-password/</guid>
-    <description><![CDATA[重启开机 按 e 编辑启动选项 编辑修改两处：ro 改为 rw, 在 LANG=en_US.UFT-8 后面添加 init=/bin/bash 按 Ctrl+X 重启，并修改密码, 输入 passwd root 命令重置 root 密码 由于 selinux 开启着的需要执行以下命令更新]]></description>
-</item><item>
-    <title>Windows 必备工具</title>
-    <link>https://liwanggui.com/posts/windows-tools/</link>
-    <pubDate>Sat, 12 Jun 2021 18:23:39 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/windows-tools/</guid>
-    <description><![CDATA[好用的工具 Listary: https://www.listarypro.com/ PotPlayer: https://daumpotplayer.com/download/ Microsoft PowerToys: https://docs.microsoft.com/zh-cn/windows/powertoys/ VsCode: https://code.visualstudio.com/docs QuickLook: https://github.com/QL-Win/QuickLook Windows Terminal: 通过 Windows 应用商店安装]]></description>
-</item><item>
-    <title>Windows 右键菜单管理</title>
-    <link>https://liwanggui.com/posts/windows-contextmenu/</link>
-    <pubDate>Sat, 12 Jun 2021 18:19:37 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/windows-contextmenu/</guid>
-    <description><![CDATA[1. 为 Sublime Text 添加右键菜单 注册表位置： HKEY_CLASSES_ROOT\*\shell 菜单名,显示在右键菜单上 icon 字符串值，显示的图标 command (子项） 默认值： 操作的命令 D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot; 2. 添加 cmd 右键菜单 将以下]]></description>
 </item></channel>
 </rss>

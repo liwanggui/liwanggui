@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>SSH 使用小技巧 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="SSH 使用小技巧" />
+<meta property="og:description" content="取消初次连接确认 在脚本中有时会使用 ssh 进行远程连接操作，如果是第一次 ssh 连接往往会提示你是否确认连接并要求你输入 yes, 才能继续。如何才能避免这个步骤" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liwanggui.com/posts/ssh-tips/" />
+<meta property="og:image" content="https://liwanggui.com/logo.png"/>
+<meta property="article:published_time" content="2021-06-13T17:40:15+08:00" />
+<meta property="article:modified_time" content="2021-06-13T17:40:15+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
+
+<meta name="twitter:title" content="SSH 使用小技巧"/>
+<meta name="twitter:description" content="取消初次连接确认 在脚本中有时会使用 ssh 进行远程连接操作，如果是第一次 ssh 连接往往会提示你是否确认连接并要求你输入 yes, 才能继续。如何才能避免这个步骤"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/ssh-tips/" /><link rel="prev" href="https://liwanggui.com/posts/iptable-introduction/" /><link rel="next" href="https://liwanggui.com/posts/ssh-key/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SSH 使用小技巧",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liwanggui.com\/posts\/ssh-tips\/"
+        },"genre": "posts","keywords": "ssh","wordcount":  797 ,
+        "url": "https:\/\/liwanggui.com\/posts\/ssh-tips\/","datePublished": "2021-06-13T17:40:15+08:00","dateModified": "2021-06-13T17:40:15+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "李王贵"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/" title="文章列表"> 文章 </a><a class="menu-item" href="/tags/" title="标签云"> 标签 </a><a class="menu-item" href="/categories/" title="分类"> 分类 </a><a class="menu-item" href="/about/index.html" title="关于我"> 关于我 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="_浅行"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>_浅行</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="文章列表">文章</a><a class="menu-item" href="/tags/" title="标签云">标签</a><a class="menu-item" href="/categories/" title="分类">分类</a><a class="menu-item" href="/about/index.html" title="关于我">关于我</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">SSH 使用小技巧</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/ssh/"><i class="far fa-folder fa-fw"></i>ssh</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-13">2021-06-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 797 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#取消初次连接确认">取消初次连接确认</a></li>
+    <li><a href="#ssh-密钥">SSH 密钥</a></li>
+    <li><a href="#ssh-agent-转发">SSH agent 转发</a></li>
+    <li><a href="#ssh-代理设置">ssh 代理设置</a>
+      <ul>
+        <li><a href="#ssh-端口转发">ssh 端口转发</a></li>
+        <li><a href="#ssh-proxycommand">ssh ProxyCommand</a></li>
+        <li><a href="#ssh-命令行实现中转代理">ssh 命令行实现中转代理</a></li>
+        <li><a href="#ssh-socket5-代理">ssh socket5 代理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="取消初次连接确认">取消初次连接确认</h2>
+<p>在脚本中有时会使用 ssh 进行远程连接操作，如果是第一次 ssh 连接往往会提示你是否确认连接并要求你输入 yes, 才能继续。如何才能避免这个步骤呢？</p>
+<p><strong>1. 通过 <code>.ssh/config</code> 配置文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt;&gt; ~/.ssh/config <span class="s">&lt;&lt; EOF
+</span><span class="s">StrictHostKeyChecking no
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>2. 在 ssh 命令加上一个参数</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh username@ip_address -p <span class="m">22</span> -o <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="ssh-密钥">SSH 密钥</h2>
+<p><strong>通过私钥计算公钥</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen.exe -f ~/.ssh/id_rsa -y 
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>查看公钥的指纹</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen.exe -f ~/.ssh/id_rsa.pub -l
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="ssh-agent-转发">SSH agent 转发</h2>
+<p>通过 OpenSSH 的 agent 转发功能，我们可以从 A 服务器直接连接 B 服务器而不需要将私钥放在 A 服务器</p>
+<blockquote>
+<p>前提条件 A，B 服务器上 authorized_keys 文件中有相同的钥，使用这个公钥的私钥进行连接.</p>
+</blockquote>
+<p><strong>通过 <code>.ssh/config</code> 配置文件</strong></p>
+<p>写入如下配置, 然后正常连接服务器即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt;&gt; ~/.ssh/config <span class="s">&lt;&lt; EOF
+</span><span class="s">Host example.cn
+</span><span class="s">  ForwardAgent yes
+</span><span class="s">EOF</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>命令行方式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">&gt; ssh-add -K ~/.ssh/id_rsa
+&gt; ssh -A root@example.cn
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>-A</code>：启动 agent 转发，具体可以 <code>man ssh</code></li>
+</ul>
+<p>默认 SSH 是启动 agent 的。如果不成功请检查 <code>/etc/ssh/sshd_config</code> 配置文件 <code>AllowAgentForwarding</code> 选项及 <code>/etc/ssh/ssh_config</code> 文件是否有 <code>ForwardAgent no</code> 配置项，改为 yes 即可。</p>
+<h2 id="ssh-代理设置">ssh 代理设置</h2>
+<p>实验环境</p>
+<ul>
+<li>Server： 192.168.0.1</li>
+<li>Gateway: 100.100.100.100</li>
+<li>Client: 100.100.100.101</li>
+</ul>
+<blockquote>
+<p>说明：其中 <code>Server</code> 不可以访问外网;</p>
+</blockquote>
+<ul>
+<li><code>Gateway</code> 可以访问 <code>Server</code>， 同时与外网互通;</li>
+<li><code>Client</code> 不能直接访问 <code>Server</code> 需要先连接 <code>Gateway</code> 才可以访问 <code>Server</code>。</li>
+</ul>
+<h3 id="ssh-端口转发">ssh 端口转发</h3>
+<p>ssh 端口转发功能，实现 <code>Clinet</code> 直接访问 <code>Server</code>, 在 <code>Gateway</code> 执行命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh -CfNg -L 2233:192.168.0.1:22 root@192.168.0.1
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>解释： <code>-L</code> 是本地端口转发，通过将本地 <code>2233</code> 与 <code>Server</code> 的 <code>22</code> 端口相关联，以使 <code>Client</code> 访问 <code>2233</code> 时自动转发到 <code>Server</code> 的 <code>22</code> 端口。</p>
+</blockquote>
+<h3 id="ssh-proxycommand">ssh ProxyCommand</h3>
+<p>通过配置 <code>~/.ssh/config</code> 文件也可以达到 <code>ssh</code> 代理的功能，具体配置如下（在 <code>Client</code> 上配置）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># vim .ssh/config</span>
+Host server
+    HostName 192.168.0.1
+    Port <span class="m">22</span>
+    ProxyCommand ssh -l root -p <span class="m">22</span> 100.100.100.100 -W %h:%p
+    IdentityFile /root/.ssh/id_rsa
+<span class="c1"># 配置好后，就可以直接通过以下命令连接 Server</span>
+<span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># ssh root@server</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>说明</p>
+<ul>
+<li>Host 别名，取一个主别名</li>
+<li>HostName 主机的ip地址，在此例中是 <code>Server</code> 的 <code>ip</code> 地址，也可以是域名</li>
+<li>ProxyCommand ssh 代理的命令 <code>-W</code> 后面是 <code>Server</code> 的 <code>ip</code> 地址及端口，会自动替换</li>
+<li>IdentityFile 表示连接使用的私钥</li>
+</ul>
+<h3 id="ssh-命令行实现中转代理">ssh 命令行实现中转代理</h3>
+<p>当然我们也可以不写配置文件直接通过命令也是可以进行 <code>ssh</code> 代理跳转的，命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh -t -p <span class="m">22</span> userb@123.456.789.110 <span class="s2">&#34;ssh userc@192.168.1.111&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注： 因为 <code>ssh</code> 是可以直接远程执行命令的, 不可以少 <code>-t</code> 参数</p>
+</blockquote>
+<h3 id="ssh-socket5-代理">ssh socket5 代理</h3>
+<p>执行以下命令就可以创建一个基于 <code>ssh</code> 的 <code>socket5</code> 代理了,最好将此放入后台运行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh -D <span class="m">8080</span> -f -C -q -N fred@server.example.org
+<span class="c1"># 放入后台运行</span>
+nohup ssh -D <span class="m">8080</span> -f -C -q -N fred@server.example.org <span class="p">&amp;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-06-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/ssh-tips/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧" data-hashtags="ssh"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/ssh-tips/" data-hashtag="ssh"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/ssh-tips/" data-title="SSH 使用小技巧"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ssh/">ssh</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/iptable-introduction/" class="prev" rel="prev" title="iptable 简单入门"><i class="fas fa-angle-left fa-fw"></i>iptable 简单入门</a>
+            <a href="/posts/ssh-key/" class="next" rel="next" title="SSH 密钥对的使用过程">SSH 密钥对的使用过程<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2017 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/about/" target="_blank">李王贵</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">粤ICP备17058610号</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-06-13T17:40:15+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"SSH 使用小技巧"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
