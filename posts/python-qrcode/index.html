@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="Python 批量生成二维码"/>
 <meta name="twitter:description" content="创建虚拟环境 1 2 python3 -m venv pyenv source pyenv/bin/activate 安装依赖库 1 2 pip install Image pip install qrcode 编写代码 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 import qrcode def createQR(name, url): img = qrcode.make(url) name = name &#43; &#39;.png&#39; with open(name, &#39;wb&#39;) as f: img.save(f) print(&#34;create QR"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/python-qrcode/" /><link rel="prev" href="https://liwanggui.com/posts/jenkins-install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/python-qrcode/" /><link rel="prev" href="https://liwanggui.com/posts/jenkins-install/" /><link rel="next" href="https://liwanggui.com/posts/python-pyopt/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -138,7 +138,7 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">pip install Image
+<pre class="chroma"><code class="language-bash" data-lang="bash">pip install Image
 pip install qrcode
 </code></pre></td></tr></table>
 </div>
@@ -240,7 +240,8 @@ create QR code:  tencent.png
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/jenkins-install/" class="prev" rel="prev" title="Jenkins 安装配置"><i class="fas fa-angle-left fa-fw"></i>Jenkins 安装配置</a></div>
+    <div class="post-nav"><a href="/posts/jenkins-install/" class="prev" rel="prev" title="Jenkins 安装配置"><i class="fas fa-angle-left fa-fw"></i>Jenkins 安装配置</a>
+            <a href="/posts/python-pyopt/" class="next" rel="next" title="PyOTP 实现双重或多因素身份验证">PyOTP 实现双重或多因素身份验证<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.

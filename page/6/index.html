@@ -11,7 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://liwanggui.com/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
-<meta property="og:updated_time" content="2021-06-13T22:08:42+08:00" />
+<meta property="og:updated_time" content="2021-06-17T08:32:38+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
@@ -101,6 +101,26 @@
         alt="/images/avatar.jpeg"
         title="/images/avatar.jpeg" /></a></div><h1 class="home-title">_浅行</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/liwanggui" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://www.zhihu.com/people/wglee" title="知乎" target="_blank" rel="noopener noreffer me"><i data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="https://space.bilibili.com/477519199" title="bilibili" target="_blank" rel="noopener noreffer me"><i data-svg-src="/svg/icons/bilibili.min.svg"></i></a><a href="mailto:liwanggui@163.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/pigz/">利用多核 CPU 进行解/压缩</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-04-01">2021-04-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div><div class="content">linux 下最受欢迎的多线程归档器是 pigz（而不是gzip）和 pbzip2（而不是bzip2) 开始使用 pigz 可以当做是 gzip 高级版，可以执行 gzip 的工作，但是</div><div class="post-footer">
+        <a href="/posts/pigz/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/pigz/">pigz</a>,&nbsp;<a href="/tags/pbzip2/">pbzip2</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/redis-sentinel/">Redis Sentinel 高可用</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-28">2021-03-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/redis/"><i class="far fa-folder fa-fw"></i>redis</a></span></div><div class="content">Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库,并发送 SYNC 给主库 主库收到 SYNC,会立即触发 BGSAVE,后台保存 RDB,发送给副本库 副本库接收后会</div><div class="post-footer">
+        <a href="/posts/redis-sentinel/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/redis/">redis</a>,&nbsp;<a href="/tags/sentinel/">sentinel</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/redis-cli/">Redis 基础操作</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-28">2021-03-28</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/redis/"><i class="far fa-folder fa-fw"></i>redis</a></span></div><div class="content">Redis 命令 管理命令 info: 查看 Redis 当前状态信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 127.0.0.1:6379&gt; info # Server redis_version:3.2.9 redis_git_sha1:00000000 redis_git_dirty:0</div><div class="post-footer">
+        <a href="/posts/redis-cli/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/redis/">redis</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/kubernetes-prometheus/">使用 Prometheus 监控 Kubernetes 集群</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-19">2021-03-19</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a></span></div><div class="content">部署 Prometheus 准备资源配置清单 我们将 prometheus.yml 配置文件以 configmap 的形式存储在 kubernetes 集群中。(configmap.yaml) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22</div><div class="post-footer">
+        <a href="/posts/kubernetes-prometheus/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/prometheus/">prometheus</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/kubernetes-traefik-canary/">使用 Traefik-2.4 进行灰度发布</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-10">2021-03-10</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a>&nbsp;<a href="/categories/traefik/"><i class="far fa-folder fa-fw"></i>traefik</a></span></div><div class="content">Traefik 灰度发布概述 Traefik2.0 的一个更强大的功能就是灰度发布，灰度发布我们有时候也会称为金丝雀发布（Canary），主要就是让一部分测试的服务也参与到线上</div><div class="post-footer">
         <a href="/posts/kubernetes-traefik-canary/">阅读全文</a><div class="post-tags">
@@ -130,26 +150,6 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-09">2021-03-09</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a>&nbsp;<a href="/categories/traefik/"><i class="far fa-folder fa-fw"></i>traefik</a></span></div><div class="content">Traefik 简介 Traefik 是一个开源的可以使服务发布变得轻松有趣的边缘路由器。它负责接收你系统的请求，然后使用合适的组件来对这些请求进行处理。 除了众多的功能之</div><div class="post-footer">
         <a href="/posts/kubernetes-traefik/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/traefik/">traefik</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/kubernetes-install/">使用 Kubeadm 快速部署 Kubernetes 集群</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-09">2021-03-09</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/kubernetes/"><i class="far fa-folder fa-fw"></i>kubernetes</a></span></div><div class="content">主机环境 本示例中的 Kubernetes 集群部署将基于以下环境进行。 OS: Ubuntu 18.04.5 Kubernetes：v1.18.1 Container Runtime: Docker CE 19.03.15 环境说明 测试使用的 kubernetes 集群可由一个 master 主机及</div><div class="post-footer">
-        <a href="/posts/kubernetes-install/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/kubernetes/">kubernetes</a>,&nbsp;<a href="/tags/kubeadm/">kubeadm</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/docker-cli/">Docker 基本操作</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-06">2021-03-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div><div class="content">docker 安装请参考: &ndash; Docker 快速安装 镜像管理 1. 获取镜像 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 # 默认从 dockerhub 拉取最新版本镜像 [root@localhost ~]# docker pull busybox Using default tag: latest latest: Pulling from library/busybox add3ddb21ede: Pull complete Digest: sha256:b82b5740006c1ab823596d2c07f081084ecdb32fd258072707b99f52a3cb8692 Status:</div><div class="post-footer">
-        <a href="/posts/docker-cli/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/docker-harbor/">Docker 私有仓库部署 (harbor)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-06">2021-03-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div><div class="content">harbor 使用 docker 容器的方式部署，所以在部署 harbor 前需要安装好 docker 及单机编排工具 docker-compose 下载 harbor 离线安装包 harbor 托管于 Github，在 Github 上有提供完整的离线安装直接下载即</div><div class="post-footer">
-        <a href="/posts/docker-harbor/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/harbor/">harbor</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/docker-dockerfile/">Dockerfile 相关指令</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-03-06">2021-03-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div><div class="content">Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 快速创建自定义的镜像。 Dockerfile 由一行行命令语句组成，并且支持以 # 开头注释行。 Dockerfile 一般分为四部分： 基础镜像信</div><div class="post-footer">
-        <a href="/posts/docker-dockerfile/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">docker</a>,&nbsp;<a href="/tags/dockerfile/">dockerfile</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

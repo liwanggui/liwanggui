@@ -13,6 +13,8 @@
  
 ![](/images/4a3240ba-8035-4b3f-acda-16fea6b6bdae.png)
 
+> 添加右键 shell 菜单注册表地址: `计算机\HKEY_CLASSES_ROOT\Directory`
+
 ## 2. 添加 cmd 右键菜单
 
 将以下注册表信息保存为 `xxx.reg` 右键导入即可。

@@ -4,7 +4,35 @@
         <link>https://liwanggui.com/posts/</link>
         <description>所有文章 | _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
-            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sun, 13 Jun 2021 22:08:42 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Thu, 17 Jun 2021 08:32:38 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Groovy 发送 HTTP 请求</title>
+    <link>https://liwanggui.com/posts/groovy-http/</link>
+    <pubDate>Thu, 17 Jun 2021 08:32:38 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/groovy-http/</guid>
+    <description><![CDATA[GET 请求 使用 Groovy 发送 GET 请求非常简单，一行代码搞定 1 2 3 def res1 = new URL(&#39;https://httpbin.org/ip&#39;).text // or def res2 = &#39;https://httpbin.org/ip&#39;.toURL().text POST 请求 使用标准库 URL 类，发送 POST 请求 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18]]></description>
+</item><item>
+    <title>Python 调用企业微信发送消息</title>
+    <link>https://liwanggui.com/posts/python-wechat/</link>
+    <pubDate>Mon, 14 Jun 2021 11:16:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-wechat/</guid>
+    <description><![CDATA[企业微信 API 通过 python 调用企业微信的 api 接口来发送消息，可用于监控告警。使用 requests 模块。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32]]></description>
+</item><item>
+    <title>Paramiko SSH 远程连接 Linux 主机</title>
+    <link>https://liwanggui.com/posts/python-paramiko/</link>
+    <pubDate>Mon, 14 Jun 2021 08:59:28 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-paramiko/</guid>
+    <description><![CDATA[Paramiko Github 仓库: https://github.com/paramiko/paramiko Paramiko 扩展模块 scp.py Github 仓库: https://github.com/jbardin/scp.py 安装 paramiko 1 pip install paramiko SSH 连接 用户名密码 1 2 3 4 5 6 7 8 9 10 import paramiko client = paramiko.SSHClient() client.set_missing_host_key_policy(paramiko.AutoAddPolicy) client.connect(hostname=&#39;192.168.31.100&#39;, port=22, username=&#39;root&#39;, password=&#39;123456&#39;) stdin, stdout, stderr = client.exec_command(&#39;ls&#39;) for line in stdout: print(&#39;... &#39; + line.strip(&#39;\n&#39;)) client.close() 使用私钥]]></description>
+</item><item>
+    <title>PyOTP 实现双重或多因素身份验证</title>
+    <link>https://liwanggui.com/posts/python-pyopt/</link>
+    <pubDate>Mon, 14 Jun 2021 08:36:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-pyopt/</guid>
+    <description><![CDATA[Github 官方仓库: https://github.com/pyauth/pyotp 生成密钥 PyOTP 提供了一个帮助函数来生成一个16个字符的 base32 密钥，与Google Authenticator和其他OTP应用程序兼容： 1]]></description>
+</item><item>
     <title>Python 批量生成二维码</title>
     <link>https://liwanggui.com/posts/python-qrcode/</link>
     <pubDate>Sun, 13 Jun 2021 22:08:42 &#43;0800</pubDate>
@@ -46,33 +74,5 @@
     <author>作者</author>
     <guid>https://liwanggui.com/posts/ssh-tips/</guid>
     <description><![CDATA[取消初次连接确认 在脚本中有时会使用 ssh 进行远程连接操作，如果是第一次 ssh 连接往往会提示你是否确认连接并要求你输入 yes, 才能继续。如何才能避免这个步骤]]></description>
-</item><item>
-    <title>iptable 简单入门</title>
-    <link>https://liwanggui.com/posts/iptable-introduction/</link>
-    <pubDate>Sun, 13 Jun 2021 17:27:41 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/iptable-introduction/</guid>
-    <description><![CDATA[规则表 filter表，包含三个规则链：INPUT、FORWARD、OUTPUT。主要用于对数据包进行过滤 nat表，包含三个规则链：PRERO]]></description>
-</item><item>
-    <title>sshuttle 轻量级全局代理工具</title>
-    <link>https://liwanggui.com/posts/sshuttle/</link>
-    <pubDate>Sun, 13 Jun 2021 17:07:48 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/sshuttle/</guid>
-    <description><![CDATA[穷人的 VPN sshuttle 是一个使用简单的轻量级全局代理工具(穷人的vpn)，以 ubuntu 18.04 为例演示如何使用, 使用前提是你有一台远程的 linux 服务器 Github 官方仓库: https://github.com/sshuttle/sshuttle 安装 1 sudo]]></description>
-</item><item>
-    <title>VMware 的 Linux 客户机中装载共享文件夹</title>
-    <link>https://liwanggui.com/posts/vmware-linux-share/</link>
-    <pubDate>Sun, 13 Jun 2021 17:05:05 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/vmware-linux-share/</guid>
-    <description><![CDATA[1. 安装 vmware-tools 工具 1 2 3 4 5 6 7 [root@localhost ~]# mount /dev/cdrom /mnt mount: block device /dev/sr0 is write-protected, mounting read-only [root@localhost ~]# cp /mnt/VMwareTools-10.0.0-2977863.tar.gz . [root@localhost ~]# tar xzf VMwareTools-10.0.0-2977863.tar.gz [root@localhost ~]# cd vmware-tools-distrib/ [root@localhost vmware-tools-distrib]# ./vmware-install.pl [root@localhost vmware-tools-distrib]# ./vmware-install.real.pl 2. 重启虚拟机，设置共享文件夹，挂载共享文件夹 1 2]]></description>
-</item><item>
-    <title>Git 使用指定的 key 连接</title>
-    <link>https://liwanggui.com/posts/git-keys/</link>
-    <pubDate>Sun, 13 Jun 2021 10:33:18 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/git-keys/</guid>
-    <description><![CDATA[当 ssh key 文件不放在标准目录下， git 进行 clone push 操作时如何使用指定位置的 ssh key 最佳解决方案 在 ~/.ssh/config 中添加配置 1 2 3 4 host github.com HostName github.com IdentityFile /data/sshkey/github_rsa User git 保持密钥的权限为 400 次佳解]]></description>
 </item></channel>
 </rss>

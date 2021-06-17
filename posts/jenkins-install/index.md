@@ -30,6 +30,18 @@ sed -i 's#https://updates.jenkins.io/update-center.json#https://cdn.jsdelivr.net
 4. 重启 `Jenkins` 服务
 5. 享受加速下载插件的快感吧！
 
+**替换为华为源**
+
 ```bash
 sed -i 's@https://updates.jenkins.io/download@https://mirrors.huaweicloud.com/jenkins@g' /var/lib/jenkins/updates/default.json
+```
+
+**替换为清华大学源**
+
+重复以上步骤，地址进行相应的替换
+
+- 源地址: [https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json](https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json)
+
+```bash
+sed -i 's@https://updates.jenkins.io/download@https://mirrors.tuna.tsinghua.edu.cn/jenkins@g' /var/lib/jenkins/updates/default.json
 ```

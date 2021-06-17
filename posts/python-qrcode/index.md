@@ -10,7 +10,7 @@ source pyenv/bin/activate
 
 ## 安装依赖库
 
-```
+```bash
 pip install Image
 pip install qrcode
 ```

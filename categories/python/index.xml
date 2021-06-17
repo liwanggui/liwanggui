@@ -4,7 +4,28 @@
         <link>https://liwanggui.com/categories/python/</link>
         <description>python - 分类 - _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
-            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sun, 13 Jun 2021 22:08:42 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/categories/python/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Mon, 14 Jun 2021 11:16:25 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/categories/python/" rel="self" type="application/rss+xml" /><item>
+    <title>Python 调用企业微信发送消息</title>
+    <link>https://liwanggui.com/posts/python-wechat/</link>
+    <pubDate>Mon, 14 Jun 2021 11:16:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-wechat/</guid>
+    <description><![CDATA[企业微信 API 通过 python 调用企业微信的 api 接口来发送消息，可用于监控告警。使用 requests 模块。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32]]></description>
+</item><item>
+    <title>Paramiko SSH 远程连接 Linux 主机</title>
+    <link>https://liwanggui.com/posts/python-paramiko/</link>
+    <pubDate>Mon, 14 Jun 2021 08:59:28 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-paramiko/</guid>
+    <description><![CDATA[Paramiko Github 仓库: https://github.com/paramiko/paramiko Paramiko 扩展模块 scp.py Github 仓库: https://github.com/jbardin/scp.py 安装 paramiko 1 pip install paramiko SSH 连接 用户名密码 1 2 3 4 5 6 7 8 9 10 import paramiko client = paramiko.SSHClient() client.set_missing_host_key_policy(paramiko.AutoAddPolicy) client.connect(hostname=&#39;192.168.31.100&#39;, port=22, username=&#39;root&#39;, password=&#39;123456&#39;) stdin, stdout, stderr = client.exec_command(&#39;ls&#39;) for line in stdout: print(&#39;... &#39; + line.strip(&#39;\n&#39;)) client.close() 使用私钥]]></description>
+</item><item>
+    <title>PyOTP 实现双重或多因素身份验证</title>
+    <link>https://liwanggui.com/posts/python-pyopt/</link>
+    <pubDate>Mon, 14 Jun 2021 08:36:58 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/python-pyopt/</guid>
+    <description><![CDATA[Github 官方仓库: https://github.com/pyauth/pyotp 生成密钥 PyOTP 提供了一个帮助函数来生成一个16个字符的 base32 密钥，与Google Authenticator和其他OTP应用程序兼容： 1]]></description>
+</item><item>
     <title>Python 批量生成二维码</title>
     <link>https://liwanggui.com/posts/python-qrcode/</link>
     <pubDate>Sun, 13 Jun 2021 22:08:42 &#43;0800</pubDate>

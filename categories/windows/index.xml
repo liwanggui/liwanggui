@@ -17,7 +17,7 @@
     <pubDate>Sat, 12 Jun 2021 18:19:37 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/windows-contextmenu/</guid>
-    <description><![CDATA[1. 为 Sublime Text 添加右键菜单 注册表位置： HKEY_CLASSES_ROOT\*\shell 菜单名,显示在右键菜单上 icon 字符串值，显示的图标 command (子项） 默认值： 操作的命令 D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot; 2. 添加 cmd 右键菜单 将以下]]></description>
+    <description><![CDATA[1. 为 Sublime Text 添加右键菜单 注册表位置： HKEY_CLASSES_ROOT\*\shell 菜单名,显示在右键菜单上 icon 字符串值，显示的图标 command (子项） 默认值： 操作的命令 D:\Program Files\Sublime Text 3\sublime_text.exe &quot;%1&quot; 添加右键 shell 菜单注册表地]]></description>
 </item><item>
     <title>Windows 安装 realvnc</title>
     <link>https://liwanggui.com/posts/windows-vnc/</link>
