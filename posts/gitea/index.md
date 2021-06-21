@@ -64,14 +64,56 @@ chmod +x gitea
 
 > gitea 支持的数据库有 SQLite, MySQL 和 PostgreSQL，你可以选择你喜欢的数据库来存放 gitea 相关的数据，如果是测试可以直接使用 SQLite
 
+### 配置反向代理
+
+在日常使用过程最好还是做下反向代理的配置，使用标准的 `http(s)` 端口提供服务，下面列出了常的 web 应用配置反向的的配置
+
+*nginx 配置*
+
+```
+server {
+    listen 80;
+    server_name <your_domain>;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+    }
+}
+```
+
+*apache 配置*
+
+```bash
+<VirtualHost *:80>
+    ServerName <your_domain>
+    ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:3000/
+    ProxyPassReverse / http://127.0.0.1:3000/
+
+    <proxy *>
+        AllowOverride None
+        Order Deny,Allow
+        Allow from all
+    </proxy>
+</VirtualHost>
+```
+
+*caddy2 配置*
+
+```
+<your_domain> {
+    reverse_proxy localhost:3000
+}
+```
+
 ## 部署 Gitea 和 Gogs 遇到的坑
 
-1. Gogs 和 gitea 依赖于 git 2.0 及以上的版本
-2. Gogs 和 gitea 查找 git 相关命令的路径固定为 `/usr/bin`，只配置 `PATH` 环境变量是没有用的，有以下错误提示:
+1. `Gogs` 和 `Gitea` 依赖于 `git 2.0` 及以上的版本
+2. `Gogs` 和 `Gitea` 查找 `git` 相关命令的路径固定为 `/usr/bin`，只配置 `PATH` 环境变量是没有用的，有以下错误提示:
 
 ```
 Failed to execute git command: exec: "git-upload-pack": executable file not found in $PATH
 fatal: Could not read from remote repository.
 ```
 
-解决方法：使用软链接将 git 相关命令链接至 `/usr/bin` 目录下(这个只针对 git 安装命令路径不是 `/usr/bin` 的情况)， 执行命令 `ln -s /usr/local/git/bin/* /usr/bin/`
+> 解决方法：使用软链接将 git 相关命令链接至 `/usr/bin` 目录下(这个只针对 git 安装命令路径不是 `/usr/bin` 的情况)， 执行命令 `ln -s /usr/local/git/bin/* /usr/bin/`

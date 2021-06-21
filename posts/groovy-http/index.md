@@ -18,7 +18,6 @@ def res2 = 'https://httpbin.org/ip'.toURL().text
 ```groovy
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
-import java.security.MessageDigest
 
 /**
  * 发送 HTTP POST 请求
@@ -44,10 +43,7 @@ def http_post(url, data = null, is_json = false) {
         writer.close()
     }
     def json = new JsonSlurper()
-    def result = json.parseText(conn.content.text)
-    输出请求结果
-    result.each({ println it })
-    return result
+    json.parseText(conn.content.text)
 }
 
 http_post('https://httpbin.org/post', '{"name": "John", "age": 34}', true)

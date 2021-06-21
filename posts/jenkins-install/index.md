@@ -15,12 +15,22 @@ yum install jenkins
 
 ### 配置方法1
 
+配置前先启动 `jenkins` 服务, 在浏览器打开 `http://<your_server_ip_address>:8080`
+
+```bash
+systemctl start jenkins
+```
+
+执行以下命令
+
 ```bash
 mkdir -p /var/lib/jenkins/update-center-rootCAs
 wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt
 chown jenkins.jenkins -R /var/lib/jenkins/update-center-rootCAs
 sed -i 's#https://updates.jenkins.io/update-center.json#https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/huawei/update-center.json#' /var/lib/jenkins/hudson.model.UpdateCenter.xml
 ```
+
+在浏览器进行下一步时如果提示 "安装过程中出现一个错误： No such plugin: cloudbees-folder" 错误信息，这时我们只需要在 `url` 后面加 `/restart` 跳过安装插件的界面，重启 `jenkins` 即可
 
 ### 配置方法2
 

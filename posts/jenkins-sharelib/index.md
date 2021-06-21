@@ -89,8 +89,10 @@ def post(url, data = null, is_json = false) {
 ```groovy
 @Library('jenkinslib') _
 
+import org.devops.HTTP
+
 // 创建 HTTP 类实例
-def http = new org.devops.HTTP()
+def http = new HTTP()
 
 pipeline {
 	agent any

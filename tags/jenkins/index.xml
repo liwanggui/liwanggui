@@ -17,7 +17,7 @@
     <pubDate>Sun, 13 Jun 2021 21:35:39 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/jenkins-install/</guid>
-    <description><![CDATA[安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins -R /var/lib/jenkins/update-center-rootCAs sed -i &#39;s#https://updates.jenkins.io/update-center.json#https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/updates/huawei/update-center.json#&#39; /var/lib/jenkins/hudson.model.UpdateCenter.xml 配置方法2 启动 jenkins 服务，打开浏览器完成初始化]]></description>
+    <description><![CDATA[安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 配置前先启动 jenkins 服务, 在浏览器打开 http://&lt;your_server_ip_address&gt;:8080 1 systemctl start jenkins 执行以下命令 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins]]></description>
 </item><item>
     <title>使用 jenkins 实现 Kubernetes CI</title>
     <link>https://liwanggui.com/posts/kubernetes-jenkinsci/</link>

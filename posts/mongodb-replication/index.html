@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/mongodb-replication\/"
-        },"genre": "posts","keywords": "mongodb, mongodb-replication","wordcount":  2105 ,
+        },"genre": "posts","keywords": "mongodb, mongodb-replication","wordcount":  2109 ,
         "url": "https:\/\/liwanggui.com\/posts\/mongodb-replication\/","datePublished": "2021-02-08T10:50:06+08:00","dateModified": "2021-02-08T10:50:06+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">搭建 MongoDB 复制集(Replication Set)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/mongodb/"><i class="far fa-folder fa-fw"></i>mongodb</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-08">2021-02-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2105 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-02-08">2021-02-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2109 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -129,7 +129,7 @@
     <li><a href="#特殊从节点-arbiter">特殊从节点 (arbiter)</a>
       <ul>
         <li><a href="#arbiter-复制集">arbiter 复制集</a></li>
-        <li><a href="#将普通复制庥更改为含有-arbiter-节点复制集">将普通复制庥更改为含有 arbiter 节点复制集</a></li>
+        <li><a href="#将普通复制集更改为含有-arbiter-节点复制集">将普通复制集更改为含有 arbiter 节点复制集</a></li>
         <li><a href="#查看-arbiter-复制集">查看 arbiter 复制集</a></li>
       </ul>
     </li>
@@ -331,7 +331,7 @@ LISTEN     <span class="m">0</span>      <span class="m">128</span>    127.0.0.1
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="配置普通复制集">配置普通复制集</h2>
-<p>配置一主两从，两普通从库</p>
+<p>配置一主两从，从库为两普通从库</p>
 <h3 id="初始化复制集">初始化复制集</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -647,9 +647,9 @@ LISTEN     <span class="m">0</span>      <span class="m">128</span>    127.0.0.1
 &gt; rs.initiate<span class="o">(</span>config<span class="o">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="将普通复制庥更改为含有-arbiter-节点复制集">将普通复制庥更改为含有 arbiter 节点复制集</h3>
-<p>要想将普通节点改为 arbiter 节点，需要先移除在添加为 arbiter 节点。</p>
-<p>此例我们将 10.7.171.239:28019 节点更改为 arbiter 节点</p>
+</div><h3 id="将普通复制集更改为含有-arbiter-节点复制集">将普通复制集更改为含有 arbiter 节点复制集</h3>
+<p>要想将普通节点改为 <code>arbiter</code> 节点，需要先移除，再添加为 <code>arbiter</code> 节点。</p>
+<p>此例我们将 <code>10.7.171.239:28019</code> 节点更改为 <code>arbiter</code> 节点</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1

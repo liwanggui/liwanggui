@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/gitea\/"
-        },"genre": "posts","keywords": "gitea","wordcount":  498 ,
+        },"genre": "posts","keywords": "gitea","wordcount":  631 ,
         "url": "https:\/\/liwanggui.com\/posts\/gitea\/","datePublished": "2021-06-13T09:31:36+08:00","dateModified": "2021-06-13T09:31:36+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Gitea 部署安装</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>git</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-13">2021-06-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 498 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-13">2021-06-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 631 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -117,6 +117,7 @@
       <ul>
         <li><a href="#安装-git">安装 git</a></li>
         <li><a href="#安装-gitea">安装 gitea</a></li>
+        <li><a href="#配置反向代理">配置反向代理</a></li>
       </ul>
     </li>
     <li><a href="#部署-gitea-和-gogs-遇到的坑">部署 Gitea 和 Gogs 遇到的坑</a></li>
@@ -206,10 +207,79 @@ chmod +x gitea
 <blockquote>
 <p>gitea 支持的数据库有 SQLite, MySQL 和 PostgreSQL，你可以选择你喜欢的数据库来存放 gitea 相关的数据，如果是测试可以直接使用 SQLite</p>
 </blockquote>
-<h2 id="部署-gitea-和-gogs-遇到的坑">部署 Gitea 和 Gogs 遇到的坑</h2>
+<h3 id="配置反向代理">配置反向代理</h3>
+<p>在日常使用过程最好还是做下反向代理的配置，使用标准的 <code>http(s)</code> 端口提供服务，下面列出了常的 web 应用配置反向的的配置</p>
+<p><em>nginx 配置</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">server {
+    listen 80;
+    server_name &lt;your_domain&gt;;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div><p><em>apache 配置</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">&lt;VirtualHost *:80&gt;
+    ServerName &lt;your_domain&gt;
+    ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:3000/
+    ProxyPassReverse / http://127.0.0.1:3000/
+
+    &lt;proxy *&gt;
+        AllowOverride None
+        Order Deny,Allow
+        Allow from all
+    &lt;/proxy&gt;
+&lt;/VirtualHost&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p><em>caddy2 配置</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;your_domain&gt; {
+    reverse_proxy localhost:3000
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="部署-gitea-和-gogs-遇到的坑">部署 Gitea 和 Gogs 遇到的坑</h2>
 <ol>
-<li>Gogs 和 gitea 依赖于 git 2.0 及以上的版本</li>
-<li>Gogs 和 gitea 查找 git 相关命令的路径固定为 <code>/usr/bin</code>，只配置 <code>PATH</code> 环境变量是没有用的，有以下错误提示:</li>
+<li><code>Gogs</code> 和 <code>Gitea</code> 依赖于 <code>git 2.0</code> 及以上的版本</li>
+<li><code>Gogs</code> 和 <code>Gitea</code> 查找 <code>git</code> 相关命令的路径固定为 <code>/usr/bin</code>，只配置 <code>PATH</code> 环境变量是没有用的，有以下错误提示:</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -221,7 +291,9 @@ chmod +x gitea
 fatal: Could not read from remote repository.
 </code></pre></td></tr></table>
 </div>
-</div><p>解决方法：使用软链接将 git 相关命令链接至 <code>/usr/bin</code> 目录下(这个只针对 git 安装命令路径不是 <code>/usr/bin</code> 的情况)， 执行命令 <code>ln -s /usr/local/git/bin/* /usr/bin/</code></p>
+</div><blockquote>
+<p>解决方法：使用软链接将 git 相关命令链接至 <code>/usr/bin</code> 目录下(这个只针对 git 安装命令路径不是 <code>/usr/bin</code> 的情况)， 执行命令 <code>ln -s /usr/local/git/bin/* /usr/bin/</code></p>
+</blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
