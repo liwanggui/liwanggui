@@ -38,6 +38,13 @@
   - role: 角色名，常用角色名(`root`, `readWrite`,`read`)
   - db: 作用的库对象
 
+**查看所有 roles 指令**
+
+```javascript
+use admin
+show roles
+```
+
 ## 启用 mongodb 用户验证
 
 **在 `/etc/mongod.conf` 配置文件中加入以下配置以启用用户验证功能, 然后重启 MongoDB 服务**

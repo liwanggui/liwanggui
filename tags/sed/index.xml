@@ -10,6 +10,6 @@
     <pubDate>Sat, 12 Jun 2021 16:21:31 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/sed/</guid>
-    <description><![CDATA[示例 判断文件中指定字符串行是否存在 1 sed -n &#39;/^auth/p&#39; /etc/pam.d/su | sed -n &#39;/sufficient/p&#39; | sed -n &#39;/pam_rootok.so/p 判断 /etc/pam.d/su 文件中是否有 auth required pam_securetty.so 配置行 修改行 1 sed -i.bak &#39;s/PermitRoot*/PermitRoot no/g&#39; /etc/ssh/sshd_config -i.bak 在修改文件时会先备份，本例备份]]></description>
+    <description><![CDATA[基本语法 格式 1 sed [option]... &#39;script&#39; inputfile... 常用选项： -n: 不输出模式空间内容到屏幕，即不自动打印 -e: 多点编辑 -f: 从指定的文件中读取编辑脚本 -r: 支持扩展正则表达式 -i.bak: 备份文件]]></description>
 </item></channel>
 </rss>

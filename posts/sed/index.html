@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Linux 文本三剑客：sed - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Linux 文本三剑客：sed" />
-<meta property="og:description" content="示例 判断文件中指定字符串行是否存在 1 sed -n &#39;/^auth/p&#39; /etc/pam.d/su | sed -n &#39;/sufficient/p&#39; | sed -n &#39;/pam_rootok.so/p 判断 /etc/pam.d/su 文件中是否有 auth required pam_securetty.so 配置行 修改行 1 sed -i.bak &#39;s/PermitRoot*/PermitRoot no/g&#39; /etc/ssh/sshd_config -i.bak 在修改文件时会先备份，本例备份" />
+<meta property="og:description" content="基本语法 格式 1 sed [option]... &#39;script&#39; inputfile... 常用选项： -n: 不输出模式空间内容到屏幕，即不自动打印 -e: 多点编辑 -f: 从指定的文件中读取编辑脚本 -r: 支持扩展正则表达式 -i.bak: 备份文件" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/sed/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
 <meta name="twitter:title" content="Linux 文本三剑客：sed"/>
-<meta name="twitter:description" content="示例 判断文件中指定字符串行是否存在 1 sed -n &#39;/^auth/p&#39; /etc/pam.d/su | sed -n &#39;/sufficient/p&#39; | sed -n &#39;/pam_rootok.so/p 判断 /etc/pam.d/su 文件中是否有 auth required pam_securetty.so 配置行 修改行 1 sed -i.bak &#39;s/PermitRoot*/PermitRoot no/g&#39; /etc/ssh/sshd_config -i.bak 在修改文件时会先备份，本例备份"/>
+<meta name="twitter:description" content="基本语法 格式 1 sed [option]... &#39;script&#39; inputfile... 常用选项： -n: 不输出模式空间内容到屏幕，即不自动打印 -e: 多点编辑 -f: 从指定的文件中读取编辑脚本 -r: 支持扩展正则表达式 -i.bak: 备份文件"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/sed/" /><link rel="prev" href="https://liwanggui.com/posts/rename/" /><link rel="next" href="https://liwanggui.com/posts/rsync-lsyncd/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/sed\/"
-        },"genre": "posts","keywords": "sed","wordcount":  83 ,
+        },"genre": "posts","keywords": "sed","wordcount":  209 ,
         "url": "https:\/\/liwanggui.com\/posts\/sed\/","datePublished": "2021-06-12T16:21:31+08:00","dateModified": "2021-06-12T16:21:31+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Linux 文本三剑客：sed</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-12">2021-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 83 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-12">2021-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 209 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -113,23 +113,72 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#基本语法">基本语法</a></li>
     <li><a href="#示例">示例</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="示例">示例</h2>
-<p>判断文件中指定字符串行是否存在</p>
+            </div><div class="content" id="content"><h2 id="基本语法">基本语法</h2>
+<p>格式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">sed -n <span class="s1">&#39;/^auth/p&#39;</span> /etc/pam.d/su <span class="p">|</span> sed -n  <span class="s1">&#39;/sufficient/p&#39;</span> <span class="p">|</span> sed -n <span class="err">&#39;</span>/pam_rootok.so/p
+<pre class="chroma"><code class="language-bash" data-lang="bash">sed <span class="o">[</span>option<span class="o">]</span>... <span class="s1">&#39;script&#39;</span> inputfile...
+</code></pre></td></tr></table>
+</div>
+</div><p>常用选项：</p>
+<ul>
+<li><code>-n</code>: 不输出模式空间内容到屏幕，即不自动打印</li>
+<li><code>-e</code>: 多点编辑</li>
+<li><code>-f</code>: 从指定的文件中读取编辑脚本</li>
+<li><code>-r</code>: 支持扩展正则表达式</li>
+<li><code>-i.bak</code>: 备份文件并原处编辑 (.bak 字符是自定义的)</li>
+</ul>
+<h2 id="示例">示例</h2>
+<p><em>打印文件的最后一行</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sed -n <span class="s1">&#39;$p&#39;</span> /etc/passwd
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>$</code> 表示最后一行</p>
+</blockquote>
+<p><em>打印第2行及以下4行</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">seq <span class="m">10</span> <span class="p">|</span> sed -n <span class="s1">&#39;2,+4p&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>打印第2行到第4行</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">seq <span class="m">10</span> <span class="p">|</span> sed -n <span class="s1">&#39;2,4p&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>查找文件中指定字符串行</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sed -n <span class="s1">&#39;/^auth/p&#39;</span> /etc/pam.d/su
 </code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>判断 <code>/etc/pam.d/su</code> 文件中是否有 <code>auth    required    pam_securetty.so</code> 配置行</p>
 </blockquote>
-<p>修改行</p>
+<p><em>修改行</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -141,7 +190,7 @@
 </div><blockquote>
 <p>-i.bak 在修改文件时会先备份，本例备份文件名为 sshd_config.bak</p>
 </blockquote>
-<p>删除行</p>
+<p><em>删除行</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
