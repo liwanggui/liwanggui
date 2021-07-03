@@ -12,7 +12,7 @@
     <pubDate>Sat, 03 Jul 2021 15:46:10 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/fpm/</guid>
-    <description><![CDATA[fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ 安装 fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经]]></description>
+    <description><![CDATA[fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装]]></description>
 </item><item>
     <title>Nginx 日志自动切割</title>
     <link>https://liwanggui.com/posts/nginx-logrotate/</link>

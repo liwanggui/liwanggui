@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>fpm - 简单的包制作工具 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="fpm - 简单的包制作工具" />
-<meta property="og:description" content="fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ 安装 fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经" />
+<meta property="og:description" content="fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/fpm/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
 <meta name="twitter:title" content="fpm - 简单的包制作工具"/>
-<meta name="twitter:description" content="fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ 安装 fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经"/>
+<meta name="twitter:description" content="fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/fpm/" /><link rel="prev" href="https://liwanggui.com/posts/nginx-logrotate/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/fpm\/"
-        },"genre": "posts","keywords": "fpm","wordcount":  661 ,
+        },"genre": "posts","keywords": "fpm","wordcount":  1125 ,
         "url": "https:\/\/liwanggui.com\/posts\/fpm\/","datePublished": "2021-07-03T15:46:10+08:00","dateModified": "2021-07-03T15:46:10+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">fpm - 简单的包制作工具</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-03">2021-07-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 661 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-03">2021-07-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1125 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -114,7 +114,7 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#fpm-简介">fpm 简介</a></li>
-    <li><a href="#安装-fpm-依赖">安装 fpm 依赖</a></li>
+    <li><a href="#fpm-依赖">fpm 依赖</a></li>
     <li><a href="#安装-fpm">安装 fpm</a></li>
     <li><a href="#使用示例">使用示例</a>
       <ul>
@@ -123,16 +123,17 @@
         <li><a href="#制作-nodejs-dev-包">制作 nodejs-dev 包</a></li>
       </ul>
     </li>
+    <li><a href="#注意事项">注意事项</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="fpm-简介">fpm 简介</h2>
-<p>fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速</p>
+<p><code>fpm</code> 的目标是使得构建二进制包 (<code>deb</code>, <code>rpm</code>, <code>osx</code> 等) 变得简单快速</p>
 <ul>
 <li>fpm 项目地址: <a href="https://github.com/jordansissel/fpm" target="_blank" rel="noopener noreffer">https://github.com/jordansissel/fpm</a></li>
 <li>fpm 文档地址: <a href="https://fpm.readthedocs.io/en/latest/" target="_blank" rel="noopener noreffer">https://fpm.readthedocs.io/en/latest/</a></li>
 </ul>
-<h2 id="安装-fpm-依赖">安装 fpm 依赖</h2>
-<p>fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装了 Ruby, 例如: OSX, 有些系统可能没有安装 Ruby, 此时你需要执行下命令进行安装:</p>
+<h2 id="fpm-依赖">fpm 依赖</h2>
+<p><code>fpm</code> 使用 <code>Ruby</code> 开发, 所以你得先安装 <code>Ruby</code>. 有些系统中默认已经安装了 <code>Ruby</code>, 例如: OSX, 有些系统可能没有安装 <code>Ruby</code>, 此时你需要执行下命令进行安装:</p>
 <p><strong>OSX/macOS:</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -229,7 +230,7 @@ yum install ruby-devel gcc make rpm-build rubygems
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="安装-fpm">安装 fpm</h2>
-<p>可以使用 gem 工具安装 fpm:</p>
+<p><em>可以使用 gem 工具安装 fpm</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -238,7 +239,7 @@ yum install ruby-devel gcc make rpm-build rubygems
 <pre class="chroma"><code class="language-bash" data-lang="bash">gem install --no-document fpm
 </code></pre></td></tr></table>
 </div>
-</div><p>检查是否安装</p>
+</div><p><em>检查是否安装</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -247,9 +248,44 @@ yum install ruby-devel gcc make rpm-build rubygems
 <pre class="chroma"><code class="language-bash" data-lang="bash">fpm --version
 </code></pre></td></tr></table>
 </div>
+</div><p><em>常用参数说明</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">-s 指定源类型
+-t 指定目标类型，即想要制作为什么包
+-n 指定包的名字
+-v 指定包的版本号
+-C 在搜索文件之前将目录更改为此处
+-d 指定依赖于哪些包
+-a 架构名称，通常匹配 &#39;uname -m&#39;, 可以使用 &#39;-a all&#39; 或者 &#39;-a native&#39;
+-f 第二次打包时目录下如果有同名安装包存在，则覆盖它
+-p 输出的安装包的目录，不想放在当前目录下就需要指定
+--iteration 指定包的发布次数，例 RPM 的 release 字段
+--post-install 软件包安装完成之后所要运行的脚本；同 --after-install
+--pre-install 软件包安装完成之前所要运行的脚本；同 --before-install
+--post-uninstall 软件包卸载完成之后所要运行的脚本；同 --after-remove
+--pre-uninstall 软件包卸载完成之前所要运行的脚本；同 --before-remove
+</code></pre></td></tr></table>
+</div>
 </div><h2 id="使用示例">使用示例</h2>
-<p>以 nodejs 为例，</p>
-<p>将 nodejs 构建成3个包: nodejs, nodejs-dev, nodejs-doc.</p>
+<p>以 <code>nodejs</code> 为例，</p>
+<p>将 <code>nodejs</code> 构建成3个包: <code>nodejs</code>, <code>nodejs-dev</code>, <code>nodejs-doc</code></p>
 <p>在示例中需要我们在 <code>make install</code> 时设置 <code>DESTDIR</code> 将编译好的文件安装到特定的目录中</p>
 <h3 id="制作-nodejs-包">制作 nodejs 包</h3>
 <p><em>正常编译步骤</em></p>
@@ -351,7 +387,7 @@ yum install ruby-devel gcc make rpm-build rubygems
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="制作-nodejs-dev-包">制作 nodejs-dev 包</h3>
-<p>最后，打包用于开发的 headers 文件:</p>
+<p>最后，打包用于开发的 <code>headers</code> 文件:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -367,6 +403,72 @@ yum install ruby-devel gcc make rpm-build rubygems
 -rw-r--r-- root/root     <span class="m">14359</span> 2011-01-02 18:33 usr/include/node/eio.h
 -rw-r--r-- root/root      <span class="m">1118</span> 2011-01-02 18:33 usr/include/node/node_version.h
 -rw-r--r-- root/root     <span class="m">25318</span> 2011-01-02 18:33 usr/include/node/ev.h
+...
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="注意事项">注意事项</h2>
+<p>当我们需要将某个目录制作成二进制包时，需要注意 &ldquo;相对路径&rdquo; 与 &ldquo;绝对路径&rdquo; 问题，以 <code>nginx</code> 为例</p>
+<p><em>相对路径</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">% <span class="nb">cd</span> /usr/local/nginx
+% fpm -s dir -t rpm -n nginx -v 1.16.1 --iteration 1.el7 .
+no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
+no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
+Created package <span class="o">{</span>:path<span class="o">=</span>&gt;<span class="s2">&#34;nginx-1.16.1-1.el7.x86_64.rpm&#34;</span><span class="o">}</span>
+
+<span class="c1"># 查看 rpm 包文件列表</span>
+$ rpm -qpl nginx-1.16.1-1.el7.x86_64.rpm
+/client_body_temp
+/conf/extra/dynamic_pools
+/conf/extra/static_pools
+...
+</code></pre></td></tr></table>
+</div>
+</div><p><em>绝对路径</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ fpm -s dir -t rpm -n nginx -v 1.16.1 --iteration 2.el7 /usr/local/nginx
+no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
+no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
+Created package <span class="o">{</span>:path<span class="o">=</span>&gt;<span class="s2">&#34;nginx-1.16.1-2.el7.x86_64.rpm&#34;</span><span class="o">}</span>
+
+<span class="c1"># 查看 rpm 包文件列表</span>
+$ rpm -qpl nginx-1.16.1-2.el7.x86_64.rpm
+/usr/local/nginx/client_body_temp
+/usr/local/nginx/conf/extra/dynamic_pools
+/usr/local/nginx/conf/extra/static_pools
+/usr/local/nginx/conf/fastcgi.conf
+/usr/local/nginx/conf/fastcgi.conf.default
 ...
 </code></pre></td></tr></table>
 </div>

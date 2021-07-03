@@ -3,14 +3,14 @@
 
 ## fpm 简介
 
-fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速
+`fpm` 的目标是使得构建二进制包 (`deb`, `rpm`, `osx` 等) 变得简单快速
 
 - fpm 项目地址: [https://github.com/jordansissel/fpm](https://github.com/jordansissel/fpm)
 - fpm 文档地址: [https://fpm.readthedocs.io/en/latest/](https://fpm.readthedocs.io/en/latest/)
 
-## 安装 fpm 依赖
+## fpm 依赖
 
-fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装了 Ruby, 例如: OSX, 有些系统可能没有安装 Ruby, 此时你需要执行下命令进行安装:
+`fpm` 使用 `Ruby` 开发, 所以你得先安装 `Ruby`. 有些系统中默认已经安装了 `Ruby`, 例如: OSX, 有些系统可能没有安装 `Ruby`, 此时你需要执行下命令进行安装:
 
 **OSX/macOS:**
 
@@ -74,23 +74,42 @@ apt-get install ruby ruby-dev rubygems build-essential
 
 ## 安装 fpm
 
-可以使用 gem 工具安装 fpm:
+*可以使用 gem 工具安装 fpm*
 
 ```bash
 gem install --no-document fpm
 ```
 
-检查是否安装
+*检查是否安装*
 
 ```bash
 fpm --version
 ```
 
+*常用参数说明*
+
+```
+-s 指定源类型
+-t 指定目标类型，即想要制作为什么包
+-n 指定包的名字
+-v 指定包的版本号
+-C 在搜索文件之前将目录更改为此处
+-d 指定依赖于哪些包
+-a 架构名称，通常匹配 'uname -m', 可以使用 '-a all' 或者 '-a native'
+-f 第二次打包时目录下如果有同名安装包存在，则覆盖它
+-p 输出的安装包的目录，不想放在当前目录下就需要指定
+--iteration 指定包的发布次数，例 RPM 的 release 字段
+--post-install 软件包安装完成之后所要运行的脚本；同 --after-install
+--pre-install 软件包安装完成之前所要运行的脚本；同 --before-install
+--post-uninstall 软件包卸载完成之后所要运行的脚本；同 --after-remove
+--pre-uninstall 软件包卸载完成之前所要运行的脚本；同 --before-remove
+```
+
 ## 使用示例
 
-以 nodejs 为例，
+以 `nodejs` 为例，
 
-将 nodejs 构建成3个包: nodejs, nodejs-dev, nodejs-doc.
+将 `nodejs` 构建成3个包: `nodejs`, `nodejs-dev`, `nodejs-doc`
 
 在示例中需要我们在 `make install` 时设置 `DESTDIR` 将编译好的文件安装到特定的目录中
 
@@ -158,7 +177,7 @@ v0.6.0
 
 ### 制作 nodejs-dev 包
 
-最后，打包用于开发的 headers 文件:
+最后，打包用于开发的 `headers` 文件:
 
 ```bash
 % fpm -s dir -t deb -p nodejs-dev_VERSION_ARCH.deb -n nodejs-dev -v 0.6.0 -C /tmp/installdir usr/include
@@ -166,6 +185,45 @@ v0.6.0
 -rw-r--r-- root/root     14359 2011-01-02 18:33 usr/include/node/eio.h
 -rw-r--r-- root/root      1118 2011-01-02 18:33 usr/include/node/node_version.h
 -rw-r--r-- root/root     25318 2011-01-02 18:33 usr/include/node/ev.h
+...
+```
+
+## 注意事项
+
+当我们需要将某个目录制作成二进制包时，需要注意 "相对路径" 与 "绝对路径" 问题，以 `nginx` 为例
+
+*相对路径*
+
+```bash
+% cd /usr/local/nginx
+% fpm -s dir -t rpm -n nginx -v 1.16.1 --iteration 1.el7 .
+no value for epoch is set, defaulting to nil {:level=>:warn}
+no value for epoch is set, defaulting to nil {:level=>:warn}
+Created package {:path=>"nginx-1.16.1-1.el7.x86_64.rpm"}
+
+# 查看 rpm 包文件列表
+$ rpm -qpl nginx-1.16.1-1.el7.x86_64.rpm
+/client_body_temp
+/conf/extra/dynamic_pools
+/conf/extra/static_pools
+...
+```
+
+*绝对路径*
+
+```bash
+$ fpm -s dir -t rpm -n nginx -v 1.16.1 --iteration 2.el7 /usr/local/nginx
+no value for epoch is set, defaulting to nil {:level=>:warn}
+no value for epoch is set, defaulting to nil {:level=>:warn}
+Created package {:path=>"nginx-1.16.1-2.el7.x86_64.rpm"}
+
+# 查看 rpm 包文件列表
+$ rpm -qpl nginx-1.16.1-2.el7.x86_64.rpm
+/usr/local/nginx/client_body_temp
+/usr/local/nginx/conf/extra/dynamic_pools
+/usr/local/nginx/conf/extra/static_pools
+/usr/local/nginx/conf/fastcgi.conf
+/usr/local/nginx/conf/fastcgi.conf.default
 ...
 ```
 
