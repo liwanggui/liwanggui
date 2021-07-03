@@ -5,30 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>使用 FPM 快速打包 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="使用 FPM 快速打包" />
-<meta property="og:description" content="回顾下安装软件的三种方式： 编译安装软件，优点是可以定制化安装目录、按需开启功能等，缺点是需要查找并实验出适合的编译参数，诸如 MySQL 之类的软件编译" />
+        <title>fpm - 简单的包制作工具 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="fpm - 简单的包制作工具" />
+<meta property="og:description" content="fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ 安装 fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/fpm/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
-<meta property="article:published_time" content="2021-04-01T15:34:35+08:00" />
-<meta property="article:modified_time" content="2021-04-01T15:34:35+08:00" />
+<meta property="article:published_time" content="2021-07-03T15:46:10+08:00" />
+<meta property="article:modified_time" content="2021-07-03T15:46:10+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
-<meta name="twitter:title" content="使用 FPM 快速打包"/>
-<meta name="twitter:description" content="回顾下安装软件的三种方式： 编译安装软件，优点是可以定制化安装目录、按需开启功能等，缺点是需要查找并实验出适合的编译参数，诸如 MySQL 之类的软件编译"/>
+<meta name="twitter:title" content="fpm - 简单的包制作工具"/>
+<meta name="twitter:description" content="fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ 安装 fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/fpm/" /><link rel="prev" href="https://liwanggui.com/posts/yum-repo/" /><link rel="next" href="https://liwanggui.com/posts/nginx-install/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/fpm/" /><link rel="prev" href="https://liwanggui.com/posts/nginx-logrotate/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "使用 FPM 快速打包",
+        "headline": "fpm - 简单的包制作工具",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/fpm\/"
-        },"genre": "posts","keywords": "fpm","wordcount":  1382 ,
-        "url": "https:\/\/liwanggui.com\/posts\/fpm\/","datePublished": "2021-04-01T15:34:35+08:00","dateModified": "2021-04-01T15:34:35+08:00","publisher": {
+        },"genre": "posts","keywords": "fpm","wordcount":  661 ,
+        "url": "https:\/\/liwanggui.com\/posts\/fpm\/","datePublished": "2021-07-03T15:46:10+08:00","dateModified": "2021-07-03T15:46:10+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -102,10 +102,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">使用 FPM 快速打包</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-01">2021-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1382 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">fpm - 简单的包制作工具</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-03">2021-07-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 661 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -113,116 +113,50 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#fpm打包工具">FPM打包工具</a>
+    <li><a href="#fpm-简介">fpm 简介</a></li>
+    <li><a href="#安装-fpm-依赖">安装 fpm 依赖</a></li>
+    <li><a href="#安装-fpm">安装 fpm</a></li>
+    <li><a href="#使用示例">使用示例</a>
       <ul>
-        <li><a href="#1-支持的源类型包">1. 支持的源类型包</a></li>
-        <li><a href="#2-支持的目标类型包">2. 支持的目标类型包</a></li>
-        <li><a href="#3-fpm-安装">3. FPM 安装</a></li>
-        <li><a href="#4-fpm参数">4. FPM参数</a></li>
+        <li><a href="#制作-nodejs-包">制作 nodejs 包</a></li>
+        <li><a href="#制作-nodejs-doc-包">制作 nodejs-doc 包</a></li>
+        <li><a href="#制作-nodejs-dev-包">制作 nodejs-dev 包</a></li>
       </ul>
     </li>
-    <li><a href="#使用实例--实战定制nginx的rpm包">使用实例&ndash;实战定制nginx的RPM包</a>
-      <ul>
-        <li><a href="#1-安装nginx">1. 安装nginx</a></li>
-        <li><a href="#2-编写脚本">2. 编写脚本</a></li>
-        <li><a href="#3-打包">3. 打包</a></li>
-        <li><a href="#4-安装rpm包">4. 安装rpm包</a></li>
-      </ul>
-    </li>
-    <li><a href="#注意事项">注意事项</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>回顾下安装软件的三种方式：</p>
-<ol>
-<li>编译安装软件，优点是可以定制化安装目录、按需开启功能等，缺点是需要查找并实验出适合的编译参数，诸如 MySQL 之类的软件编译耗时过长。</li>
-<li>yum 安装软件，优点是全自动化安装，不需要为依赖问题发愁了，缺点是自主性太差，软件的功能、存放位置都已经固定好了，不易变更。</li>
-<li>编译源码，根据自己的需求做成定制 RPM 包 &ndash;&gt; 搭建内网yum仓库 &ndash;&gt; yum安装。结合前两者的优点，暂未发现什么缺点。可能的缺点就是 RPM 包的通用性差，只能适用于本公司的环境。另外一般人不会定制 RPM 包。这是中大型互联网企业运维自动化的必要技能。</li>
-</ol>
-<p>这里也不介绍 rpm 的概念，想了解的朋友可以查看 <a href="http://www.ibm.com/developerworks/cn/linux/l-rpm/" target="_blank" rel="noopener noreffer">http://www.ibm.com/developerworks/cn/linux/l-rpm/</a></p>
-<p>这里也不介绍 <code>rpmbuild</code> 这个打包工具了，想了解的朋友自行谷歌百度。但我不建议大家花太多的时间去学习这个命令，比较晦涩，而且我会在下面介绍更简单的命令。</p>
-<h2 id="fpm打包工具">FPM打包工具</h2>
-<p>FPM 的作者是 <code>jordansissel</code> <a href="https://github.com/jordansissel/fpm" target="_blank" rel="noopener noreffer">FPM 的 github</a></p>
-<p>FPM 功能简单说就是将一种类型的包转换成另一种类型。</p>
-<h3 id="1-支持的源类型包">1. 支持的源类型包</h3>
-<ol>
-<li>dir 将目录打包成所需要的类型，可以用于源码编译安装的软件包</li>
-<li>rpm 对rpm进行转换</li>
-<li>gem 对rubygem包进行转换</li>
-<li>python 将python模块打包成相应的类型</li>
-</ol>
-<h3 id="2-支持的目标类型包">2. 支持的目标类型包</h3>
+            </div><div class="content" id="content"><h2 id="fpm-简介">fpm 简介</h2>
+<p>fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速</p>
 <ul>
-<li>rpm 转换为 rpm 包</li>
-<li>deb 转换为 deb 包</li>
-<li>solaris 转换为 solaris 包</li>
-<li>puppet 转换为 puppet 模块</li>
+<li>fpm 项目地址: <a href="https://github.com/jordansissel/fpm" target="_blank" rel="noopener noreffer">https://github.com/jordansissel/fpm</a></li>
+<li>fpm 文档地址: <a href="https://fpm.readthedocs.io/en/latest/" target="_blank" rel="noopener noreffer">https://fpm.readthedocs.io/en/latest/</a></li>
 </ul>
-<h3 id="3-fpm-安装">3. FPM 安装</h3>
-<p>fpm 是 ruby 写的，因此系统环境需要 ruby，且 ruby 版本号大于1.8.5。rpm 包太旧，安装后会提示版本问题。所以采用编译安装方式：</p>
+<h2 id="安装-fpm-依赖">安装 fpm 依赖</h2>
+<p>fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装了 Ruby, 例如: OSX, 有些系统可能没有安装 Ruby, 此时你需要执行下命令进行安装:</p>
+<p><strong>OSX/macOS:</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 下载 ruby 源码包</span>
-wget -c https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz
-tar xzf ruby-2.3.4.tar.gz
-<span class="nb">cd</span> ruby-2.3.4
-./configure <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
-
-<span class="c1"># 添加阿里云的Rubygems仓库，外国的源慢</span>
-gem sources -a http://mirrors.aliyun.com/rubygems/
-<span class="c1"># 移除原生的Ruby仓库</span>
-gem sources --remove http://rubygems.org/
-<span class="c1"># 安装fpm</span>
-gem install fpm
+<pre class="chroma"><code class="language-bash" data-lang="bash">brew install gnu-tar
+brew install rpm
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="4-fpm参数">4. FPM参数</h3>
-<p>详细使用见 <code>fpm --help</code> 常用参数</p>
+</div><p><strong>Red Hat systems (Fedora 22 or older, CentOS, etc):</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">-s 指定源类型
--t 指定目标类型，即想要制作为什么包
--n 指定包的名字
--v 指定包的版本号
--C 指定打包的相对路径 Change directory to here before searching forfiles
--d 指定依赖于哪些包
--f 第二次打包时目录下如果有同名安装包存在，则覆盖它
--p 输出的安装包的目录，不想放在当前目录下就需要指定
---post-install 软件包安装完成之后所要运行的脚本；同--after-install
---pre-install 软件包安装完成之前所要运行的脚本；同--before-install
---post-uninstall 软件包卸载完成之后所要运行的脚本；同--after-remove
---pre-uninstall 软件包卸载完成之前所要运行的脚本；同--before-remove
+<pre class="chroma"><code class="language-bash" data-lang="bash">yum install ruby-devel gcc make rpm-build rubygems
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="使用实例--实战定制nginx的rpm包">使用实例&ndash;实战定制nginx的RPM包</h2>
-<h3 id="1-安装nginx">1. 安装nginx</h3>
+</div><blockquote>
+<p>注意: CentOS 源中的 ruby 版本过低，需要手动源码编译安装较新的 Ruby 版本</p>
+</blockquote>
+<p><em>编译安装 Ruby</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -231,32 +165,122 @@ gem install fpm
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">yum -y install pcre-devel openssl-devel
-useradd -M -s /sbin/nologin nginx
-tar xf nginx-1.6.2.tar.gz
-<span class="nb">cd</span> nginx-1.6.2
-./configure --prefix<span class="o">=</span>/usr/local/nginx --user<span class="o">=</span>nginx --group<span class="o">=</span>nginx --with-http_ssl_module --with-http_stub_status_module
-make <span class="o">&amp;&amp;</span> make install
+<pre class="chroma"><code class="language-bash" data-lang="bash">yum install gcc openssl-devel make
+wget https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.3.tar.gz
+tar xzf ruby-2.7.3.tar.gz
+<span class="nb">cd</span> ruby-2.7.3
+./configure --prefix<span class="o">=</span>/usr/local/ruby
+make
+make install
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="2-编写脚本">2. 编写脚本</h3>
+</div><p><em>配置环境变量</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s1">&#39;export PATH=/usr/local/ruby/bin:$PATH&#39;</span> &gt; /etc/profile.d/ruby.sh
+<span class="nb">source</span> /etc/profile
+</code></pre></td></tr></table>
+</div>
+</div><p><em>配置 Ruby 源</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gem sources -l <span class="c1"># 查看当前源</span>
+gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Fedora 23 or newer:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">dnf install ruby-devel gcc make rpm-build libffi-devel
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Oracle Linux 7.x systems:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">yum-config-manager --enable ol7_optional_latest
+yum install ruby-devel gcc make rpm-build rubygems
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Debian-derived systems (Debian, Ubuntu, etc):</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">apt-get install ruby ruby-dev rubygems build-essential
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装-fpm">安装 fpm</h2>
+<p>可以使用 gem 工具安装 fpm:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gem install --no-document fpm
+</code></pre></td></tr></table>
+</div>
+</div><p>检查是否安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">fpm --version
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用示例">使用示例</h2>
+<p>以 nodejs 为例，</p>
+<p>将 nodejs 构建成3个包: nodejs, nodejs-dev, nodejs-doc.</p>
+<p>在示例中需要我们在 <code>make install</code> 时设置 <code>DESTDIR</code> 将编译好的文件安装到特定的目录中</p>
+<h3 id="制作-nodejs-包">制作 nodejs 包</h3>
+<p><em>正常编译步骤</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@oldboy ~<span class="o">]</span><span class="c1"># cd /server/scripts/</span>
-<span class="o">[</span>root@oldboy scripts<span class="o">]</span><span class="c1"># vim nginx_rpm.sh # 这是安装完rpm包要执行的脚本</span>
-<span class="c1">#!/bin/bash</span>
-useradd -M -s /sbin/nologin nginx
+<pre class="chroma"><code class="language-bash" data-lang="bash">% wget http://nodejs.org/dist/v0.6.0/node-v0.6.0.tar.gz
+% tar -zxf node-v0.6.0.tar.gz
+% <span class="nb">cd</span> node-v0.6.0
+% ./configure --prefix<span class="o">=</span>/usr
+% make
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="3-打包">3. 打包</h3>
+</div><p><em>将 nodejs 安装至临时目录</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">% mkdir /tmp/installdir
+% make install <span class="nv">DESTDIR</span><span class="o">=</span>/tmp/installdir
+</code></pre></td></tr></table>
+</div>
+</div><p><em>制作 nodejs 包</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -267,112 +291,93 @@ useradd -M -s /sbin/nologin nginx
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@oldboy ~<span class="o">]</span><span class="c1"># fpm -s dir -t rpm -n nginx -v 1.6.2 \</span>
--d <span class="s1">&#39;pcre-devel,openssl-devel&#39;</span> <span class="se">\
-</span><span class="se"></span>--post-install /server/scripts/nginx_rpm.sh <span class="se">\
-</span><span class="se"></span>-f /usr/local/nginx
-no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
-no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
-Created package <span class="o">{</span>:path<span class="o">=</span>&gt;<span class="s2">&#34;nginx-1.6.2-1.x86_64.rpm&#34;</span><span class="o">}</span>
-<span class="o">[</span>root@oldboy ~<span class="o">]</span><span class="c1"># ll -h nginx-1.6.2-1.x86_64.rpm</span>
--rw-r--r-- <span class="m">1</span> root root 6.7M Nov <span class="m">1</span> 10:02 nginx-1.6.2-1.x86_64.rpm
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create a nodejs deb with only bin and lib directories:</span>
+<span class="c1"># The &#39;VERSION&#39; and &#39;ARCH&#39; strings are automatically filled in for you</span>
+<span class="c1"># based on the other arguments given.</span>
+% fpm -s dir -t deb -n nodejs -v 0.6.0 -C /tmp/installdir <span class="se">\
+</span><span class="se"></span>  -p nodejs_VERSION_ARCH.deb <span class="se">\
+</span><span class="se"></span>  -d <span class="s2">&#34;libssl0.9.8 &gt; 0&#34;</span> <span class="se">\
+</span><span class="se"></span>  -d <span class="s2">&#34;libstdc++6 &gt;= 4.4.3&#34;</span> <span class="se">\
+</span><span class="se"></span>  usr/bin usr/lib
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="4-安装rpm包">4. 安装rpm包</h3>
-<p><strong>安装rpm包的三种方法：</strong></p>
-<p><em>①rpm命令安装</em></p>
+</div><blockquote>
+<p><code>nodejs</code> 包中只包含 <code>usr/bin</code>  <code>usr/lib</code> 中的文件，此为 nodejs 基础运行包</p>
+</blockquote>
+<p><em>安装 nodejs 包，测试一下</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@LB-nginx-01 ~<span class="o">]</span><span class="c1"># rpm -ivh nginx-1.6.2-1.x86_64.rpm</span>
-error: Failed dependencies:
-pcre-devel is needed by nginx-1.6.2-1.x86_64
-openssl-devel is needed by nginx-1.6.2-1.x86_64
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">#</span> <span class="err">&#39;</span><span class="nx">fpm</span><span class="err">&#39;</span> <span class="nx">just</span> <span class="nx">produced</span> <span class="nx">us</span> <span class="nx">a</span> <span class="nx">nodejs</span> <span class="nx">deb</span><span class="p">:</span>
+<span class="o">%</span> <span class="nx">file</span> <span class="nx">nodejs_0</span><span class="mf">.6.0</span><span class="o">-</span><span class="mi">1</span><span class="nx">_amd64</span><span class="p">.</span><span class="nx">deb</span>
+<span class="nx">nodejs_0</span><span class="mf">.6.0</span><span class="o">-</span><span class="mi">1</span><span class="nx">_amd64</span><span class="p">.</span><span class="nx">deb</span><span class="p">:</span> <span class="nx">Debian</span> <span class="nx">binary</span> <span class="kn">package</span> <span class="p">(</span><span class="nx">format</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="o">%</span> <span class="nx">sudo</span> <span class="nx">dpkg</span> <span class="o">-</span><span class="nx">i</span> <span class="nx">nodejs_0</span><span class="mf">.6.0</span><span class="o">-</span><span class="mi">1</span><span class="nx">_amd64</span><span class="p">.</span><span class="nx">deb</span>
+
+<span class="o">%</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">node</span> <span class="o">--</span><span class="nx">version</span>
+<span class="nx">v0</span><span class="mf">.6.0</span>
 </code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>但会报如上依赖错误，需要先yum安装依赖才能安装 rpm 包</p>
-</blockquote>
-<p><em>yum 命令安装rpm包</em></p>
+</div><h3 id="制作-nodejs-doc-包">制作 nodejs-doc 包</h3>
+<p><em>创建 nodejs 文档手册包</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">yum -y localinstall nginx-1.6.2-1.x86_64.rpm
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Create a package of the node manpage</span>
+% fpm -s dir -t deb -p nodejs-doc_VERSION_ARCH.deb -n nodejs-doc -v 0.6.0 -C /tmp/installdir usr/share/man
 </code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>这个命令会自动先安装 rpm 包的依赖，然后再安装 rpm 包。可以配合自建的 yum 本地仓库使用</p>
-</blockquote>
-<h2 id="注意事项">注意事项</h2>
-<p><em>相对路径问题</em></p>
+</div><p><em>查看 nodejs-doc 包</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">oldboy</span> <span class="nx">nginx</span><span class="p">]</span><span class="err">#</span> <span class="nx">fpm</span> <span class="o">-</span><span class="nx">s</span> <span class="nx">dir</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">rpm</span> <span class="o">-</span><span class="nx">n</span> <span class="nx">nginx</span> <span class="o">-</span><span class="nx">v</span> <span class="mf">1.6.2</span> <span class="p">.</span>
-<span class="nx">no</span> <span class="nx">value</span> <span class="k">for</span> <span class="nx">epoch</span> <span class="nx">is</span> <span class="nx">set</span><span class="p">,</span> <span class="nx">defaulting</span> <span class="nx">to</span> <span class="kc">nil</span> <span class="p">{:</span><span class="nx">level</span><span class="p">=&gt;:</span><span class="nx">warn</span><span class="p">}</span>
-<span class="nx">no</span> <span class="nx">value</span> <span class="k">for</span> <span class="nx">epoch</span> <span class="nx">is</span> <span class="nx">set</span><span class="p">,</span> <span class="nx">defaulting</span> <span class="nx">to</span> <span class="kc">nil</span> <span class="p">{:</span><span class="nx">level</span><span class="p">=&gt;:</span><span class="nx">warn</span><span class="p">}</span>
-<span class="nx">Created</span> <span class="kn">package</span> <span class="p">{:</span><span class="nx">path</span><span class="p">=&gt;</span><span class="s">&#34;nginx-1.6.2-1.x86_64.rpm&#34;</span><span class="p">}</span>
-<span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">oldboy</span> <span class="nx">nginx</span><span class="p">]</span><span class="err">#</span> <span class="nx">rpm</span> <span class="o">-</span><span class="nx">qpl</span> <span class="nx">nginx</span><span class="o">-</span><span class="mf">1.6.2</span><span class="o">-</span><span class="mf">1.</span><span class="nx">x86_64</span><span class="p">.</span><span class="nx">rpm</span>
-<span class="o">/</span><span class="nx">client_body_temp</span>
-<span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">extra</span><span class="o">/</span><span class="nx">dynamic_pools</span>
-<span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">extra</span><span class="o">/</span><span class="nx">static_pools</span>
-<span class="err">…………</span>
-
-<span class="err">#</span> <span class="nx">绝对路径</span>
-<span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">oldboy</span> <span class="err">~</span><span class="p">]</span><span class="err">#</span> <span class="nx">fpm</span> <span class="o">-</span><span class="nx">s</span> <span class="nx">dir</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">rpm</span> <span class="o">-</span><span class="nx">n</span> <span class="nx">nginx</span> <span class="o">-</span><span class="nx">v</span> <span class="mf">1.6.2</span> <span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">nginx</span>
-<span class="nx">no</span> <span class="nx">value</span> <span class="k">for</span> <span class="nx">epoch</span> <span class="nx">is</span> <span class="nx">set</span><span class="p">,</span> <span class="nx">defaulting</span> <span class="nx">to</span> <span class="kc">nil</span> <span class="p">{:</span><span class="nx">level</span><span class="p">=&gt;:</span><span class="nx">warn</span><span class="p">}</span>
-<span class="nx">no</span> <span class="nx">value</span> <span class="k">for</span> <span class="nx">epoch</span> <span class="nx">is</span> <span class="nx">set</span><span class="p">,</span> <span class="nx">defaulting</span> <span class="nx">to</span> <span class="kc">nil</span> <span class="p">{:</span><span class="nx">level</span><span class="p">=&gt;:</span><span class="nx">warn</span><span class="p">}</span>
-<span class="nx">Created</span> <span class="kn">package</span> <span class="p">{:</span><span class="nx">path</span><span class="p">=&gt;</span><span class="s">&#34;nginx-1.6.2-1.x86_64.rpm&#34;</span><span class="p">}</span>
-<span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">oldboy</span> <span class="err">~</span><span class="p">]</span><span class="err">#</span> <span class="nx">rpm</span> <span class="o">-</span><span class="nx">qpl</span> <span class="nx">nginx</span><span class="o">-</span><span class="mf">1.6.2</span><span class="o">-</span><span class="mf">1.</span><span class="nx">x86_64</span><span class="p">.</span><span class="nx">rpm</span>
-<span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">nginx</span><span class="o">/</span><span class="nx">client_body_temp</span>
-<span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">nginx</span><span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">extra</span><span class="o">/</span><span class="nx">dynamic_pools</span>
-<span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">nginx</span><span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">extra</span><span class="o">/</span><span class="nx">static_pools</span>
-<span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">nginx</span><span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">fastcgi</span><span class="p">.</span><span class="nx">conf</span>
-<span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">nginx</span><span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">fastcgi</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="k">default</span>
-<span class="err">…………</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">% dpkg -c nodejs-doc_0.6.0-1_amd64.deb <span class="p">|</span> grep node.1
+-rw-r--r-- root/root       <span class="m">945</span> 2011-01-02 18:35 usr/share/man/man1/node.1
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="制作-nodejs-dev-包">制作 nodejs-dev 包</h3>
+<p>最后，打包用于开发的 headers 文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">% fpm -s dir -t deb -p nodejs-dev_VERSION_ARCH.deb -n nodejs-dev -v 0.6.0 -C /tmp/installdir usr/include
+% dpkg -c nodejs-dev_0.6.0-1_amd64.deb <span class="p">|</span> grep -F .h
+-rw-r--r-- root/root     <span class="m">14359</span> 2011-01-02 18:33 usr/include/node/eio.h
+-rw-r--r-- root/root      <span class="m">1118</span> 2011-01-02 18:33 usr/include/node/node_version.h
+-rw-r--r-- root/root     <span class="m">25318</span> 2011-01-02 18:33 usr/include/node/ev.h
+...
 </code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>注：fpm 类似 tar 打包一样，只是 fpm 打的包能够被 yum 命令识别而已。</p>
+<p>更多使用帮助请查看 fpm 官方文档 <a href="https://fpm.readthedocs.io/en/latest/" target="_blank" rel="noopener noreffer">https://fpm.readthedocs.io/en/latest/</a></p>
 </blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-04-01</span>
+                <span>更新于 2021-07-03</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -381,7 +386,7 @@ openssl-devel is needed by nginx-1.6.2-1.x86_64
                             <a class="link-to-markdown" href="/posts/fpm/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-hashtags="fpm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/fpm/" data-hashtag="fpm"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/fpm/" data-title="使用 FPM 快速打包"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具" data-hashtags="fpm"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/fpm/" data-hashtag="fpm"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/fpm/" data-title="fpm - 简单的包制作工具"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -393,8 +398,7 @@ openssl-devel is needed by nginx-1.6.2-1.x86_64
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/yum-repo/" class="prev" rel="prev" title="部署 YUM 本地仓库"><i class="fas fa-angle-left fa-fw"></i>部署 YUM 本地仓库</a>
-            <a href="/posts/nginx-install/" class="next" rel="next" title="NGINX 安装">NGINX 安装<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/nginx-logrotate/" class="prev" rel="prev" title="Nginx 日志自动切割"><i class="fas fa-angle-left fa-fw"></i>Nginx 日志自动切割</a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
@@ -411,5 +415,5 @@ openssl-devel is needed by nginx-1.6.2-1.x86_64
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-04-01T15:34:35+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"使用 FPM 快速打包"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-07-03T15:46:10+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"fpm - 简单的包制作工具"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>
