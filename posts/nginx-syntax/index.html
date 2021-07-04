@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>NGINX 常用指令语法 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="NGINX 常用指令语法" />
+        <title>nginx - 常用指令语法 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="nginx - 常用指令语法" />
 <meta property="og:description" content="域名重定向 当用户访问 http://liwanggui.com 时 url 重定向至 https://liwanggui.com， 实现 http -&gt; https 重定向，实现方式有两种： 通过 rewrite 模块的 permanent 参数实现永久重" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/nginx-syntax/" />
@@ -15,14 +15,14 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
-<meta name="twitter:title" content="NGINX 常用指令语法"/>
+<meta name="twitter:title" content="nginx - 常用指令语法"/>
 <meta name="twitter:description" content="域名重定向 当用户访问 http://liwanggui.com 时 url 重定向至 https://liwanggui.com， 实现 http -&gt; https 重定向，实现方式有两种： 通过 rewrite 模块的 permanent 参数实现永久重"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/nginx-syntax/" /><link rel="prev" href="https://liwanggui.com/posts/nginx-install/" /><link rel="next" href="https://liwanggui.com/posts/nginx-alias-root/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/nginx-syntax/" /><link rel="prev" href="https://liwanggui.com/posts/yum-repo/" /><link rel="next" href="https://liwanggui.com/posts/nginx-alias-root/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "NGINX 常用指令语法",
+        "headline": "nginx - 常用指令语法",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -102,7 +102,7 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">NGINX 常用指令语法</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">nginx - 常用指令语法</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="far fa-folder fa-fw"></i>nginx</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-01">2021-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2295 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
@@ -367,10 +367,10 @@ $request_filename： /var/www/html/test1/test2/test.php
 }
 </code></pre></td></tr></table>
 </div>
-</div><p>这段代码主要完成对 <code>www.liwanggui.com</code> 这个域名的资源访问配置， <code>www.liwanggui.com</code> 这个域名的根目录为 <code>/var/www/html</code>,
+</div><p>这段代码主要完成对 <code>www.liwanggui.com</code> 这个域名的资源访问配置， <code>www.liwanggui.com</code> 这个域名的根目录为 <code>/var/www/html</code>, 
 而静态资源分别位于 <code>/usr/local/nginx/www/img</code>, <code>/var/www/html/img</code>, <code>/apps/images</code> 三个目录下，
 请求静态资源的方式依次在三个目录中找，如果第一个目录找不到，就找第二目录，以此类推，如果都找不到，将提示404错误；</p>
-<p>动态资源分别位于 <code>/webdata/webapp/www/ROOT</code>,<code>/usr/local/nginx/www/jsp</code>,
+<p>动态资源分别位于 <code>/webdata/webapp/www/ROOT</code>,<code>/usr/local/nginx/www/jsp</code>, 
 两个目录下，如果客户端请求的的资源是以 <code>.jsp</code> 结尾的，那么将依次在这两个动态程序目录下查找资源。
 而于没有在这两个目录中定义的资源，将全部从根目录 <code>/var/www/html</code> 进行查找。</p>
 <h3 id="rewrite-命令">rewrite 命令</h3>
@@ -485,7 +485,7 @@ break 和 last 都能组织继续执行后面的 rewrite 指令</p>
                             <a class="link-to-markdown" href="/posts/nginx-syntax/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法" data-hashtags="nginx"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/nginx-syntax/" data-hashtag="nginx"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="NGINX 常用指令语法"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法" data-hashtags="nginx"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/nginx-syntax/" data-hashtag="nginx"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/nginx-syntax/" data-title="nginx - 常用指令语法"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -497,8 +497,8 @@ break 和 last 都能组织继续执行后面的 rewrite 指令</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/nginx-install/" class="prev" rel="prev" title="NGINX 安装"><i class="fas fa-angle-left fa-fw"></i>NGINX 安装</a>
-            <a href="/posts/nginx-alias-root/" class="next" rel="next" title="NGINX alias 与 root 区别">NGINX alias 与 root 区别<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/yum-repo/" class="prev" rel="prev" title="部署 YUM 本地仓库"><i class="fas fa-angle-left fa-fw"></i>部署 YUM 本地仓库</a>
+            <a href="/posts/nginx-alias-root/" class="next" rel="next" title="nginx - alias 与 root 区别">nginx - alias 与 root 区别<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
@@ -515,5 +515,5 @@ break 和 last 都能组织继续执行后面的 rewrite 指令</p>
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-04-01T16:26:44+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"NGINX 常用指令语法"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-04-01T16:26:44+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"nginx - 常用指令语法"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

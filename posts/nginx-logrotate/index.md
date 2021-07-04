@@ -1,4 +1,4 @@
-# Nginx 日志自动切割
+# nginx - 日志轮转
 
 
 ## 使用 logrotate 管理 nginx 日志

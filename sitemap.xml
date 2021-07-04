@@ -9,12 +9,9 @@
             <loc>https://liwanggui.com/categories/linux/</loc><lastmod>2021-07-03T15:46:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/posts/</loc><lastmod>2021-07-03T15:46:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://liwanggui.com/tags/</loc><lastmod>2021-07-03T15:46:10&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/tags/nginx/</loc><lastmod>2021-06-27T18:24:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/categories/nginx/</loc><lastmod>2021-06-27T18:24:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/posts/nginx-logrotate/</loc><lastmod>2021-06-27T18:24:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/categories/cli/</loc><lastmod>2021-06-27T13:49:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/tags/find/</loc><lastmod>2021-06-27T13:49:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://liwanggui.com/posts/find/</loc><lastmod>2021-06-27T13:49:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://liwanggui.com/categories/cli/</loc><lastmod>2021-06-27T13:49:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://liwanggui.com/tags/find/</loc><lastmod>2021-06-27T13:49:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://liwanggui.com/posts/find/</loc><lastmod>2021-06-27T13:49:58&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://liwanggui.com/tags/groovy/</loc><lastmod>2021-06-17T12:03:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://liwanggui.com/tags/jenkins/</loc><lastmod>2021-06-17T12:03:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://liwanggui.com/categories/jenkins/</loc><lastmod>2021-06-17T12:03:43&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
@@ -47,34 +44,34 @@
             <loc>https://liwanggui.com/categories/virtualization/</loc><lastmod>2021-06-13T17:05:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://liwanggui.com/tags/vmware/</loc><lastmod>2021-06-13T17:05:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>https://liwanggui.com/posts/vmware-linux-share/</loc><lastmod>2021-06-13T17:05:05&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/git/</loc><lastmod>2021-06-13T10:33:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/git/</loc><lastmod>2021-06-13T10:33:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/git-keys/</loc><lastmod>2021-06-13T10:33:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/git-repo/</loc><lastmod>2021-06-13T10:13:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/git-migration/</loc><lastmod>2021-06-13T10:03:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/gitea/</loc><lastmod>2021-06-13T09:31:36&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/gitea/</loc><lastmod>2021-06-13T09:31:36&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/macos/</loc><lastmod>2021-06-12T18:43:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/macos/</loc><lastmod>2021-06-12T18:43:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/macos-dir/</loc><lastmod>2021-06-12T18:43:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/macos-cli/</loc><lastmod>2021-06-12T18:41:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/macos-terminal/</loc><lastmod>2021-06-12T18:39:34&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/centos/</loc><lastmod>2021-06-12T18:33:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/centos/</loc><lastmod>2021-06-12T18:33:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/centos7-reset-password/</loc><lastmod>2021-06-12T18:33:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/windows/</loc><lastmod>2021-06-12T18:23:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/windows/</loc><lastmod>2021-06-12T18:23:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/windows-tools/</loc><lastmod>2021-06-12T18:23:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/regedit/</loc><lastmod>2021-06-12T18:19:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/windows-contextmenu/</loc><lastmod>2021-06-12T18:19:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/realvnc/</loc><lastmod>2021-06-12T18:10:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/windows-vnc/</loc><lastmod>2021-06-12T18:10:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/cmd/</loc><lastmod>2021-06-12T18:02:55&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/windows-cmd/</loc><lastmod>2021-06-12T18:02:55&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/cobbler/</loc><lastmod>2021-06-12T17:40:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/tags/ansible/</loc><lastmod>2021-06-12T17:36:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/categories/ansible/</loc><lastmod>2021-06-12T17:36:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>https://liwanggui.com/posts/ansible-playbook/</loc><lastmod>2021-06-12T17:36:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>https://liwanggui.com/tags/git/</loc><lastmod>2021-06-13T10:33:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/git/</loc><lastmod>2021-06-13T10:33:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/git-keys/</loc><lastmod>2021-06-13T10:33:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/git-repo/</loc><lastmod>2021-06-13T10:13:38&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/git-migration/</loc><lastmod>2021-06-13T10:03:57&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/gitea/</loc><lastmod>2021-06-13T09:31:36&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/gitea/</loc><lastmod>2021-06-13T09:31:36&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/macos/</loc><lastmod>2021-06-12T18:43:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/macos/</loc><lastmod>2021-06-12T18:43:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/macos-dir/</loc><lastmod>2021-06-12T18:43:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/macos-cli/</loc><lastmod>2021-06-12T18:41:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/macos-terminal/</loc><lastmod>2021-06-12T18:39:34&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/centos/</loc><lastmod>2021-06-12T18:33:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/centos/</loc><lastmod>2021-06-12T18:33:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/centos7-reset-password/</loc><lastmod>2021-06-12T18:33:21&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/windows/</loc><lastmod>2021-06-12T18:23:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/windows/</loc><lastmod>2021-06-12T18:23:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/windows-tools/</loc><lastmod>2021-06-12T18:23:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/regedit/</loc><lastmod>2021-06-12T18:19:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/windows-contextmenu/</loc><lastmod>2021-06-12T18:19:37&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/realvnc/</loc><lastmod>2021-06-12T18:10:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/windows-vnc/</loc><lastmod>2021-06-12T18:10:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/cmd/</loc><lastmod>2021-06-12T18:02:55&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/windows-cmd/</loc><lastmod>2021-06-12T18:02:55&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/cobbler/</loc><lastmod>2021-06-12T17:40:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/tags/ansible/</loc><lastmod>2021-06-12T17:36:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/categories/ansible/</loc><lastmod>2021-06-12T17:36:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>https://liwanggui.com/posts/ansible-playbook/</loc><lastmod>2021-06-12T17:36:14&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/posts/ansible-modules/</loc><lastmod>2021-06-12T17:31:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/posts/ansible-role/</loc><lastmod>2021-06-12T17:28:02&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://liwanggui.com/posts/ansible-hosts/</loc><lastmod>2021-06-12T17:24:53&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
@@ -113,9 +110,11 @@
             <loc>https://liwanggui.com/posts/filebeat/</loc><lastmod>2021-04-14T20:04:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/elasticsearch/</loc><lastmod>2021-04-10T17:11:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/posts/elasticsearch/</loc><lastmod>2021-04-10T17:11:24&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/tags/nginx/</loc><lastmod>2021-04-01T18:24:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/categories/nginx/</loc><lastmod>2021-04-01T18:24:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/posts/nginx-logrotate/</loc><lastmod>2021-04-01T18:24:00&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/posts/nginx-alias-root/</loc><lastmod>2021-04-01T17:16:15&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/posts/nginx-syntax/</loc><lastmod>2021-04-01T16:26:44&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://liwanggui.com/posts/nginx-install/</loc><lastmod>2021-04-01T16:11:08&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/yum/</loc><lastmod>2021-04-01T15:31:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/posts/yum-repo/</loc><lastmod>2021-04-01T15:31:06&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/rpmbuild/</loc><lastmod>2021-04-01T15:23:19&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -123,6 +122,7 @@
             <loc>https://liwanggui.com/tags/pbzip2/</loc><lastmod>2021-04-01T15:17:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/pigz/</loc><lastmod>2021-04-01T15:17:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/posts/pigz/</loc><lastmod>2021-04-01T15:17:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://liwanggui.com/posts/nginx-compile-install/</loc><lastmod>2021-04-01T13:56:42&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/tags/redis/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/categories/redis/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://liwanggui.com/posts/redis-sentinel/</loc><lastmod>2021-03-28T17:08:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

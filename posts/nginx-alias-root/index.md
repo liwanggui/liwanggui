@@ -1,4 +1,4 @@
-# NGINX alias 与 root 区别
+# nginx - alias 与 root 区别
 
 
 ## alias 与 root 区别
@@ -13,7 +13,7 @@
 
 ## 举例说明
 
-比如 nginx 配置的域名是 liwanggui.com
+比如 `nginx` 配置的域名是 `liwanggui.com`
 
 ```
 location /huan/ {

@@ -106,11 +106,6 @@
         <a href="/posts/fpm/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/fpm/">fpm</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/nginx-logrotate/">Nginx 日志自动切割</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-27">2021-06-27</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/nginx/"><i class="far fa-folder fa-fw"></i>nginx</a></span></div><div class="content">使用 logrotate 管理 nginx 日志 随着时间的推移 nginx 的日志会越来越大，为了减少 nginx 日志的体积大小，使用 logrotate 工具每天对 nginx 日志进行切割处理 nginx logrotate 配置文件: /etc/logrotate.d/nginx 1 2 3 4 5 6 7</div><div class="post-footer">
-        <a href="/posts/nginx-logrotate/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/nginx/">nginx</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/find/">利用 find 查找文件</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-27">2021-06-27</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cli/"><i class="far fa-folder fa-fw"></i>cli</a></span></div><div class="content">简介 find 是实时查找工具，通过遍历指定路径完成文件查找 工作特点： 查找速度略慢 精确查找 实时查找 查找条件丰富 只搜索用户具备读取和执行权限的目录 语法格</div><div class="post-footer">
         <a href="/posts/find/">阅读全文</a><div class="post-tags">
@@ -150,6 +145,11 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/jenkins/"><i class="far fa-folder fa-fw"></i>jenkins</a></span></div><div class="content">安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 配置前先启动 jenkins 服务, 在浏览器打开 http://&lt;your_server_ip_address&gt;:8080 1 systemctl start jenkins 执行以下命令 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins</div><div class="post-footer">
         <a href="/posts/jenkins-install/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/jenkins/">jenkins</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux-multi-ip/">Linux 多 ip 源进源出</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-06-13">2021-06-13</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a></span></div><div class="content">场景: eth0: 192.168.1.10/24 网关: 192.168.1.1 eth1: 10.10.0.10/24 网关: 10.10.0.1 要求: 10.10.0.10 这个 IP 的流量从 10.10.0.1 网关出，保证 10.10.0.10 这个地址可以正常连接, 其他所有流量均从 192.168.1.1 网关出 配置: 将 192.168.1.1 配置为默认网关，</div><div class="post-footer">
+        <a href="/posts/linux-multi-ip/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ip/">ip</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

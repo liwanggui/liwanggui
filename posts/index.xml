@@ -12,13 +12,6 @@
     <guid>https://liwanggui.com/posts/fpm/</guid>
     <description><![CDATA[fpm 简介 fpm 的目标是使得构建二进制包 (deb, rpm, osx 等) 变得简单快速 fpm 项目地址: https://github.com/jordansissel/fpm fpm 文档地址: https://fpm.readthedocs.io/en/latest/ fpm 依赖 fpm 使用 Ruby 开发, 所以你得先安装 Ruby. 有些系统中默认已经安装]]></description>
 </item><item>
-    <title>Nginx 日志自动切割</title>
-    <link>https://liwanggui.com/posts/nginx-logrotate/</link>
-    <pubDate>Sun, 27 Jun 2021 18:24:00 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/nginx-logrotate/</guid>
-    <description><![CDATA[使用 logrotate 管理 nginx 日志 随着时间的推移 nginx 的日志会越来越大，为了减少 nginx 日志的体积大小，使用 logrotate 工具每天对 nginx 日志进行切割处理 nginx logrotate 配置文件: /etc/logrotate.d/nginx 1 2 3 4 5 6 7]]></description>
-</item><item>
     <title>利用 find 查找文件</title>
     <link>https://liwanggui.com/posts/find/</link>
     <pubDate>Sun, 27 Jun 2021 13:49:58 &#43;0800</pubDate>
@@ -74,5 +67,12 @@
     <author>作者</author>
     <guid>https://liwanggui.com/posts/jenkins-install/</guid>
     <description><![CDATA[安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 配置前先启动 jenkins 服务, 在浏览器打开 http://&lt;your_server_ip_address&gt;:8080 1 systemctl start jenkins 执行以下命令 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins]]></description>
+</item><item>
+    <title>Linux 多 ip 源进源出</title>
+    <link>https://liwanggui.com/posts/linux-multi-ip/</link>
+    <pubDate>Sun, 13 Jun 2021 21:32:38 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/linux-multi-ip/</guid>
+    <description><![CDATA[场景: eth0: 192.168.1.10/24 网关: 192.168.1.1 eth1: 10.10.0.10/24 网关: 10.10.0.1 要求: 10.10.0.10 这个 IP 的流量从 10.10.0.1 网关出，保证 10.10.0.10 这个地址可以正常连接, 其他所有流量均从 192.168.1.1 网关出 配置: 将 192.168.1.1 配置为默认网关，]]></description>
 </item></channel>
 </rss>
