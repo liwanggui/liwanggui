@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="Paramiko SSH 远程连接 Linux 主机"/>
 <meta name="twitter:description" content="Paramiko Github 仓库: https://github.com/paramiko/paramiko Paramiko 扩展模块 scp.py Github 仓库: https://github.com/jbardin/scp.py 安装 paramiko 1 pip install paramiko SSH 连接 用户名密码 1 2 3 4 5 6 7 8 9 10 import paramiko client = paramiko.SSHClient() client.set_missing_host_key_policy(paramiko.AutoAddPolicy) client.connect(hostname=&#39;192.168.31.100&#39;, port=22, username=&#39;root&#39;, password=&#39;123456&#39;) stdin, stdout, stderr = client.exec_command(&#39;ls&#39;) for line in stdout: print(&#39;... &#39; &#43; line.strip(&#39;\n&#39;)) client.close() 使用私钥"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/python-paramiko/" /><link rel="prev" href="https://liwanggui.com/posts/python-pyopt/" /><link rel="next" href="https://liwanggui.com/posts/python-wechat/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/python-paramiko/" /><link rel="prev" href="https://liwanggui.com/posts/python-pyopt/" /><link rel="next" href="https://liwanggui.com/posts/python-wechat/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",

@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="通过 rsync &#43; inotify 搭建实时文件同步系统"/>
 <meta name="twitter:description" content="任务需求 需要将一台服务器指定目录中的文件实时同步到另一台服务器上，目录路径 /data/www/pic, 此时我们通过 Rsync &#43; Inotify 来实现。 服务器如下 192.168.145.131: 文件发布推送，客户端 192.168.145.132: 文件"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/rsync-inotify/" /><link rel="prev" href="https://liwanggui.com/posts/dhcp/" /><link rel="next" href="https://liwanggui.com/posts/rabbitmq/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/rsync-inotify/" /><link rel="prev" href="https://liwanggui.com/posts/dhcp/" /><link rel="next" href="https://liwanggui.com/posts/rabbitmq/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",

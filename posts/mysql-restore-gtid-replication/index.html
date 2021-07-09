@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="快速恢复 GTID 从库"/>
 <meta name="twitter:description" content="备份主库 为了节省恢复的时间我们使用 xtrabackup 备份主库，然后拷贝到从库再将数据恢复到从库中 完整备份主库 1 2 # 备份 xtrabackup --defaults-file=/usr/local/mysql/etc/my.cnf -S /data/mysql/mysql.sock -u root -p --backup --target-dir=/data/backup 恢复主从复制 恢复从库"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/mysql-restore-gtid-replication/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-gtid-replication/" /><link rel="next" href="https://liwanggui.com/posts/mysql-slave-extend/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/mysql-restore-gtid-replication/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-gtid-replication/" /><link rel="next" href="https://liwanggui.com/posts/mysql-slave-extend/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",

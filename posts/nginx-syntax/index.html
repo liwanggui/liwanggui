@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="nginx - 常用指令语法"/>
 <meta name="twitter:description" content="域名重定向 当用户访问 http://liwanggui.com 时 url 重定向至 https://liwanggui.com， 实现 http -&gt; https 重定向，实现方式有两种： 通过 rewrite 模块的 permanent 参数实现永久重"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/nginx-syntax/" /><link rel="prev" href="https://liwanggui.com/posts/yum-repo/" /><link rel="next" href="https://liwanggui.com/posts/nginx-alias-root/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/nginx-syntax/" /><link rel="prev" href="https://liwanggui.com/posts/yum-repo/" /><link rel="next" href="https://liwanggui.com/posts/nginx-alias-root/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -367,10 +375,10 @@ $request_filename： /var/www/html/test1/test2/test.php
 }
 </code></pre></td></tr></table>
 </div>
-</div><p>这段代码主要完成对 <code>www.liwanggui.com</code> 这个域名的资源访问配置， <code>www.liwanggui.com</code> 这个域名的根目录为 <code>/var/www/html</code>, 
+</div><p>这段代码主要完成对 <code>www.liwanggui.com</code> 这个域名的资源访问配置， <code>www.liwanggui.com</code> 这个域名的根目录为 <code>/var/www/html</code>,
 而静态资源分别位于 <code>/usr/local/nginx/www/img</code>, <code>/var/www/html/img</code>, <code>/apps/images</code> 三个目录下，
 请求静态资源的方式依次在三个目录中找，如果第一个目录找不到，就找第二目录，以此类推，如果都找不到，将提示404错误；</p>
-<p>动态资源分别位于 <code>/webdata/webapp/www/ROOT</code>,<code>/usr/local/nginx/www/jsp</code>, 
+<p>动态资源分别位于 <code>/webdata/webapp/www/ROOT</code>,<code>/usr/local/nginx/www/jsp</code>,
 两个目录下，如果客户端请求的的资源是以 <code>.jsp</code> 结尾的，那么将依次在这两个动态程序目录下查找资源。
 而于没有在这两个目录中定义的资源，将全部从根目录 <code>/var/www/html</code> 进行查找。</p>
 <h3 id="rewrite-命令">rewrite 命令</h3>

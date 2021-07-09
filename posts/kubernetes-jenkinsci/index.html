@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="使用 jenkins 实现 Kubernetes CI"/>
 <meta name="twitter:description" content="部署 Jenkins rbac.yaml 创建 ServiceAccount: jenkins-ci 授予 cluster-admin 权限， jenkins 在 kubernetes 集群中创建工作节点需要权限 你也可以在 kubernetes 插件中配置验证信息 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 apiVersion:v1kind:ServiceAccountmetadata:name:jenkins-cinamespace:devops---apiVersion:rbac.authorization.k8s.io/v1kind:ClusterRoleBindingmetadata:name:jenkins-cinamespace:devopsroleRef:apiGroup:rbac.authorization.k8s.iokind:ClusterRolename:adminsubjects:- kind:ServiceAccountname:jenkins-cinamespace:devops pvc.yaml 为 jenkins 划"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/kubernetes-jenkinsci/" /><link rel="prev" href="https://liwanggui.com/posts/kubernetes-git/" /><link rel="next" href="https://liwanggui.com/posts/ncdu/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/kubernetes-jenkinsci/" /><link rel="prev" href="https://liwanggui.com/posts/kubernetes-git/" /><link rel="next" href="https://liwanggui.com/posts/ncdu/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",

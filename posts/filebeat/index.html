@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="使用 Filebeat 收集 nginx 日志"/>
 <meta name="twitter:description" content="安装配置 filebeat 安装 1 2 root@ubuntu:/opt# wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.12.0-amd64.deb root@ubuntu:/opt# dpkg -i filebeat-7.12.0-amd64.deb 配置 filebeat.yml 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 root@ubuntu:/etc/filebeat# cat filebeat.yml filebeat.inputs: - type: log enabled: true paths: - /usr/local/nginx/logs/access.log json.keys_under_root:"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/filebeat/" /><link rel="prev" href="https://liwanggui.com/posts/elasticsearch/" /><link rel="next" href="https://liwanggui.com/posts/cfssl/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/filebeat/" /><link rel="prev" href="https://liwanggui.com/posts/elasticsearch/" /><link rel="next" href="https://liwanggui.com/posts/cfssl/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",

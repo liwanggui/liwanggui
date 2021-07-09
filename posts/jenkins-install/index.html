@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="Jenkins 安装配置"/>
 <meta name="twitter:description" content="安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 配置前先启动 jenkins 服务, 在浏览器打开 http://&lt;your_server_ip_address&gt;:8080 1 systemctl start jenkins 执行以下命令 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/jenkins-install/" /><link rel="prev" href="https://liwanggui.com/posts/linux-multi-ip/" /><link rel="next" href="https://liwanggui.com/posts/python-qrcode/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/jenkins-install/" /><link rel="prev" href="https://liwanggui.com/posts/linux-multi-ip/" /><link rel="next" href="https://liwanggui.com/posts/python-qrcode/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",

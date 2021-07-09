@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="MySQL 从库扩展"/>
 <meta name="twitter:description" content="延时从库 应用场景：普通主从正常情况可以应对物理损坏，但无法应用逻辑损坏。例如: drop 和 delete 等操作。 延时从库可以应对这种逻辑损坏场景： 主库做了某项操"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/mysql-slave-extend/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-restore-gtid-replication/" /><link rel="next" href="https://liwanggui.com/posts/mysql-replication-optimization/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/mysql-slave-extend/" /><link rel="prev" href="https://liwanggui.com/posts/mysql-restore-gtid-replication/" /><link rel="next" href="https://liwanggui.com/posts/mysql-replication-optimization/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -158,7 +166,7 @@ mysql&gt; start slave<span class="p">;</span>
 <ul>
 <li>3.追加后续缺失的日志到从库。（相当于手工替代 sql 线程工作）</li>
 </ul>
-<p>日志文件: relay-log 
+<p>日志文件: relay-log
 日志文件起始位置确认:<br>
 查看命令: <code>show slave status\G</code>
 也可以通过查看relay-log.info 文件 <code>cat /data/mysql/3306/relay-log.info</code>

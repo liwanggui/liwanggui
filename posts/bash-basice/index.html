@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="Bash 基础"/>
 <meta name="twitter:description" content="变量 Bash 变量为弱类型事先不用指定值的类型，Bash 变量默认为全局变量，可以使用 local 关键字定义局部变量 1 2 3 4 5 6 7 8 9 10 11 # 默认为全局变量 s=&#39;this is a"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/bash-basice/" /><link rel="prev" href="https://liwanggui.com/posts/ssh-key/" /><link rel="next" href="https://liwanggui.com/posts/linux-multi-ip/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/bash-basice/" /><link rel="prev" href="https://liwanggui.com/posts/ssh-key/" /><link rel="next" href="https://liwanggui.com/posts/linux-multi-ip/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/bash-basice\/"
-        },"genre": "posts","keywords": "bash","wordcount":  2379 ,
+        },"genre": "posts","keywords": "bash","wordcount":  2368 ,
         "url": "https:\/\/liwanggui.com\/posts\/bash-basice\/","datePublished": "2021-06-13T18:05:23+08:00","dateModified": "2021-06-13T18:05:23+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -104,7 +112,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Bash 基础</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/bash/"><i class="far fa-folder fa-fw"></i>bash</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-13">2021-06-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2379 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-13">2021-06-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2368 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -225,8 +233,8 @@ which iftop <span class="o">||</span> <span class="nb">echo</span> <span class="
 </ul>
 <h3 id="3变量检测">3.变量检测</h3>
 <ul>
-<li><code>[[ -z $str1 ]]</code>: 检测字符串长度是否不为 0，不为 0 返回 true。</li>
-<li><code>[[ -n $str1 ]]</code>: 检测字符串长度是否不为 0，不为 0 返回 true。</li>
+<li><code>[[ -z $str1 ]]</code>: 如果字符串长度为 0，则为 true。</li>
+<li><code>[[ -n $str1 ]]</code>: 如果字符串长度不为 0，则为 true。</li>
 <li><code>[[ $str1 ]]</code>: 检测字符串是否为空，不为空返回 true。</li>
 </ul>
 <h3 id="4文件系统选项">4.文件系统选项</h3>

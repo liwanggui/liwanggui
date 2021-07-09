@@ -18,7 +18,15 @@
 <meta name="twitter:title" content="配置 LVS DR 负载均衡"/>
 <meta name="twitter:description" content="环境准备 Director Server: 192.168.31.33/24 Real Server 1: 192.168.31.31/24 Real Server 2: 192.168.31.32/24 VIP: 192.168.31.30/32 安装配置 ipvs 安装 ipvs 管理软件 在 Director Server 上安装 ipvsadm 1 root@lb-01:~# apt install ipvsadm 配置 ipvs 配置 vip 1 2 3 4 5 6 7 8 9 10 root@lb-01:~# ip addr add 192.168.31.30/32 brd 192.168.31.30 dev ens32 root@lb-01:~# ip addr show"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://liwanggui.com/posts/lvs-configure/" /><link rel="prev" href="https://liwanggui.com/posts/lvs-introduction/" /><link rel="next" href="https://liwanggui.com/posts/keepalived/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?ec13af2fca712d77df5a8a53053ddaaf";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script><link rel="canonical" href="https://liwanggui.com/posts/lvs-configure/" /><link rel="prev" href="https://liwanggui.com/posts/lvs-introduction/" /><link rel="next" href="https://liwanggui.com/posts/keepalived/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
