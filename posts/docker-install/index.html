@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Docker 快速安装 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Docker 快速安装" />
-<meta property="og:description" content="一键安装 docker Docker 官方提供了一键安装 docker 脚本工具: https://github.com/docker/docker-install 安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh sh get-docker.sh 默认下载源是 docker 官方境外的源，在国内下载很慢 使用阿里云安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh" />
+        <title>docker - 快速安装 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="docker - 快速安装" />
+<meta property="og:description" content="一键安装 docker Docker 官方提供了一键安装 docker 脚本工具: https://github.com/docker/docker-install 安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh sh get-docker.sh 默认下载源是 docker 官方境外的源，在国内下载很慢 指定阿里源安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/docker-install/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
@@ -15,8 +15,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
-<meta name="twitter:title" content="Docker 快速安装"/>
-<meta name="twitter:description" content="一键安装 docker Docker 官方提供了一键安装 docker 脚本工具: https://github.com/docker/docker-install 安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh sh get-docker.sh 默认下载源是 docker 官方境外的源，在国内下载很慢 使用阿里云安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh"/>
+<meta name="twitter:title" content="docker - 快速安装"/>
+<meta name="twitter:description" content="一键安装 docker Docker 官方提供了一键安装 docker 脚本工具: https://github.com/docker/docker-install 安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh sh get-docker.sh 默认下载源是 docker 官方境外的源，在国内下载很慢 指定阿里源安装 docker 1 2 curl -fsSL https://get.docker.com -o get-docker.sh"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
     var _hmt = _hmt || [];
@@ -30,12 +30,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Docker 快速安装",
+        "headline": "docker - 快速安装",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/docker-install\/"
-        },"genre": "posts","keywords": "docker","wordcount":  403 ,
+        },"genre": "posts","keywords": "docker","wordcount":  433 ,
         "url": "https:\/\/liwanggui.com\/posts\/docker-install\/","datePublished": "2021-03-06T10:39:29+08:00","dateModified": "2021-03-06T10:39:29+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,9 +110,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Docker 快速安装</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">docker - 快速安装</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 403 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 433 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -124,12 +124,13 @@
     <li><a href="#一键安装-docker">一键安装 docker</a>
       <ul>
         <li><a href="#安装-docker">安装 docker</a></li>
-        <li><a href="#使用阿里云安装-docker">使用阿里云安装 docker</a></li>
+        <li><a href="#指定阿里源安装-docker">指定阿里源安装 docker</a></li>
       </ul>
     </li>
     <li><a href="#配置阿里源安装-docker">配置阿里源安装 docker</a>
       <ul>
         <li><a href="#安装指定版本的docker-ce">安装指定版本的Docker-CE</a></li>
+        <li><a href="#配置-docker-命令自动补全">配置 docker 命令自动补全</a></li>
       </ul>
     </li>
   </ul>
@@ -150,7 +151,7 @@ sh get-docker.sh
 </div><blockquote>
 <p>默认下载源是 docker 官方境外的源，在国内下载很慢</p>
 </blockquote>
-<h3 id="使用阿里云安装-docker">使用阿里云安装 docker</h3>
+<h3 id="指定阿里源安装-docker">指定阿里源安装 docker</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -248,7 +249,19 @@ sudo apt-get -y install docker-ce
 </div><blockquote>
 <p>注意: 如果部署 kubernetes 集群，就是需要安装经过 kubernetes 验证过的 docker 版本</p>
 </blockquote>
-</div><div class="post-footer" id="post-footer">
+<h3 id="配置-docker-命令自动补全">配置 docker 命令自动补全</h3>
+<p>配置前需要先安装 <code>bash-completion</code> 工具包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">curl -o /etc/bash_completion.d/docker -fsSL https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
+<span class="nb">source</span> /etc/profile
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -261,7 +274,7 @@ sudo apt-get -y install docker-ce
                             <a class="link-to-markdown" href="/posts/docker-install/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装" data-hashtags="docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/docker-install/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/docker-install/" data-title="Docker 快速安装"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装" data-hashtags="docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/docker-install/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/docker-install/" data-title="docker - 快速安装"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -274,7 +287,7 @@ sudo apt-get -y install docker-ce
     </div>
 
     <div class="post-nav"><a href="/posts/ubuntu-flushdns/" class="prev" rel="prev" title="Ubuntu 刷新/删除 DNS 缓存"><i class="fas fa-angle-left fa-fw"></i>Ubuntu 刷新/删除 DNS 缓存</a>
-            <a href="/posts/docker-config/" class="next" rel="next" title="Docker 基本配置项">Docker 基本配置项<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/docker-config/" class="next" rel="next" title="docker - 基本配置项">docker - 基本配置项<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
@@ -291,5 +304,5 @@ sudo apt-get -y install docker-ce
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-03-06T10:39:29+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Docker 快速安装"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-03-06T10:39:29+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"docker - 快速安装"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

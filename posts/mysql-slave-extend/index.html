@@ -166,7 +166,7 @@ mysql&gt; start slave<span class="p">;</span>
 <ul>
 <li>3.追加后续缺失的日志到从库。（相当于手工替代 sql 线程工作）</li>
 </ul>
-<p>日志文件: relay-log
+<p>日志文件: relay-log 
 日志文件起始位置确认:<br>
 查看命令: <code>show slave status\G</code>
 也可以通过查看relay-log.info 文件 <code>cat /data/mysql/3306/relay-log.info</code>

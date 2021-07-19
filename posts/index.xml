@@ -4,7 +4,14 @@
         <link>https://liwanggui.com/posts/</link>
         <description>所有文章 | _浅行</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liwanggui@163.com (李王贵)</managingEditor>
-            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sat, 03 Jul 2021 15:46:10 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>liwanggui@163.com (李王贵)</webMaster><lastBuildDate>Sun, 18 Jul 2021 21:30:08 &#43;0800</lastBuildDate><atom:link href="https://liwanggui.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>docker - 创建 SSH 镜像</title>
+    <link>https://liwanggui.com/posts/docker-build-ssh/</link>
+    <pubDate>Sun, 18 Jul 2021 21:30:08 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://liwanggui.com/posts/docker-build-ssh/</guid>
+    <description><![CDATA[CentOS CentOS SSH 镜像 Dockerfile 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 FROM centos:centos7 LABEL maintainer=&#34;liwanggui&#34; RUN curl -o /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-7-reg.repo \ &amp;&amp; yum install -y openssh-server \ &amp;&amp; yum install -y inetutils-ping iproute net-tools \ &amp;&amp; yum clean all \ &amp;&amp; echo &#39;123456&#39; | passwd --stdin root \ &amp;&amp; ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key \]]></description>
+</item><item>
     <title>fpm - 简单的包制作工具</title>
     <link>https://liwanggui.com/posts/fpm/</link>
     <pubDate>Sat, 03 Jul 2021 15:46:10 &#43;0800</pubDate>
@@ -67,12 +74,5 @@
     <author>作者</author>
     <guid>https://liwanggui.com/posts/jenkins-install/</guid>
     <description><![CDATA[安装 官方安装文档: https://pkg.jenkins.io/redhat-stable/ 1 2 3 wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key yum install jenkins 配置 配置方法1 配置前先启动 jenkins 服务, 在浏览器打开 http://&lt;your_server_ip_address&gt;:8080 1 systemctl start jenkins 执行以下命令 1 2 3 4 mkdir -p /var/lib/jenkins/update-center-rootCAs wget https://cdn.jsdelivr.net/gh/lework/jenkins-update-center/rootCA/update-center.crt -O /var/lib/jenkins/update-center-rootCAs/update-center.crt chown jenkins.jenkins]]></description>
-</item><item>
-    <title>Linux 多 ip 源进源出</title>
-    <link>https://liwanggui.com/posts/linux-multi-ip/</link>
-    <pubDate>Sun, 13 Jun 2021 21:32:38 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://liwanggui.com/posts/linux-multi-ip/</guid>
-    <description><![CDATA[场景: eth0: 192.168.1.10/24 网关: 192.168.1.1 eth1: 10.10.0.10/24 网关: 10.10.0.1 要求: 10.10.0.10 这个 IP 的流量从 10.10.0.1 网关出，保证 10.10.0.10 这个地址可以正常连接, 其他所有流量均从 192.168.1.1 网关出 配置: 将 192.168.1.1 配置为默认网关，]]></description>
 </item></channel>
 </rss>

@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Redis Sentinel 高可用 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Redis Sentinel 高可用" />
-<meta property="og:description" content="Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库,并发送 SYNC 给主库 主库收到 SYNC,会立即触发 BGSAVE,后台保存 RDB,发送给副本库 副本库接收后会" />
+<meta property="og:description" content="Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库, 并发送 SYNC 给主库 主库收到 SYNC, 会立即触发 BGSAVE, 后台保存 RDB, 发送给副本库 副本库接收后会应用 RDB 快照 主库会陆续将中间" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/redis-sentinel/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
 <meta name="twitter:title" content="Redis Sentinel 高可用"/>
-<meta name="twitter:description" content="Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库,并发送 SYNC 给主库 主库收到 SYNC,会立即触发 BGSAVE,后台保存 RDB,发送给副本库 副本库接收后会"/>
+<meta name="twitter:description" content="Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库, 并发送 SYNC 给主库 主库收到 SYNC, 会立即触发 BGSAVE, 后台保存 RDB, 发送给副本库 副本库接收后会应用 RDB 快照 主库会陆续将中间"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
     var _hmt = _hmt || [];
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/redis-sentinel\/"
-        },"genre": "posts","keywords": "redis, sentinel","wordcount":  2159 ,
+        },"genre": "posts","keywords": "redis, sentinel","wordcount":  2147 ,
         "url": "https:\/\/liwanggui.com\/posts\/redis-sentinel\/","datePublished": "2021-03-28T17:08:48+08:00","dateModified": "2021-03-28T17:08:48+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -112,7 +112,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Redis Sentinel 高可用</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/redis/"><i class="far fa-folder fa-fw"></i>redis</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-28">2021-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2159 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-28">2021-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2147 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -147,15 +147,15 @@
             </div><div class="content" id="content"><h2 id="redis-replication">Redis Replication</h2>
 <h3 id="replication-原理">Replication 原理</h3>
 <ol>
-<li>副本库通过 <code>slaveof 127.0.0.1 6380</code> 命令, 连接主库,并发送 SYNC 给主库</li>
-<li>主库收到 SYNC,会立即触发 BGSAVE,后台保存 RDB,发送给副本库</li>
+<li>副本库通过 <code>slaveof 127.0.0.1 6380</code> 命令, 连接主库, 并发送 SYNC 给主库</li>
+<li>主库收到 SYNC, 会立即触发 BGSAVE, 后台保存 RDB, 发送给副本库</li>
 <li>副本库接收后会应用 RDB 快照</li>
 <li>主库会陆续将中间产生的新的操作,保存并发送给副本库</li>
 <li>到此,我们主复制集就正常工作了</li>
-<li>再此以后,主库只要发生新的操作,都会以命令传播的形式自动发送给副本库.</li>
-<li>所有复制相关信息,从 info 信息中都可以查到. 即使重启任何节点, 他的主从关系依然都在.</li>
+<li>再此以后, 主库只要发生新的操作, 都会以命令传播的形式自动发送给副本库.</li>
+<li>所有复制相关信息, 从 info 信息中都可以查到. 即使重启任何节点, 他的主从关系依然都在.</li>
 <li>如果发生主从关系断开时,从库数据没有任何损坏, 在下次重连之后, 从库发送 PSYNC 给主库</li>
-<li>主库只会将从库缺失部分的数据同步给从库应用,达到快速恢复主从的目的</li>
+<li>主库只会将从库缺失部分的数据同步给从库应用, 达到快速恢复主从的目的</li>
 </ol>
 <h3 id="准备多实例-redis-服务">准备多实例 Redis 服务</h3>
 <p>实验采用单机多实例的方式进行，创建三个实例。端口 <code>6380-6382</code>, 可以使用 redis 源码包中的脚本（<code>install_server.sh</code>）创建</p>
@@ -507,6 +507,7 @@ repl_backlog_histlen:0
 </span><span class="lnt">19
 </span><span class="lnt">20
 </span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">mkdir /data/sentinel
@@ -517,6 +518,7 @@ cat &gt; /data/sentinel/26379.conf <span class="s">&lt;&lt;EOF
 </span><span class="s">port 26379
 </span><span class="s">dir &#34;/tmp&#34;
 </span><span class="s">sentinel myid 994ea01af0f13692c13eeda116a0668084bb5e68
+</span><span class="s">
 </span><span class="s"># mymaster 是一个自定义名称，客户端通过 sentinel 连接 redis 时需要使用
 </span><span class="s"># 127.0.0.1 6380  是主节点的 ip 和 端口号
 </span><span class="s"># 1 是 sentinel failover 投票数，默认为 sentinel 节点数/2 + 1, 1个节点时为1

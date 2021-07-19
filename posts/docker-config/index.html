@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Docker 基本配置项 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="Docker 基本配置项" />
-<meta property="og:description" content="完整的配置项参考: https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file docker 默认配置文件路径为: /etc/docker/daemon.json docker 常用的配置项 1 2 3 4 5 6 7 8 9 10 11 12 13 [root@localhost ~]# cat /etc/docker/daemon.json { &#34;registry-mirrors&#34;: [&#34;https://docker.mirrors.ustc.edu.cn&#34;, &#34;http://hub-mirror.c.163.com&#34;], # 镜像加速器 &#34;insecure-registries&#34;:[&#34;harbor.host.com&#34;], # 第三方仓库或自建仓库地址" />
+        <title>docker - 基本配置项 - _浅行</title><meta name="Description" content="_浅行"><meta property="og:title" content="docker - 基本配置项" />
+<meta property="og:description" content="完整的配置项参考: https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file docker 常用的配置项 docker 默认配置文件路径为: /etc/docker/daemon.json 1 2 3 4 5 6 7 8 9 10 11 12 { &#34;registry-mirrors&#34;: [&#34;https://docker.mirrors.ustc.edu.cn&#34;, &#34;http://hub-mirror.c.163.com&#34;], # 镜像加速器 &#34;insecure-registries&#34;:[&#34;harbor.host.com&#34;], # 第三方仓库或自建仓库地址，可以配置" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://liwanggui.com/posts/docker-config/" />
 <meta property="og:image" content="https://liwanggui.com/logo.png"/>
@@ -15,8 +15,8 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://liwanggui.com/logo.png"/>
 
-<meta name="twitter:title" content="Docker 基本配置项"/>
-<meta name="twitter:description" content="完整的配置项参考: https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file docker 默认配置文件路径为: /etc/docker/daemon.json docker 常用的配置项 1 2 3 4 5 6 7 8 9 10 11 12 13 [root@localhost ~]# cat /etc/docker/daemon.json { &#34;registry-mirrors&#34;: [&#34;https://docker.mirrors.ustc.edu.cn&#34;, &#34;http://hub-mirror.c.163.com&#34;], # 镜像加速器 &#34;insecure-registries&#34;:[&#34;harbor.host.com&#34;], # 第三方仓库或自建仓库地址"/>
+<meta name="twitter:title" content="docker - 基本配置项"/>
+<meta name="twitter:description" content="完整的配置项参考: https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file docker 常用的配置项 docker 默认配置文件路径为: /etc/docker/daemon.json 1 2 3 4 5 6 7 8 9 10 11 12 { &#34;registry-mirrors&#34;: [&#34;https://docker.mirrors.ustc.edu.cn&#34;, &#34;http://hub-mirror.c.163.com&#34;], # 镜像加速器 &#34;insecure-registries&#34;:[&#34;harbor.host.com&#34;], # 第三方仓库或自建仓库地址，可以配置"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><script>
     var _hmt = _hmt || [];
@@ -30,12 +30,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Docker 基本配置项",
+        "headline": "docker - 基本配置项",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/liwanggui.com\/posts\/docker-config\/"
-        },"genre": "posts","keywords": "docker","wordcount":  124 ,
+        },"genre": "posts","keywords": "docker","wordcount":  119 ,
         "url": "https:\/\/liwanggui.com\/posts\/docker-config\/","datePublished": "2021-03-06T10:48:43+08:00","dateModified": "2021-03-06T10:48:43+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -110,9 +110,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Docker 基本配置项</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">docker - 基本配置项</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/about/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>李王贵</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>docker</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 124 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-06">2021-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 119 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -125,8 +125,10 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>完整的配置项参考: <a href="https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file" target="_blank" rel="noopener noreffer">https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file</a></p>
-<p><code>docker</code> 默认配置文件路径为:  <code>/etc/docker/daemon.json</code></p>
 <h2 id="docker-常用的配置项">docker 常用的配置项</h2>
+<blockquote>
+<p><code>docker</code> 默认配置文件路径为:  <code>/etc/docker/daemon.json</code></p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -141,11 +143,9 @@
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># cat /etc/docker/daemon.json</span>
-<span class="o">{</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">{</span>
   <span class="s2">&#34;registry-mirrors&#34;</span>: <span class="o">[</span><span class="s2">&#34;https://docker.mirrors.ustc.edu.cn&#34;</span>, <span class="s2">&#34;http://hub-mirror.c.163.com&#34;</span><span class="o">]</span>, <span class="c1"># 镜像加速器</span>
 
   <span class="s2">&#34;insecure-registries&#34;</span>:<span class="o">[</span><span class="s2">&#34;harbor.host.com&#34;</span><span class="o">]</span>,  <span class="c1"># 第三方仓库或自建仓库地址，可以配置为 http</span>
@@ -172,7 +172,7 @@
                             <a class="link-to-markdown" href="/posts/docker-config/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项" data-hashtags="docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/docker-config/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/docker-config/" data-title="Docker 基本配置项"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项" data-hashtags="docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://liwanggui.com/posts/docker-config/" data-hashtag="docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://liwanggui.com/posts/docker-config/" data-title="docker - 基本配置项"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -184,8 +184,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/docker-install/" class="prev" rel="prev" title="Docker 快速安装"><i class="fas fa-angle-left fa-fw"></i>Docker 快速安装</a>
-            <a href="/posts/docker-dockerfile/" class="next" rel="next" title="Dockerfile 相关指令">Dockerfile 相关指令<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/docker-install/" class="prev" rel="prev" title="docker - 快速安装"><i class="fas fa-angle-left fa-fw"></i>docker - 快速安装</a>
+            <a href="/posts/docker-dockerfile/" class="next" rel="next" title="docker - Dockerfile 相关指令">docker - Dockerfile 相关指令<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
@@ -202,5 +202,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-03-06T10:48:43+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"Docker 基本配置项"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/gitalk/gitalk.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"gitalk":{"admin":["liwanggui"],"clientID":"b58d40d83e8ed764cd68","clientSecret":"692c18c18161da09204436725074fc7c8c218975","id":"2021-03-06T10:48:43+08:00","owner":"liwanggui","repo":"liwanggui.github.io","title":"docker - 基本配置项"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

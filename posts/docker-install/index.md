@@ -1,4 +1,4 @@
-# Docker 快速安装
+# docker - 快速安装
 
 
 ## 一键安装 docker
@@ -14,7 +14,7 @@ sh get-docker.sh
 
 > 默认下载源是 docker 官方境外的源，在国内下载很慢
 
-### 使用阿里云安装 docker
+### 指定阿里源安装 docker
 
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -70,3 +70,12 @@ root@ops:~# apt-get -y install docker-ce=5:19.03.15~3-0~ubuntu-bionic
 ```
 
 > 注意: 如果部署 kubernetes 集群，就是需要安装经过 kubernetes 验证过的 docker 版本
+
+### 配置 docker 命令自动补全
+
+配置前需要先安装 `bash-completion` 工具包
+
+```bash
+curl -o /etc/bash_completion.d/docker -fsSL https://raw.githubusercontent.com/docker/cli/master/contrib/completion/bash/docker
+source /etc/profile
+```

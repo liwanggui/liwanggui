@@ -1,14 +1,13 @@
-# Docker 基本配置项
+# docker - 基本配置项
 
 
 完整的配置项参考: [https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file][1]
 
-`docker` 默认配置文件路径为:  `/etc/docker/daemon.json`
-
 ## docker 常用的配置项
 
+> `docker` 默认配置文件路径为:  `/etc/docker/daemon.json`
+
 ```bash
-[root@localhost ~]# cat /etc/docker/daemon.json
 {
   "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn", "http://hub-mirror.c.163.com"], # 镜像加速器
 

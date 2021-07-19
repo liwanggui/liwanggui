@@ -1,4 +1,4 @@
-# Docker 私有仓库部署 (harbor)
+# docker - 私有仓库部署 (harbor)
 
 
 `harbor` 使用 `docker` 容器的方式部署，所以在部署 `harbor` 前需要安装好 `docker` 及单机编排工具 `docker-compose`

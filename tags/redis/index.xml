@@ -10,7 +10,7 @@
     <pubDate>Sun, 28 Mar 2021 17:08:48 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://liwanggui.com/posts/redis-sentinel/</guid>
-    <description><![CDATA[Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库,并发送 SYNC 给主库 主库收到 SYNC,会立即触发 BGSAVE,后台保存 RDB,发送给副本库 副本库接收后会]]></description>
+    <description><![CDATA[Redis Replication Replication 原理 副本库通过 slaveof 127.0.0.1 6380 命令, 连接主库, 并发送 SYNC 给主库 主库收到 SYNC, 会立即触发 BGSAVE, 后台保存 RDB, 发送给副本库 副本库接收后会应用 RDB 快照 主库会陆续将中间]]></description>
 </item><item>
     <title>Redis 基础操作</title>
     <link>https://liwanggui.com/posts/redis-cli/</link>
